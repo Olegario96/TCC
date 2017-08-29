@@ -6,46 +6,54 @@
 % Apresentacao
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
+
 \documentclass[
-	% -- opções da classe memoir --
-	12pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	twoside,			% para impressão em verso e anverso. Oposto a oneside
-	a4paper,			% tamanho do papel.
-	% -- opções da classe abntex2 --
-	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
-	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
-	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
-	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
-	% -- opções do pacote babel --
-	english,			% idioma adicional para hifenização
-	brazil,				% o último idioma é o principal do documento
-	]{abntex2}
+  % -- opções da classe memoir --
+  12pt,       % tamanho da fonte
+  openright,      % capítulos começam em pág ímpar (insere página vazia caso preciso)
+  twoside,      % para impressão em verso e anverso. Oposto a oneside
+  a4paper,      % tamanho do papel.
+  % -- opções da classe abntex2 --
+  %chapter=TITLE,   % títulos de capítulos convertidos em letras maiúsculas
+  %section=TITLE,   % títulos de seções convertidos em letras maiúsculas
+  %subsection=TITLE,  % títulos de subseções convertidos em letras maiúsculas
+  %subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+  % -- opções do pacote babel --
+  english,      % idioma adicional para hifenização
+  french,       % idioma adicional para hifenização
+  spanish,      % idioma adicional para hifenização
+  brazil,       % o último idioma é o principal do documento
+  ]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
 
 % ---
 % Pacotes fundamentais
 % ---
-\usepackage{cmap}				% Mapear caracteres especiais no PDF
-\usepackage{lmodern}			% Usa a fonte Latin Modern
-\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-\usepackage{lastpage}			% Usado pela Ficha catalográfica
-\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}				% Controle das cores
-\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{cmap}       % Mapear caracteres especiais no PDF
+\usepackage{lmodern}      % Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}    % Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}   % Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}     % Usado pela Ficha catalográfica
+\usepackage{indentfirst}    % Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}        % Controle das cores
+\usepackage{graphicx}     % Inclusão de gráficos
 % ---
 
 % ---
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 % ---
-\usepackage{lipsum}				% para geração de dummy text
+\usepackage{lipsum}       % para geração de dummy text
 % ---
 
 % ---
 % Pacotes de citações
 % ---
-\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite} % Citações padrão ABNT
 
 % ---
 % CONFIGURAÇÕES DE PACOTES
@@ -59,36 +67,39 @@
 \renewcommand{\backref}{}
 % Define os textos da citação
 \renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
-		Nenhuma citação no texto.%
-	\or
-		Citado na página #2.%
-	\else
-		Citado #1 vezes nas páginas #2.%
-	\fi}%
+  \ifcase #1 %
+    Nenhuma citação no texto.%
+  \or
+    Citado na página #2.%
+  \else
+    Citado #1 vezes nas páginas #2.%
+  \fi}%
 % ---
 
 
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Modelo Canônico de\\ Trabalho Acadêmico com \abnTeX}
-\autor{Equipe \abnTeX}
+\titulo{Um framework para geração de testes automatizados para aplicações mobile}
+\autor{Gustavo Figueira Olegário}
 \local{Brasil}
-\data{2013, v-1.7.1}
-\orientador{Lauro César Araujo}
-\coorientador{Equipe \abnTeX}
+\data{2017}
+\orientador{Ricardo Pereira e Silva}
+\coorientador{}
 \instituicao{%
-  Universidade do Brasil -- UBr
+  Universidade Federal de Santa Catarina
   \par
-  Faculdade de Arquitetura da Informação
+  Centro Tecnológico - CTC
   \par
-  Programa de Pós-Graduação}
-\tipotrabalho{Tese (Doutorado)}
+  Departamento de Informática e Estatística
+  \par
+  Ciências da Computação}
+\tipotrabalho{Dissertação (Bacharelado)}
 % O preambulo deve conter o tipo do trabalho, o objetivo,
 % o nome da instituição e a área de concentração
-\preambulo{Modelo canônico de trabalho monográfico acadêmico em conformidade com
-as normas ABNT apresentado à comunidade de usuários \LaTeX.}
+\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de
+Ciências da Computação para a obtenção do Grau de Bacharel em
+Ciências da Computação.}
 % ---
 
 
@@ -101,18 +112,18 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 % informações do PDF
 \makeatletter
 \hypersetup{
-     	%pagebackref=true,
-		pdftitle={\@title},
-		pdfauthor={\@author},
-    	pdfsubject={\imprimirpreambulo},
-	    pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
-		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=blue,          	% color of internal links
-    	citecolor=blue,        		% color of links to bibliography
-    	filecolor=magenta,      		% color of file links
-		urlcolor=blue,
-		bookmarksdepth=4
+      %pagebackref=true,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+      pdfsubject={\imprimirpreambulo},
+      pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
+    colorlinks=true,          % false: boxed links; true: colored links
+      linkcolor=blue,           % color of internal links
+      citecolor=blue,           % color of links to bibliography
+      filecolor=magenta,          % color of file links
+    urlcolor=blue,
+    bookmarksdepth=4
 }
 \makeatother
 % ---
@@ -174,67 +185,67 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 %     \includepdf{fig_ficha_catalografica.pdf}
 % \end{fichacatalografica}
 \begin{fichacatalografica}
-	\vspace*{\fill}					% Posição vertical
-	\hrule							% Linha horizontal
-	\begin{center}					% Minipage Centralizado
-	\begin{minipage}[c]{12.5cm}		% Largura
+  \vspace*{\fill}         % Posição vertical
+  \hrule              % Linha horizontal
+  \begin{center}          % Minipage Centralizado
+  \begin{minipage}[c]{12.5cm}   % Largura
 
-	\imprimirautor
+  \imprimirautor
 
-	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-	\imprimirlocal, \imprimirdata-
+  \hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+  \imprimirlocal, \imprimirdata-
 
-	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+  \hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
 
-	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+  \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
 
-	\hspace{0.5cm}
-	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-	\imprimirdata.}\\
+  \hspace{0.5cm}
+  \parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+  \imprimirdata.}\\
 
-	\hspace{0.5cm}
-		1. Palavra-chave1.
-		2. Palavra-chave2.
-		I. Orientador.
-		II. Universidade xxx.
-		III. Faculdade de xxx.
-		IV. Título\\
+  \hspace{0.5cm}
+    1. Framework.
+    2. Testes.
+    I. Ricardo Pereira e Silva.
+    II. Universidade Federal de Santa Catarina.
+    III. Bacharelado em Ciências da Computação.
+    IV. Um framework para geração de testes automatizados para aplicações mobile
 
-	\hspace{8.75cm} CDU 02:141:005.7\\
+  \hspace{8.75cm} CDU 02:141:005.7\\
 
-	\end{minipage}
-	\end{center}
-	\hrule
+  \end{minipage}
+  \end{center}
+  \hrule
 \end{fichacatalografica}
 % ---
 
 % ---
 % Inserir errata
 % ---
-\begin{errata}
-Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
 
-\vspace{\onelineskip}
+%\vspace{\onelineskip}
 
-FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
-reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
-rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
-cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
-Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas %apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao %plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de %membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina %Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 
-\begin{table}[htb]
-\center
-\footnotesize
-\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
-  \hline
-   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
-    \hline
-    1 & 10 & auto-conclavo & autoconclavo\\
-   \hline
-\end{tabular}
-\end{table}
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & %\textbf{Leia-se}  \\
+%    \hline
+%   1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
 
-\end{errata}
+%\end{errata}
 % ---
 
 % ---
@@ -257,18 +268,18 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
     {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
     \vspace*{\fill}
 
-    \hspace{.45\textwidth}
-    \begin{minipage}{.5\textwidth}
-        \imprimirpreambulo
-    \end{minipage}%
+
     \vspace*{\fill}
    \end{center}
 
-   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+   Este Trabalho de Conclusão de Curso foi julgado aprovado para a
+   obtenção do Título de Bacharel em Ciências da Computação, e
+   aprovado em sua forma final pelo Curso de Ciências da Computação
+   da Universidade Federal de Santa Catarina.
 
-   \assinatura{\textbf{\imprimirorientador} \\ Orientador}
-   \assinatura{\textbf{Professor} \\ Convidado 1}
-   \assinatura{\textbf{Professor} \\ Convidado 2}
+   \assinatura{Dr. Prof. \textbf{\imprimirorientador} \\ Orientador}
+   \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 1}
+   \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 2}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
 
@@ -290,8 +301,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \vspace*{\fill}
    \centering
    \noindent
-   \textit{ Este trabalho é dedicado às crianças adultas que,\\
-   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+   \textit{ Este trabalho é dedicado a todos aqueles que jamais desistem dos seus sonhos.} \vspace*{\fill}
 \end{dedicatoria}
 % ---
 
@@ -299,22 +309,13 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 % Agradecimentos
 % ---
 \begin{agradecimentos}
-Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson,
-Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real
-Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro
-projeto abn\TeX\ foram extraídos de
-\url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que
-contribuíram para que a produção de trabalhos acadêmicos conforme
-as normas ABNT com \LaTeX\ fosse possível.
+Os agradecimentos principais são direcionados aos meus pais, irmãos,
+amigos fiéis e à minha namorada que sempre acreditaram em meu potencial
+e que me ajudaram, de alguma forma, a concluir minha graduação.
 
-Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura
-da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
-Brasília (CPAI), ao grupo de usuários
-\emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
-novos voluntários do grupo
-\emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
-\url{http://abntex2.googlecode.com/}}~que contribuíram e que ainda
-contribuirão para a evolução do \abnTeX.
+Agradeço também ao professor Ricardo por seu tempo e dedicação neste trabalho e que desde o início esteve disposto a ajudar na orientação.
+
+Por último, mas não menos importante, agradeço a Deus por esta oportunidade. Pois, sem Sua graça, nada disso existiria.
 
 \end{agradecimentos}
 % ---
@@ -324,13 +325,12 @@ contribuirão para a evolução do \abnTeX.
 % ---
 \begin{epigrafe}
     \vspace*{\fill}
-	\begin{flushright}
-		\textit{``Não vos amoldeis às estruturas deste mundo, \\
-		mas transformai-vos pela renovação da mente, \\
-		a fim de distinguir qual é a vontade de Deus: \\
-		o que é bom, o que Lhe é agradável, o que é perfeito.\\
-		(Bíblia Sagrada, Romanos 12, 2)}
-	\end{flushright}
+  \begin{flushright}
+    \textit{Não se trata de bater duro. Se trata \\
+     de quanto você aguenta apanhar e seguir em \\
+     frente. O quanto você é capaz de continuar \\
+     tentando. É assim que se consegue vencer.}
+  \end{flushright}
 \end{epigrafe}
 % ---
 
