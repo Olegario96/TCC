@@ -346,12 +346,16 @@ Por último, mas não menos importante, agradeço a Deus por esta oportunidade. 
  de gerar testes automatizados para certas aplicações, no mundo de
  dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
  desenvolvimento e permitir que os desenvolvedores se concentrem em
- atividades que demandem mais inteligência do que trabalho manual.
+ atividades que demandem mais inteligência do que trabalho manual. Nesse
+ sentido, a proposta desse trabalho é desenvolver um framework orientado
+ a objetos capaz de executar tal função dentro de dispositvos móveis
+ que possuem o sistema operacional Android. A finalidade do framework é diminuir
+ o esforço e tempo investidos durante a fase de testes.
 
  \vspace{\onelineskip}
 
  \noindent
- \textbf{Palavras-chaves}: engenharia de software. testes. aplicações mobile.
+ \textbf{Palavras-chaves}: Engenharia de Software. testes. aplicações mobile.
  framework OO
 \end{resumo}
 
@@ -364,12 +368,15 @@ Por último, mas não menos importante, agradeço a Deus por esta oportunidade. 
    automated tests for certain applications, in the scope of mobile
    gadgets, can be seen as an accelerator during the process of
    tests allowing the developers to focus on tasks that demands
-   more intelligence than handwork.
+   more intelligence than handwork. So, the main objective of this work
+   is to develop a framework capble to execute this functions in mobile
+   gadgets that run Android. The framework aims to decrease the amount of
+   time and efforts invested during the period of tests.
 
    \vspace{\onelineskip}
 
    \noindent
-   \textbf{Key-words}: software engineering. tests. mobile aplication. framework OO
+   \textbf{Key-words}: Software Engineering. tests. mobile application. framework OO
  \end{otherlanguage*}
 \end{resumo}
 % ---
@@ -425,27 +432,34 @@ Por último, mas não menos importante, agradeço a Deus por esta oportunidade. 
 Desde o tempo em que o homem começou a programação de computadores, a atividade
 de teste de software sempre foi uma atividade vista com descaso e que só era
 executada se sobrasse tempo durante o projeto. Em alguns casos ela costumava ser
-usada como castigo para programadores que não cumpriam com suas funçṍes.
+usada como castigo para programadores que não cumpriam com suas funções
+(WAZLAWICK, 2012).
 
-Com a chegada da crise do software, não demorou muito tempo para que
-desenvolvedores percebessem que a atividade de criação e execução de testes era
-uma atividade extramemente importante e que também deveria ser incluída durante
-o planejamento do projeto.
+Com a chegada da crise do software (DIJKSTRA, 1971), não demorou muito tempo
+para que desenvolvedores percebessem que a atividade de criação e execução de
+testes era uma atividade extramemente importante e que também deveria ser
+incluída durante o planejamento do projeto.
 
-Nos dias atuais, a fase de teste é uma das mais importantes durante o processo
-de desenvolvimento de uma aplicação. Isso se deve à vários fatores, sendo um
-deles que os métodos mais adotados pelas empresas no mercado atual são métodos
-ágeis. Ou seja, o teste deve ser implementado antes mesmo do programador
-desenvolver o módulo o qual lhe foi designado.
+Nos dias atuais, os testes são tão importantes que eles são incorporados
+por praticamente todas as metodologias ágeis, as quais, por sua vez,
+são as mais adotadas no mercado atualmetne (JEREMIAH, 2017). A relevância dessa fase
+no proesso de desenvolvimento é tão grande que dependo da metodologia
+adotada, o programador deve primeiro programar o teste e depois o módulo
+o qual lhe foi designado.
 
 Entretanto, devido a essa notória importância que a fase de testes ganhou nos
 últimos tempos, ela também tem sido uma das partes que mais tem tomado tempo
-em projetos e que poderia ser facilmente automatizada em muitas partes já que
+em projetos(ERIKSSON, 2014) e que poderia ser facilmente automatizada em muitas partes já que
 costuma ser uma atividade que demanda mais trabalho manual do que inteligência.
 Nesse cenário, a proposta desse trabalho é desenvolver uma ferramenta para
 geração de testes automatizados para determinadas aplicações mobile, a fim de
-que os desenvolvedores possam se focar em outras tarefas.
+que os desenvolvedores possam se focar em outras tarefas enquanto
+que o Framework se encarrega de gerar os testes por conta própria.
 
+Sendo assim, nas próximas partes desse trabalho será, primeiro, apresentado de maneira melhor
+as especificações do framework. Em seguida, será feito um estudo de técnicas de testes
+de software e quais as ferramentas disponíveis atualmente no mercado. Por último, será feito
+o desenvolvimento do framework e uma apresentação de suas capacidades.
 
 % ----------------------------------------------------------
 % PARTE - preparação da pesquisa
@@ -527,6 +541,21 @@ elementum}
 % Referências bibliográficas
 % ----------------------------------------------------------
 \bibliography{abntex2-modelo-references}
+\chapter*{Referências}
+\noindent
+WAZLAWICK, R. S. \textit{Engenharia de Software para Sistemas de Informações: Conceitos e práticas que fazem sentido}. Florianópolis [s.n.], 2012.
+
+\noindent
+DIJKSTRA, E. W. \textit{The Humble Programmer}. [S.I], 1971. Disponível em:
+\url{https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html}.
+Acesso em 2 de Setembro de 2017.
+
+\noindent
+JEREMIAH, J. \textit{Is agile the new norm?}. [S.I.:s.n.], 2017 Disponível em:
+\url{https://techbeacon.com/survey-agile-new-norm}. Acesso em 2 de Setembro de 2017.
+
+\noindent
+ERIKSSON, U. \textit{How much time should you spend on testing?}. [S.I.:s.n.], 2014 Disponível em: \url{http://reqtest.com/uncategorized/how-to-determine-how-much-time-you-should-spend-on-testing/}. Acesso em 2 de Setembro de 2017.
 
 % ----------------------------------------------------------
 % Glossário
