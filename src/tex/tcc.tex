@@ -1,648 +1,903 @@
 
-% ------------------------------------------------------------------------
-% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
-% mestrado e trabalhos monograficos em geral) em conformidade com
-% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
-% Apresentacao
-% ------------------------------------------------------------------------
-% ------------------------------------------------------------------------
+  % ------------------------------------------------------------------------
+  % abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+  % mestrado e trabalhos monograficos em geral) em conformidade com
+  % ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+  % Apresentacao
+  % ------------------------------------------------------------------------
+  % ------------------------------------------------------------------------
 
-\documentclass[
-  % -- opções da classe memoir --
-  12pt,       % tamanho da fonte
-  openright,      % capítulos começam em pág ímpar (insere página vazia caso preciso)
-  twoside,      % para impressão em verso e anverso. Oposto a oneside
-  a4paper,      % tamanho do papel.
-  % -- opções da classe abntex2 --
-  %chapter=TITLE,   % títulos de capítulos convertidos em letras maiúsculas
-  %section=TITLE,   % títulos de seções convertidos em letras maiúsculas
-  %subsection=TITLE,  % títulos de subseções convertidos em letras maiúsculas
-  %subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
-  % -- opções do pacote babel --
-  english,      % idioma adicional para hifenização
-  french,       % idioma adicional para hifenização
-  spanish,      % idioma adicional para hifenização
-  brazil,       % o último idioma é o principal do documento
-  ]{abntex2}
-
-
-% ---
-% PACOTES
-% ---
-
-% ---
-% Pacotes fundamentais
-% ---
-\usepackage{cmap}       % Mapear caracteres especiais no PDF
-\usepackage{lmodern}      % Usa a fonte Latin Modern
-\usepackage[T1]{fontenc}    % Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}   % Codificacao do documento (conversão automática dos acentos)
-\usepackage{lastpage}     % Usado pela Ficha catalográfica
-\usepackage{indentfirst}    % Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}        % Controle das cores
-\usepackage{graphicx}     % Inclusão de gráficos
-% ---
-
-% ---
-% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
-% ---
-\usepackage{lipsum}       % para geração de dummy text
-% ---
-
-% ---
-% Pacotes de citações
-% ---
-\usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite} % Citações padrão ABNT
-
-% ---
-% CONFIGURAÇÕES DE PACOTES
-% ---
-
-% ---
-% Configurações do pacote backref
-% Usado sem a opção hyperpageref de backref
-\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
-% Texto padrão antes do número das páginas
-\renewcommand{\backref}{}
-% Define os textos da citação
-\renewcommand*{\backrefalt}[4]{
-  \ifcase #1 %
-    Nenhuma citação no texto.%
-  \or
-    Citado na página #2.%
-  \else
-    Citado #1 vezes nas páginas #2.%
-  \fi}%
-% ---
+  \documentclass[
+    % -- opções da classe memoir --
+    12pt,       % tamanho da fonte
+    openright,      % capítulos começam em pág ímpar (insere página vazia caso preciso)
+    twoside,      % para impressão em verso e anverso. Oposto a oneside
+    a4paper,      % tamanho do papel.
+    % -- opções da classe abntex2 --
+    %chapter=TITLE,   % títulos de capítulos convertidos em letras maiúsculas
+    %section=TITLE,   % títulos de seções convertidos em letras maiúsculas
+    %subsection=TITLE,  % títulos de subseções convertidos em letras maiúsculas
+    %subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+    % -- opções do pacote babel --
+    english,      % idioma adicional para hifenização
+    french,       % idioma adicional para hifenização
+    spanish,      % idioma adicional para hifenização
+    brazil,       % o último idioma é o principal do documento
+    ]{abntex2}
 
 
-% ---
-% Informações de dados para CAPA e FOLHA DE ROSTO
-% ---
-\titulo{Um framework para geração de testes automatizados para aplicações mobile}
-\autor{Gustavo Figueira Olegário}
-\local{Brasil}
-\data{2017}
-\orientador{Ricardo Pereira e Silva}
-\coorientador{}
-\instituicao{%
-  Universidade Federal de Santa Catarina
-  \par
-  Centro Tecnológico - CTC
-  \par
-  Departamento de Informática e Estatística
-  \par
-  Ciências da Computação}
-\tipotrabalho{Dissertação (Bacharelado)}
-% O preambulo deve conter o tipo do trabalho, o objetivo,
-% o nome da instituição e a área de concentração
-\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de
-Ciências da Computação para a obtenção do Grau de Bacharel em
-Ciências da Computação.}
-% ---
+  % ---
+  % PACOTES
+  % ---
+
+  % ---
+  % Pacotes fundamentais
+  % ---
+  \usepackage{cmap}       % Mapear caracteres especiais no PDF
+  \usepackage{lmodern}      % Usa a fonte Latin Modern
+  \usepackage[T1]{fontenc}    % Selecao de codigos de fonte.
+  \usepackage[utf8]{inputenc}   % Codificacao do documento (conversão automática dos acentos)
+  \usepackage{lastpage}     % Usado pela Ficha catalográfica
+  \usepackage{indentfirst}    % Indenta o primeiro parágrafo de cada seção.
+  \usepackage{color}        % Controle das cores
+  \usepackage{graphicx}     % Inclusão de gráficos
+  % ---
+
+  % ---
+  % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+  % ---
+  \usepackage{lipsum}       % para geração de dummy text
+  % ---
+
+  % ---
+  % Pacotes de citações
+  % ---
+  \usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
+  \usepackage[alf]{abntex2cite} % Citações padrão ABNT
+
+  % ---
+  % CONFIGURAÇÕES DE PACOTES
+  % ---
+
+  % ---
+  % Configurações do pacote backref
+  % Usado sem a opção hyperpageref de backref
+  \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+  % Texto padrão antes do número das páginas
+  \renewcommand{\backref}{}
+  % Define os textos da citação
+  \renewcommand*{\backrefalt}[4]{
+    \ifcase #1 %
+      Nenhuma citação no texto.%
+    \or
+      Citado na página #2.%
+    \else
+      Citado #1 vezes nas páginas #2.%
+    \fi}%
+  % ---
 
 
-% ---
-% Configurações de aparência do PDF final
-
-% alterando o aspecto da cor azul
-\definecolor{blue}{RGB}{41,5,195}
-
-% informações do PDF
-\makeatletter
-\hypersetup{
-      %pagebackref=true,
-    pdftitle={\@title},
-    pdfauthor={\@author},
-      pdfsubject={\imprimirpreambulo},
-      pdfcreator={LaTeX with abnTeX2},
-    pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
-    colorlinks=true,          % false: boxed links; true: colored links
-      linkcolor=blue,           % color of internal links
-      citecolor=blue,           % color of links to bibliography
-      filecolor=magenta,          % color of file links
-    urlcolor=blue,
-    bookmarksdepth=4
-}
-\makeatother
-% ---
-
-% ---
-% Espaçamentos entre linhas e parágrafos
-% ---
-
-% O tamanho do parágrafo é dado por:
-\setlength{\parindent}{1.3cm}
-
-% Controle do espaçamento entre um parágrafo e outro:
-\setlength{\parskip}{0.2cm}  % tente também \onelineskip
-
-% ---
-% compila o indice
-% ---
-\makeindex
-% ---
-
-% ----
-% Início do documento
-% ----
-\begin{document}
-
-% Retira espaço extra obsoleto entre as frases.
-\frenchspacing
-
-% ----------------------------------------------------------
-% ELEMENTOS PRÉ-TEXTUAIS
-% ----------------------------------------------------------
-% \pretextual
-
-% ---
-% Capa
-% ---
-\imprimircapa
-% ---
-
-% ---
-% Folha de rosto
-% (o * indica que haverá a ficha bibliográfica)
-% ---
-\imprimirfolhaderosto*
-% ---
-
-% ---
-% Inserir a ficha bibliografica
-% ---
-
-% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
-% catalogação-na-publicação''. Você pode utilizar este modelo como referência.
-% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
-% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
-% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
-% o conteúdo de implementação deste arquivo pelo comando abaixo:
-%
-% \begin{fichacatalografica}
-%     \includepdf{fig_ficha_catalografica.pdf}
-% \end{fichacatalografica}
-\begin{fichacatalografica}
-  \vspace*{\fill}         % Posição vertical
-  \hrule              % Linha horizontal
-  \begin{center}          % Minipage Centralizado
-  \begin{minipage}[c]{12.5cm}   % Largura
-
-  \imprimirautor
-
-  \hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-  \imprimirlocal, \imprimirdata-
-
-  \hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
-
-  \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-
-  \hspace{0.5cm}
-  \parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-  \imprimirdata.}\\
-
-  \hspace{0.5cm}
-    1. Framework.
-    2. Testes.
-    I. Ricardo Pereira e Silva.
-    II. Universidade Federal de Santa Catarina.
-    III. Bacharelado em Ciências da Computação.
-    IV. Um framework para geração de testes automatizados para aplicações mobile
-
-  \hspace{8.75cm} CDU 02:141:005.7\\
-
-  \end{minipage}
-  \end{center}
-  \hrule
-\end{fichacatalografica}
-% ---
-
-% ---
-% Inserir errata
-% ---
-%\begin{errata}
-%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
-
-%\vspace{\onelineskip}
-
-%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas %apendiculares com
-%reimplantação de enxerto ósseo autólogo autoclavado associado ao %plasma
-%rico em plaquetas}: estudo crítico na cirurgia de preservação de %membro em
-%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina %Veterinária e
-%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
-
-%\begin{table}[htb]
-%\center
-%\footnotesize
-%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
-%  \hline
-%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & %\textbf{Leia-se}  \\
-%    \hline
-%   1 & 10 & auto-conclavo & autoconclavo\\
-%   \hline
-%\end{tabular}
-%\end{table}
-
-%\end{errata}
-% ---
-
-% ---
-% Inserir folha de aprovação
-% ---
-
-% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
-% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
-% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
-% imagem da página assinada pela banca com o comando abaixo:
-%
-% \includepdf{folhadeaprovacao_final.pdf}
-%
-\begin{folhadeaprovacao}
-
-  \begin{center}
-    {\ABNTEXchapterfont\large\imprimirautor}
-
-    \vspace*{\fill}\vspace*{\fill}
-    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
-    \vspace*{\fill}
-
-
-    \vspace*{\fill}
-   \end{center}
-
-   Este Trabalho de Conclusão de Curso foi julgado aprovado para a
-   obtenção do Título de Bacharel em Ciências da Computação, e
-   aprovado em sua forma final pelo Curso de Ciências da Computação
-   da Universidade Federal de Santa Catarina.
-
-   \assinatura{Dr. Prof. \textbf{\imprimirorientador} \\ Orientador}
-   \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 1}
-   \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 2}
-   %\assinatura{\textbf{Professor} \\ Convidado 3}
-   %\assinatura{\textbf{Professor} \\ Convidado 4}
-
-   \begin{center}
-    \vspace*{0.5cm}
-    {\large\imprimirlocal}
+  % ---
+  % Informações de dados para CAPA e FOLHA DE ROSTO
+  % ---
+  \titulo{Um framework para geração de testes automatizados para aplicações mobile}
+  \autor{Gustavo Figueira Olegário}
+  \local{Brasil}
+  \data{2017}
+  \orientador{Ricardo Pereira e Silva}
+  \coorientador{}
+  \instituicao{%
+    Universidade Federal de Santa Catarina
     \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-  \end{center}
+    Centro Tecnológico - CTC
+    \par
+    Departamento de Informática e Estatística
+    \par
+    Ciências da Computação}
+  \tipotrabalho{Dissertação (Bacharelado)}
+  % O preambulo deve conter o tipo do trabalho, o objetivo,
+  % o nome da instituição e a área de concentração
+  \preambulo{Trabalho de Conclusão de Curso submetido ao Curso de
+  Ciências da Computação para a obtenção do Grau de Bacharel em
+  Ciências da Computação.}
+  % ---
 
-\end{folhadeaprovacao}
-% ---
 
-% ---
-% Dedicatória
-% ---
-\begin{dedicatoria}
-   \vspace*{\fill}
-   \centering
-   \noindent
-   \textit{ Este trabalho é dedicado a todos aqueles que jamais desistem dos seus sonhos.} \vspace*{\fill}
-\end{dedicatoria}
-% ---
+  % ---
+  % Configurações de aparência do PDF final
 
-% ---
-% Agradecimentos
-% ---
-\begin{agradecimentos}
-Os agradecimentos principais são direcionados aos meus pais, irmãos,
-amigos fiéis e à minha namorada, que sempre acreditaram em meu potencial
-e que me ajudaram, de alguma forma, a concluir minha graduação.
+  % alterando o aspecto da cor azul
+  \definecolor{blue}{RGB}{41,5,195}
 
-Agradeço também ao professor Ricardo por seu tempo e dedicação neste trabalho e que desde o início esteve disposto a ajudar na orientação.
+  % informações do PDF
+  \makeatletter
+  \hypersetup{
+        %pagebackref=true,
+      pdftitle={\@title},
+      pdfauthor={\@author},
+        pdfsubject={\imprimirpreambulo},
+        pdfcreator={LaTeX with abnTeX2},
+      pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
+      colorlinks=true,          % false: boxed links; true: colored links
+        linkcolor=blue,           % color of internal links
+        citecolor=blue,           % color of links to bibliography
+        filecolor=magenta,          % color of file links
+      urlcolor=blue,
+      bookmarksdepth=4
+  }
+  \makeatother
+  % ---
 
-Por último, mas não menos importante, agradeço a Deus por esta oportunidade. Pois, sem Sua graça, nada disso existiria.
+  % ---
+  % Espaçamentos entre linhas e parágrafos
+  % ---
 
-\end{agradecimentos}
-% ---
+  % O tamanho do parágrafo é dado por:
+  \setlength{\parindent}{1.3cm}
 
-% ---
-% Epígrafe
-% ---
-\begin{epigrafe}
-    \vspace*{\fill}
-  \begin{flushright}
-    \textit{Não se trata de bater duro. Se trata \\
-     de quanto você aguenta apanhar e seguir em \\
-     frente. O quanto você é capaz de continuar \\
-     tentando. É assim que se consegue vencer.}
-  \end{flushright}
-\end{epigrafe}
-% ---
+  % Controle do espaçamento entre um parágrafo e outro:
+  \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
-% ---
-% RESUMOS
-% ---
+  % ---
+  % compila o indice
+  % ---
+  \makeindex
+  % ---
 
-% resumo em português
-\begin{resumo}
-  No escopo da engenharia de software, durante o processo de desenvolvimento
- de aplicações, sabe-se que as fases de desenvolvimento e testes são as que,
- costumeiramente, demandam mais tempo. Desta forma, uma ferramenta capaz
- de gerar testes automatizados para certas aplicações, no mundo de
- dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
- desenvolvimento e permitir que os desenvolvedores se concentrem em
- atividades que demandem mais inteligência do que trabalho manual. Nesse
- sentido, a proposta desse trabalho é desenvolver um framework orientado
- a objetos capaz de executar tal função dentro de dispositvos móveis
- que possuem o sistema operacional Android. A finalidade do framework é diminuir
- o esforço e tempo investidos durante a fase de testes.
+  % ----
+  % Início do documento
+  % ----
+  \begin{document}
 
- \vspace{\onelineskip}
+  % Retira espaço extra obsoleto entre as frases.
+  \frenchspacing
 
- \noindent
- \textbf{Palavras-chaves}: Engenharia de Software. testes. aplicações mobile.
- framework OO
-\end{resumo}
+  % ----------------------------------------------------------
+  % ELEMENTOS PRÉ-TEXTUAIS
+  % ----------------------------------------------------------
+  % \pretextual
 
-% resumo em inglês
-\begin{resumo}[Abstract]
- \begin{otherlanguage*}{english}
-   In the software engineering scope, through the development process of
-   applications, the stages of development and tests, usually, are the
-   ones that require more time. Therefore, a tool capable to generate
-   automated tests for certain applications, in the scope of mobile
-   gadgets, can be seen as an accelerator during the process of
-   tests allowing the developers to focus on tasks that demands
-   more intelligence than handwork. So, the main objective of this work
-   is to develop a framework capble to execute this functions in mobile
-   gadgets that run Android. The framework aims to decrease the amount of
-   time and efforts invested during the period of tests.
+  % ---
+  % Capa
+  % ---
+  \imprimircapa
+  % ---
+
+  % ---
+  % Folha de rosto
+  % (o * indica que haverá a ficha bibliográfica)
+  % ---
+  \imprimirfolhaderosto*
+  % ---
+
+  % ---
+  % Inserir a ficha bibliografica
+  % ---
+
+  % Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+  % catalogação-na-publicação''. Você pode utilizar este modelo como referência.
+  % Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+  % com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+  % com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+  % o conteúdo de implementação deste arquivo pelo comando abaixo:
+  %
+  % \begin{fichacatalografica}
+  %     \includepdf{fig_ficha_catalografica.pdf}
+  % \end{fichacatalografica}
+  \begin{fichacatalografica}
+    \vspace*{\fill}         % Posição vertical
+    \hrule              % Linha horizontal
+    \begin{center}          % Minipage Centralizado
+    \begin{minipage}[c]{12.5cm}   % Largura
+
+    \imprimirautor
+
+    \hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+    \imprimirlocal, \imprimirdata-
+
+    \hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+
+    \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+
+    \hspace{0.5cm}
+    \parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+    \imprimirdata.}\\
+
+    \hspace{0.5cm}
+      1. Framework.
+      2. Testes.
+      I. Ricardo Pereira e Silva.
+      II. Universidade Federal de Santa Catarina.
+      III. Bacharelado em Ciências da Computação.
+      IV. Um framework para geração de testes automatizados para aplicações mobile
+
+    \hspace{8.75cm} CDU 02:141:005.7\\
+
+    \end{minipage}
+    \end{center}
+    \hrule
+  \end{fichacatalografica}
+  % ---
+
+  % ---
+  % Inserir errata
+  % ---
+  %\begin{errata}
+  %Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+
+  %\vspace{\onelineskip}
+
+  %FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas %apendiculares com
+  %reimplantação de enxerto ósseo autólogo autoclavado associado ao %plasma
+  %rico em plaquetas}: estudo crítico na cirurgia de preservação de %membro em
+  %cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina %Veterinária e
+  %Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+
+  %\begin{table}[htb]
+  %\center
+  %\footnotesize
+  %\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+  %  \hline
+  %   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & %\textbf{Leia-se}  \\
+  %    \hline
+  %   1 & 10 & auto-conclavo & autoconclavo\\
+  %   \hline
+  %\end{tabular}
+  %\end{table}
+
+  %\end{errata}
+  % ---
+
+  % ---
+  % Inserir folha de aprovação
+  % ---
+
+  % Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+  % 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+  % do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+  % imagem da página assinada pela banca com o comando abaixo:
+  %
+  % \includepdf{folhadeaprovacao_final.pdf}
+  %
+  \begin{folhadeaprovacao}
+
+    \begin{center}
+      {\ABNTEXchapterfont\large\imprimirautor}
+
+      \vspace*{\fill}\vspace*{\fill}
+      {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+      \vspace*{\fill}
+
+
+      \vspace*{\fill}
+     \end{center}
+
+     Este Trabalho de Conclusão de Curso foi julgado aprovado para a
+     obtenção do Título de Bacharel em Ciências da Computação, e
+     aprovado em sua forma final pelo Curso de Ciências da Computação
+     da Universidade Federal de Santa Catarina.
+
+     \assinatura{Dr. Prof. \textbf{\imprimirorientador} \\ Orientador}
+     \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 1}
+     \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 2}
+     %\assinatura{\textbf{Professor} \\ Convidado 3}
+     %\assinatura{\textbf{Professor} \\ Convidado 4}
+
+     \begin{center}
+      \vspace*{0.5cm}
+      {\large\imprimirlocal}
+      \par
+      {\large\imprimirdata}
+      \vspace*{1cm}
+    \end{center}
+
+  \end{folhadeaprovacao}
+  % ---
+
+  % ---
+  % Dedicatória
+  % ---
+  \begin{dedicatoria}
+     \vspace*{\fill}
+     \centering
+     \noindent
+     \textit{ Este trabalho é dedicado a todos aqueles que jamais desistem dos seus sonhos.} \vspace*{\fill}
+  \end{dedicatoria}
+  % ---
+
+  % ---
+  % Agradecimentos
+  % ---
+  \begin{agradecimentos}
+  Os agradecimentos principais são direcionados aos meus pais, irmãos,
+  amigos fiéis e à minha namorada, que sempre acreditaram em meu potencial
+  e que me ajudaram, de alguma forma, a concluir minha graduação.
+
+  Agradeço também ao professor Ricardo por seu tempo e dedicação neste trabalho e que desde o início esteve disposto a ajudar na orientação.
+
+  Por último, mas não menos importante, agradeço a Deus por esta oportunidade. Pois, sem Sua graça, nada disso existiria.
+
+  \end{agradecimentos}
+  % ---
+
+  % ---
+  % Epígrafe
+  % ---
+  \begin{epigrafe}
+      \vspace*{\fill}
+    \begin{flushright}
+      \textit{Não se trata de bater duro. Se trata \\
+       de quanto você aguenta apanhar e seguir em \\
+       frente. O quanto você é capaz de continuar \\
+       tentando. É assim que se consegue vencer.}
+    \end{flushright}
+  \end{epigrafe}
+  % ---
+
+  % ---
+  % RESUMOS
+  % ---
+
+  % resumo em português
+  \begin{resumo}
+    No escopo da engenharia de software, durante o processo de desenvolvimento
+   de aplicações, sabe-se que as fases de desenvolvimento e testes são as que,
+   costumeiramente, demandam mais tempo. Desta forma, uma ferramenta capaz
+   de gerar testes automatizados para certas aplicações, no mundo de
+   dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
+   desenvolvimento e permitir que os desenvolvedores se concentrem em
+   atividades que demandem mais inteligência do que trabalho manual. Nesse
+   sentido, a proposta desse trabalho é desenvolver um framework orientado
+   a objetos capaz de executar tal função dentro de dispositvos móveis
+   que possuem o sistema operacional Android. A finalidade do framework é diminuir
+   o esforço e tempo investidos durante a fase de testes.
 
    \vspace{\onelineskip}
 
    \noindent
-   \textbf{Key-words}: Software Engineering. tests. mobile application. framework OO
- \end{otherlanguage*}
-\end{resumo}
-% ---
+   \textbf{Palavras-chaves}: Engenharia de Software. testes. aplicações mobile.
+   framework OO
+  \end{resumo}
 
-% ---
-% inserir lista de ilustrações
-% ---
-\pdfbookmark[0]{\listfigurename}{lof}
-\listoffigures*
-\cleardoublepage
-% ---
+  % resumo em inglês
+  \begin{resumo}[Abstract]
+   \begin{otherlanguage*}{english}
+     In the software engineering scope, through the development process of
+     applications, the stages of development and tests, usually, are the
+     ones that require more time. Therefore, a tool capable to generate
+     automated tests for certain applications, in the scope of mobile
+     gadgets, can be seen as an accelerator during the process of
+     tests allowing the developers to focus on tasks that demands
+     more intelligence than handwork. So, the main objective of this work
+     is to develop a framework capble to execute this functions in mobile
+     gadgets that run Android. The framework aims to decrease the amount of
+     time and efforts invested during the period of tests.
 
-% ---
-% inserir lista de tabelas
-% ---
-\pdfbookmark[0]{\listtablename}{lot}
-\listoftables*
-\cleardoublepage
-% ---
+     \vspace{\onelineskip}
 
-% ---
-% inserir lista de abreviaturas e siglas
-% ---
-\begin{siglas}
-  %\item[Fig.] Area of the $i^{th}$ component
-  %\item[456] Isto é um número
-  %\item[123] Isto é outro número
-  %\item[lauro cesar] este é o meu nome
-\end{siglas}
-% ---
+     \noindent
+     \textbf{Key-words}: Software Engineering. tests. mobile application. framework OO
+   \end{otherlanguage*}
+  \end{resumo}
+  % ---
 
-% ---
-% inserir o sumario
-% ---
-\pdfbookmark[0]{\contentsname}{toc}
-\tableofcontents*
-\cleardoublepage
-% ---
+  % ---
+  % inserir lista de ilustrações
+  % ---
+  \pdfbookmark[0]{\listfigurename}{lof}
+  \listoffigures*
+  \cleardoublepage
+  % ---
 
+  % ---
+  % inserir lista de tabelas
+  % ---
+  \pdfbookmark[0]{\listtablename}{lot}
+  \listoftables*
+  \cleardoublepage
+  % ---
 
+  % ---
+  % inserir lista de abreviaturas e siglas
+  % ---
+  \begin{siglas}
+    %\item[Fig.] Area of the $i^{th}$ component
+    \item[FraG] *A CONFIRMAR*
+    %\item[123] Isto é outro número
+    %\item[lauro cesar] este é o meu nome
+  \end{siglas}
+  % ---
 
-% ----------------------------------------------------------
-% ELEMENTOS TEXTUAIS
-% ----------------------------------------------------------
-\textual
-
-% ----------------------------------------------------------
-% Introdução
-% ----------------------------------------------------------
-\chapter*[Introdução]{Introdução}
-\addcontentsline{toc}{chapter}{Introdução}
-
-Desde o tempo em que o homem começou a programação de computadores, a atividade
-de teste de software sempre foi uma atividade vista com descaso e que só era
-executada se sobrasse tempo durante o projeto. Em alguns casos ela costumava ser
-usada como castigo para programadores que não cumpriam com suas funções
-(WAZLAWICK, 2012).
-
-Com a chegada da crise do software (DIJKSTRA, 1971), não demorou muito tempo
-para que desenvolvedores percebessem que a atividade de criação e execução de
-testes era uma atividade extramemente importante e que também deveria ser
-incluída durante o planejamento do projeto.
-
-Nos dias atuais, os testes são tão importantes que eles são incorporados
-por praticamente todas as metodologias ágeis, as quais, por sua vez,
-são as mais adotadas no mercado atualmetne (JEREMIAH, 2017). A relevância dessa fase
-no proesso de desenvolvimento é tão grande que dependo da metodologia
-adotada, o programador deve primeiro programar o teste e depois o módulo
-o qual lhe foi designado.
-
-Entretanto, devido a essa notória importância que a fase de testes ganhou nos
-últimos tempos, ela também tem sido uma das partes que mais tem tomado tempo
-em projetos(ERIKSSON, 2014) e que poderia ser facilmente automatizada em muitas partes já que
-costuma ser uma atividade que demanda mais trabalho manual do que inteligência.
-Nesse cenário, a proposta desse trabalho é desenvolver uma ferramenta para
-geração de testes automatizados para determinadas aplicações mobile, a fim de
-que os desenvolvedores possam se focar em outras tarefas enquanto
-que o Framework se encarrega de gerar os testes por conta própria.
-
-Sendo assim, nas próximas partes desse trabalho será, primeiro, apresentado de maneira melhor
-as especificações do framework. Em seguida, será feito um estudo de técnicas de testes
-de software e quais as ferramentas disponíveis atualmente no mercado. Por último, será feito
-o desenvolvimento do framework e uma apresentação de suas capacidades.
-
-% ----------------------------------------------------------
-% PARTE - preparação da pesquisa
-% ----------------------------------------------------------
-\chapter{Objetivos}
-\section{Objetivos geral}
-    Analisar e desenvolver um framework orientado a objetos capaz de gerar testes automatizados para
-    aplicações específicas de dispositivos que possuam como sistema operacional o Android.
-
-\section{Objetivos específicos}
-\begin{enumerate}
-    \item Diminuir tempo e esforço investidos durante a fase de testes de um projeto de software
-          de determinadas aplicações Android.
-    \item Desenvolver uma ferramenta gratuita que permitam desenvolvedores Android focarem
-          em tarefas que demandem mais inteligência do que trabalho braçal.
-\end{enumerate}
-
-\section{Metodologia}
-
-\section{Justificativa}
-% ----------------------------------------------------------
-% Capitulo com exemplos de comandos inseridos de arquivo externo
-% ----------------------------------------------------------
-
-\include{abntex2-modelo-include-comandos}
-
-% ----------------------------------------------------------
-% Parte de revisãod e literatura
-% ----------------------------------------------------------
-\part{Revisão de Literatura}
-
-% ---
-% Capitulo de revisão de literatura
-% ---
-\chapter{Lorem ipsum dolor sit amet}
-
-% ---
-\section{Aliquam vestibulum fringilla lorem}
-% ---
-
-\lipsum[1]
-
-\lipsum[2-3]
-
-% ----------------------------------------------------------
-% Resultados
-% ----------------------------------------------------------
-\part{Resultados}
-
-% ---
-% primeiro capitulo de Resultados
-% ---
-\chapter{Lectus lobortis condimentum}
-
-% ---
-\section{Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-posuere cubilia Curae}
-% ---
-
-\lipsum[21-22]
-
-% ---
-% segundo capitulo de Resultados
-% ---
-\chapter{Nam sed tellus sit amet lectus urna ullamcorper tristique interdum
-elementum}
-
-\section{Pellentesque sit amet pede ac sem eleifend consectetuer}
-
-\lipsum[24]
-
-% ---
-% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
-% ---
-\bookmarksetup{startatroot}%
-% ---
-
-% ---
-% Conclusão
-% ---
-\chapter*[Conclusão]{Conclusão}
-\addcontentsline{toc}{chapter}{Conclusão}
-
-\lipsum[31-33]
-
-% ----------------------------------------------------------
-% ELEMENTOS PÓS-TEXTUAIS
-% ----------------------------------------------------------
-\postextual
+  % ---
+  % inserir o sumario
+  % ---
+  \pdfbookmark[0]{\contentsname}{toc}
+  \tableofcontents*
+  \cleardoublepage
+  % ---
 
 
-% ----------------------------------------------------------
-% Referências bibliográficas
-% ----------------------------------------------------------
-\bibliography{abntex2-modelo-references}
-\chapter*{Referências}
-\noindent
-WAZLAWICK, R. S. \textit{Engenharia de Software para Sistemas de Informações: Conceitos e práticas que fazem sentido}. Florianópolis [s.n.], 2012.
 
-\noindent
-DIJKSTRA, E. W. \textit{The Humble Programmer}. [S.I], 1971. Disponível em:
-\url{https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html}.
-Acesso em 2 de Setembro de 2017.
-
-\noindent
-JEREMIAH, J. \textit{Is agile the new norm?}. [S.I.:s.n.], 2017 Disponível em:
-\url{https://techbeacon.com/survey-agile-new-norm}. Acesso em 2 de Setembro de 2017.
-
-\noindent
-ERIKSSON, U. \textit{How much time should you spend on testing?}. [S.I.:s.n.], 2014 Disponível em: \url{http://reqtest.com/uncategorized/how-to-determine-how-much-time-you-should-spend-on-testing/}. Acesso em 2 de Setembro de 2017.
-
-% ----------------------------------------------------------
-% Glossário
-% ----------------------------------------------------------
-%
-% Consulte o manual da classe abntex2 para orientações sobre o glossário.
-%
-%\glossary
-
-% ----------------------------------------------------------
-% Apêndices
-% ----------------------------------------------------------
-
-% ---
-% Inicia os apêndices
-% ---
-\begin{apendicesenv}
-
-% Imprime uma página indicando o início dos apêndices
-\partapendices
-
-% ----------------------------------------------------------
-\chapter{Quisque libero justo}
-% ----------------------------------------------------------
-
-\lipsum[50]
-
-% ----------------------------------------------------------
-\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
-ac pretium ante justo a nulla curabitur tristique arcu eu metus}
-% ----------------------------------------------------------
-\lipsum[55-57]
-
-\end{apendicesenv}
-% ---
+  % ----------------------------------------------------------
+  % ELEMENTOS TEXTUAIS
+  % ----------------------------------------------------------
+  \textual
 
 
-% ----------------------------------------------------------
-% Anexos
-% ----------------------------------------------------------
+  % ----------------------------------------------------------
+  % PARTE - preparação da pesquisa
+  % ----------------------------------------------------------
+  \chapter{Introdução e objetivos}
+  \section{Introdução}
+      Desde o tempo em que o homem começou a programação de computadores, a atividade
+  de teste de software sempre foi uma atividade vista com descaso e que só era
+  executada se sobrasse tempo durante o projeto. Em alguns casos ela costumava ser
+  usada como castigo para programadores que não cumpriam com suas funções
+  (WAZLAWICK, 2012).
 
-% ---
-% Inicia os anexos
-% ---
-\begin{anexosenv}
+  Com a chegada da crise do software (DIJKSTRA, 1971), não demorou muito tempo
+  para que desenvolvedores percebessem que a atividade de criação e execução de
+  testes era uma atividade extramemente importante e que também deveria ser
+  incluída durante o planejamento do projeto.
 
-% Imprime uma página indicando o início dos anexos
-\partanexos
+  Nos dias atuais, os testes são tão importantes que eles são incorporados
+  por praticamente todas as metodologias ágeis, as quais, por sua vez,
+  são as mais adotadas no mercado atualmetne (JEREMIAH, 2017). A relevância dessa fase
+  no proesso de desenvolvimento é tão grande que dependo da metodologia
+  adotada, o programador deve primeiro programar o teste e depois o módulo
+  o qual lhe foi designado.
 
-% ---
-\chapter{Morbi ultrices rutrum lorem.}
-% ---
-\lipsum[30]
+  Entretanto, devido a essa notória importância que a fase de testes ganhou nos
+  últimos tempos, ela também tem sido uma das partes que mais tem tomado tempo
+  em projetos(ERIKSSON, 2014) e que poderia ser facilmente automatizada em muitas partes já que
+  costuma ser uma atividade que demanda mais trabalho manual do que inteligência.
+  Nesse cenário, a proposta desse trabalho é desenvolver uma ferramenta para
+  geração de testes automatizados para determinadas aplicações mobile, a fim de
+  que os desenvolvedores possam se focar em outras tarefas enquanto
+  que o Framework se encarrega de gerar os testes por conta própria.
 
-% ---
-\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
-parturient montes nascetur ridiculus mus}
-% ---
+  Sendo assim, nas próximas partes desse trabalho será, primeiro, apresentado de maneira melhor
+  as especificações do framework. Em seguida, será feito um estudo de técnicas de testes
+  de software e quais as ferramentas disponíveis atualmente no mercado. Por último, será feito
+  o desenvolvimento do framework e uma apresentação de suas capacidades.
 
-\lipsum[31]
+  \section{Justificativa}
+      Como dito previamente na introdução, a fase que mais toma tempo durante
+      um projeto de desenvolvimento de software é a parte de testes. Muitos
+      projetos poderiam ter seu tempo reduzido ou incluir mais requisitos
+      implementados por entrega, se os desenvolvedores pudessem investir mais
+      tempo nisso ao em vez de investirem esforços. Sendo assim, este
+      trabalho se propõe em implementar um framework capaz de gerar testes
+      de maneira automática, a fim de que os programadores possam foca
+      naquilo que realmente importa: suas aplicações.
 
-% ---
-\chapter{Fusce facilisis lacinia dui}
-% ---
 
-\lipsum[32]
+  \section{Objetivos geral}
+      Analisar e desenvolver um framework orientado a objetos capaz de gerar testes automatizados para
+      aplicações específicas de dispositivos que possuam como sistema operacional o Android.
 
-\end{anexosenv}
+  \section{Objetivos específicos}
+  \begin{enumerate}
+      \item Diminuir tempo e esforço investidos durante a fase de testes de um projeto de software
+            de determinadas aplicações Android.
+      \item Desenvolver uma ferramenta gratuita que permitam desenvolvedores Android focarem
+            em tarefas que demandem mais inteligência do que trabalho braçal.
+      \item Gerar testes de maneira igual ou melhor do aquele que seria
+      implementado manualmente pelo desenvolvedor.
+  \end{enumerate}
 
-%---------------------------------------------------------------------
-% INDICE REMISSIVO
-%---------------------------------------------------------------------
+  \section{Estrutura do documento}
+      Esta secção inicial aborda a justificativa do trabalho, bem como seus
+      objetivos gerais e específicos. Na secção 2, serão apresentados os
+      conceitos relevantes ao trabalho para melhor compreensão do leitor.
+      A secção 3 apresentará trabalhos relacionados. Em seguida,
+      na secção 4 será mostrado como o framework foi implementado e, por
+      último, a secção 5 mostrará os resultados obtidos juntamente com
+      sugestões de trabalhos futuros.
+  % ----------------------------------------------------------
+  % Capitulo com exemplos de comandos inseridos de arquivo externo
+  % ----------------------------------------------------------
 
-\printindex
+  \include{abntex2-modelo-include-comandos}
 
-\end{document}
+  % ----------------------------------------------------------
+  % Parte de revisãod e literatura
+  % ----------------------------------------------------------
+  \part{Fundamentação teórica}
+
+  % ---
+  % Capitulo de revisão de literatura
+  % ---
+  \chapter{Frameworks}
+
+      Como este trabalho se propõe a implementar um framework de geração
+      automática de testes é importante que este conceito esteja muito bem
+      definido. No mundo da programação, os desenvolvedores estão muito
+      acostumados a usar bibliotecas ou código de terceiros. Esse processo
+      geralmente resume-se, basicamente, a executar um comando de inclusão
+      de arquivo e as funções previamente implementadas já podem ser usadas.
+
+      O uso de bibliotecas é algo que geralmente traz melhoras significativas
+      para o código que está sendo desenvolvido, visto que o programador
+      está fazendo reuso de um módulos que já foram usados no passado e,
+      consequentemente, está menos a suscetível a sofrer com defeitos. Além
+      disso, algumas bibliotecas estão constantemente recebendo atualizações
+      a fim de fornercer novas facilidades ao programador, bem como minimizar
+      o número de defeitos presente.
+
+      Entrento, o conceito de framework em si, vai muito além do que uma
+      simples coleção de funções que podem ser reusadas entre vários
+      projetos. Como o próprio nome já sugere, o framework vai ser
+      responsável por orientar o programador de como ele deve desenvolver
+      o projeto, ou pelo menos uma parte dele. O framework geralmente
+      indica ao programdor aonde o código deve ser produzido e de que forma.
+
+      Esse estilo de programação não só fornece uma estrutura mais sólida
+      ao projeto, pois todos os programadores da equipe devem seguir o mesmo
+      padrão, como também segue a mesma filosofia das bibliotecas em que o
+      foco principal é o reuso de código entre projetos que compartilham
+      o mesmo domínio de problema, ou que seja muito similar.
+
+      Nas próximas subseções será apresentado como foi o surgimento inicial
+      do conceito de framework, quais os principais pontos positivos e
+      negativos de se usar uma ferramenta como essa e as principais filosofias
+      seguidas por frameworks.
+
+      \section{Origem dos Frameworks}
+          Sabe-se que nos primórdios a indústria de software tinha como principal
+          foco de atuação quase que única e exclusivamente a resolução de problemas
+          matemáticos. Com o passar dos anos, as linguagens de programação
+          foram ficando mais robustas e o hardware também foi se desenvolvendo. Esse
+          processo, permitiu que computadores se popularizassem e eis que a necessidade
+          por novos softwares foi surgindo.
+
+          Entretanto, os softwares que estavam, e continuam, sendo exigidos pelo
+          mercado era aplicativos com cada vez mais complexidade. Não bastasse isso,
+          as datas de planejamento de projeto começaram a ficar ainda mais apertadas
+          para poder suprir a necessidade de seus clientes. Esse cenário dantesco
+          que começou a se formar para os progamadores, começou a levar os desenvolvedores
+          a filosofar sobre qual seria a melhor forma de resolver tal situação.
+
+          Analisando diferentes projetos, ficou evidente para muitos programadores
+          que eles estavam sofrendo com o mal de estar o tempo todo "reiventando
+          a roda". Em outras palavras, em diferentes projetos sempre se estava
+          reimplementando o mesmo módulo ou um muito similar. Dessa forma, ficou
+          claro que não havia necessidade de sempre estar se desenvolvendo um mesmo
+          componente para diferentes projetos, bastava que se tirasse proveito do reuso
+          que o problema estaria resolvido.
+
+          É claro que esse processo de reuso de diferentes partes de um software,
+          em termos de granularidade, foi aumento aos poucos através dos tempos.
+          Inicialmente começou-se com funções básicas com na linguagem C, por exemplo,
+          foi avançando para estruturas mais complexas como classes até que chegou
+          no que conhecemos por frameworks nos dias de hoje.
+
+          Um framework é, então, nada mais que um conjunto bem estruturado de classes
+          relaciodas através de associações e heranças. Porém esse conjunto ele não
+          é totalmente finalizado, algumas partes ficam não finalizadas, propositalmente,
+          para poder dar uma certa de liberdade de domínio de problema. Ou seja, nada
+          andiantaria o framework ser totalmetne implementado por ele próprio, pois
+          aí ele não daria uma certa flexibilidade para o usuário e o único problema
+          que ele resolveria seria o que ele mesmo implementa.
+
+          No framework FraG (SILVA, 1998), podemos ver um exemplo disso. Existe
+          a classe Board, que representa o tabuleiro de um jogo. Porém, um
+          tabuleiro, como sabemos, pode variar muito de jogo para jogo. Dessa
+          forma deixa-se alguns métodos abstratos e o usuário apenas extende
+          essa classe para seu domínio de aplicação e implementa os métodos que
+          necessita e adicionar os atributos que forem necessários, mantendo
+          um código organizado e seguindo boas práticas de orientação a objetos.
+
+          \begin{figure}[htbp]
+              \begin{center}
+                  \includegraphics[width=1.0\textwidth]{frag.png}
+              \end{center}
+              \caption{\label{fig:passaro}Modelagem do framework FraG.}
+          \end{figure}
+
+          Dessa forma, o desenvolvedor apenas precisou desenvolver algumas pequenas
+          partes para ter uma aplicação totalmente pronta, tendo a maior parte
+          do software implementado pelo framework.
+
+          A implementação de um framework consiste em principalmente em identificar
+          qual domínio de problema ele deve dar suporte. Ainda utilizando o exemplo
+          anterior do FraG, fica evidente que era um framework totalmente voltado a
+          desenvolvimento de jogos de tabuleiro. O processo de modelagem
+          requer que o desenvolvedor identifique as classes mais comum de um domínio
+          problema, também conhecidos como "hot spots". Esse processo costuma ser
+          não trivial, pois o responsável pela modelagem do framework deve estudar
+          ao menos 3 aplicações que compartilham o mesmo domínio (SILVA, Ricardo P. e, 1998), porém sem se prender muito aos detalhes do problema específico que
+          está sendo resolvido.
+
+          Após identificada as classes que semanticamente são mais utilizadas em um
+          certo domínio, inicia-se o processo, oficialmente, de modelagem que
+          que deve-se definir quais classes deverão ser implementadas e quais serão
+          redifinidas pelo desenvolvedor. A partir daí, consegue-se obter resultados
+          de quão eficiente o framework desenvolvido é. Para analisar esse dado
+          basta verificar em um projeto que utiliza o framework verificar a porcentagem
+          de classes implementadas do zero e quais foram reaproveitadas do framework.
+          Isso é claro desconsiderando classes como de interface com o usuário, por
+          exemplo, visto que usualmente são totalmente dependendes do domínio da aplicação.
+
+      \section{Aspectos postivos e negativos}
+          Quando um framework é utilizado em um projeto de software, é importante estar
+          atento ao que se ganha e ao que se perde em termos de implementação. Quando
+          um projeto é feito totalmente "from scratch", ou seja, todas as classes são
+          produzidas do zero pelo próprio time de desenvolvimento, os programadores tem
+          total liberdade para implementar as classes como julgarem melhor. Contudo, o
+          problema disso, obviamente, é que nada é reusado e a aplicação fica muito
+          suscetível a defeitos.
+
+          \begin{figure}[htbp]
+              \begin{center}
+                  \includegraphics[width=1.0\textwidth]{scratch.png}
+              \end{center}
+              \caption{\label{fig:passaro}Um exemplo de aplicação \textit{from scratch}}
+          \end{figure}
+
+          Quando um framework é utilizado para suprir as necessidades um projeto, muitas
+          das classes que inicialmente seria implementadas do zero, já estão praticamente
+          prontas, necessitando, geralmente, apenas de poucas sobrescritas de métodos.
+          Os ganhos necesse processo é que os desenvolvedores tem seus esforços
+          minimizados, uma vez que boa parte das classes já estão totalmente implementadas.
+          Outro aspecto positivo ao se utilizar um framework é que a granularidade do
+          reuso é muito maior do que se comparada a um projeto em que não se use frameworks.
+          Em outras palavras, ao utilizar-se um framework dentro de uma aplicação o reuso
+          costuma atingir facilmente dezenas de classes. Entretanto, se o mesmo projeto
+          fosse implementado pelo time de desenvolvimento, provavelmente o número de
+          classes reusadas seria bem menor.
+
+          Quanto aos aspectos negativos, o mais fácil de ser observado é que os
+          desenvolvedores da aplicação ficam presos à arquitetura e ao controle
+          de fluxo de dados impostos pelo framework. Isso decorre do fato de que como a
+          maioria das classes do domínio do problema já estão sendo implementadas pelo
+          framework, a arquitetura, juntamente com o controle de fluxo, já é, por
+          definição pré-estabelecida.
+
+          Outro ponto negativo é que os programadores precisam ter um bom conhecimento
+          de como funciona o framework para poder utilizá-lo corretamente. É necessário
+          ter conhecimento de como o framework é implementado para saber quais classes
+          já foram programadas e acabar não duplicando uma funcionalidade já existente.
+          O problema é que para conseguir tais informações os desenvolvedores terão que
+          conferir a documentação disponível ou o código fonte. A primeira alternativa,
+          apesar de ser a melhor, nem sempre é viável, pois nem sempre é produzida ao
+          final de um projeto. Existem casos em que mesmo a documentação não é capaz
+          de detalhar o que foi implementado, seja pela não completude ou por não ter
+          sido atualizada durante o desenvolvimento do projeto.
+
+          Já a alternativa de analisar o código fonte é, de longe, a maneira mais árdua
+          de aprender como a ferramenta funciona. Exige do programador uma atividade
+          de engenharia reversa e costuma ter um baixo rendimento. Em alguns cenários
+          pode até mesmod deixar o desenvolvedor mais confuso ainda. Isso é claro
+          considerando um framework de código aberto, do contrário nem mesmo acesso
+          ao fonte o desenvolvedor teria.
+
+      \section{Principais filosfias de frameworks}
+          Nessa secção serão apresentados alguns conceitos implementados pela maioria
+          dos frameworks, mas isso não siginifica que caso algum framework não implemente
+          alguma dessas ideias ele não possa ser classificado como tal. Voltando mais uma
+          vez ao exemplo do framework do FraG, fica evidente que os frameworks se baseiam
+          fortemente nas caracrísticas de associações e heranças. A herança acontece
+          principalmente pois ela é o melhor tipo de relação que consegue tirar proveito
+          do reuso.
+
+          É fácil de compreender o motivo pelo qual a herança é tão usada no universo de
+          frameworks. Quando utilizada em classes abstratas, por definição, é exigido que
+          o programador implemente os métodos abstratos definidos pela classe mãe. Isso
+          garante que sempre que qualquer objeto que herde a classe abstrata, no momento
+          que for utilizado interna ou externamente pelo framework, os métodos estarão
+          implementados, o que possibilita uma certa customização dentro do framework e
+          é aí que vem a flexibilidade dos frameworks dentro de um domínio de problema.
+
+          Tal fato fica evidente quando observa-se a modelagem do par \textit{Template} e
+          \textit{Hook}. Nesse modelo, o método \textit{Template} é um algoritmo sempre
+          estável que inicializa objetos que sempre serão necessários para o framework.
+          Entretanto, como existem objetos que podem variar de aplicação para aplicação
+          ao final da execução do método \textit{Template} o método \textit{Hook} é
+          executado. Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
+          para que ele possa inicialzar demais objetos que necessite para sua aplicação
+          relacionados ao framework.
+
+          \begin{figure}[htbp]
+              \begin{center}
+                  \includegraphics[width=1.0\textwidth]{templateHook.png}
+              \end{center}
+              \caption{\label{fig:passaro}Modelagem dos métodos Template e Hook}
+          \end{figure}
+
+          Outro fato que leva a relação de herança ser tão explorada no mundo de frameworks,
+          é o que se chama de princípio de Hollwood (\textit{"Don't call us, we'll call you"}).
+          Esse princípio decorre do fato de que quando o desenvolvedor estiver usando a
+          ferramenta ele não deve instanciar objetos do framework e chamar métodos. Pelo
+          contrário, ele deve criar novas classes que herdem de outras já definidas pelo
+          framework. Usualmente, são classes abstratas. Dessa forma, quando a aplicação
+          estiver sendo executada, o framework saberá quais classes foram herdadas e
+          quais métodos foram escritos. Dessa forma, ele se encarrega de chamar
+          os objetos executando corretamente os novos métodos sobrescritos. Daí
+          vem o lema: \textit{"Don't call us, we'll call you"}.
+
+          Já o fato de existir tantas relações de associações no framework, vem
+          do fato de que os \textit{Design Patterns} são amplamente neste universo de
+          soluções. \textit{Design Patterns} são modelagem para problemas extremamente
+          elegantes e que solucionam problemas que já estão muito bem conhecidos na
+          modelagem de software. Na modelagem do FraG, podemos perceber em que há
+          casos em que está sendo usado até 3 \textit{Design Patterns} em paralelo:
+          \textit{factory, composite, decorator}. Não cabe aqui nesse escopo explanar
+          cada um desses \textit{Design Patterns}, muito menos todos os existentes,
+          mas é importante deixar claro que cada framework, muito provavelmente, terá
+          padrões implementados conforme a necessidade, uma vez que existem mais de
+          20 padrões de projeto atualmente.
+
+          Outro ponto muito forte, é que o framework deve ser capaz de dar suporte a
+          uma grande quantidade de aplicações com o mesmo domínio que ele. Como foi
+          visto, esse processo na modelagem do framework vem do fato de várias
+          aplicações que compartilham o mesmo domínio terem sido exaustivamente
+          estudas e terem seus módulos semelhantes identificados e implementados
+          de forma genérica na nova ferramenta. Feita essa parte, basta que
+          os desenvolvedores escolham precisamente quais classes devem ser reescritas
+          em cada projeto, e terão boa parte da implementação já realizada e testada
+          com uma quantidade linhas de código infinitamente menor comparado se
+          tivessem que realizar o mesmo projeto sem o auxílio do framework
+
+  % ---
+  \chapter{Testes}
+  % ---
+
+  % ---
+  \chapter{Desenvolvimento Mobile}
+  % ---
+
+  % ----------------------------------------------------------
+  % Resultados
+  % ----------------------------------------------------------
+  \part{Trabalhos relacionados}
+
+  % ---
+  % primeiro capitulo de Resultados
+  % ---
+  \chapter{Trabalho 1}
+
+  \chapter{Trabalho 2}
+
+  \chapter{Trabalho 3}
+
+  \part{Implementação da solução}
+
+  \chapter{Modelagem UML}
+
+  \chapter{Implementação}
+
+  \chapter{Testando o Framework}
+
+  \part{Resultados e trabalhos futuros}
+
+  \chapter{Resultados obtidos}
+
+  \chapter{Sugestões de trabalhos futuros}
+
+  \chapter{Conclusão}
+
+
+
+  % ---
+  % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+  % ---
+  \bookmarksetup{startatroot}%
+  % ---
+
+  % ---
+  % Conclusão
+  % ---
+
+  \lipsum[31-33]
+
+  % ----------------------------------------------------------
+  % ELEMENTOS PÓS-TEXTUAIS
+  % ----------------------------------------------------------
+  \postextual
+
+
+  % ----------------------------------------------------------
+  % Referências bibliográficas
+  % ----------------------------------------------------------
+  \bibliography{abntex2-modelo-references}
+  \chapter*{Referências}
+  \noindent
+  WAZLAWICK, R. S. \textit{Engenharia de Software para Sistemas de Informações: Conceitos e práticas que fazem sentido}. Florianópolis [s.n.], 2012.
+
+  \noindent
+  DIJKSTRA, E. W. \textit{The Humble Programmer}. [S.I], 1971. Disponível em:
+  \url{https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html}.
+  Acesso em 2 de Setembro de 2017.
+
+  \noindent
+  JEREMIAH, J. \textit{Is agile the new norm?}. [S.I.:s.n.], 2017 Disponível em:
+  \url{https://techbeacon.com/survey-agile-new-norm}. Acesso em 2 de Setembro de 2017.
+
+  \noindent
+  ERIKSSON, U. \textit{How much time should you spend on testing?}. [S.I.:s.n.], 2014 Disponível em: \url{http://reqtest.com/uncategorized/how-to-determine-how-much-time-you-should-spend-on-testing/}. Acesso em 2 de Setembro de 2017.
+
+  \noindent
+  SILVA, Ricardo P. e, PRICE, R. T. \textit{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}. [S.I.:s.n.], 1998 Disponível em: \url{https://www.inf.ufsc.br/~ricardo.silva/publications/Ideas98.PDF}. Acesso em 4 de Março de 2018.
+
+  \noindent
+  \textit{Software design pattern}. In: Wikipédia, a enciclopédia livre. Flórida: Wikimedia Foundation,
+  2018. Disponível em:
+  \url{https://en.wikipedia.org/w/index.php?title=Software_design_pattern&oldid=834346932}. Accesso
+  em 19 de Abril 2018.
+
+  % ----------------------------------------------------------
+  % Glossário
+  % ----------------------------------------------------------
+  %
+  % Consulte o manual da classe abntex2 para orientações sobre o glossário.
+  %
+  %\glossary
+
+  % ----------------------------------------------------------
+  % Apêndices
+  % ----------------------------------------------------------
+
+  % ---
+  % Inicia os apêndices
+  % ---
+  \begin{apendicesenv}
+
+  % Imprime uma página indicando o início dos apêndices
+  \partapendices
+
+  % ----------------------------------------------------------
+  \chapter{Quisque libero justo}
+  % ----------------------------------------------------------
+
+  \lipsum[50]
+
+  % ----------------------------------------------------------
+  \chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+  ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+  % ----------------------------------------------------------
+  \lipsum[55-57]
+
+  \end{apendicesenv}
+  % ---
+
+
+  % ----------------------------------------------------------
+  % Anexos
+  % ----------------------------------------------------------
+
+  % ---
+  % Inicia os anexos
+  % ---
+  \begin{anexosenv}
+
+  % Imprime uma página indicando o início dos anexos
+  \partanexos
+
+  % ---
+  \chapter{Morbi ultrices rutrum lorem.}
+  % ---
+  \lipsum[30]
+
+  % ---
+  \chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+  parturient montes nascetur ridiculus mus}
+  % ---
+
+  \lipsum[31]
+
+  % ---
+  \chapter{Fusce facilisis lacinia dui}
+  % ---
+
+  \lipsum[32]
+
+  \end{anexosenv}
+
+  %---------------------------------------------------------------------
+  % INDICE REMISSIVO
+  %---------------------------------------------------------------------
+
+  \printindex
+
+  \end{document}
