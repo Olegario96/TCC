@@ -41,6 +41,30 @@
   \usepackage{indentfirst}    % Indenta o primeiro parágrafo de cada seção.
   \usepackage{color}        % Controle das cores
   \usepackage{graphicx}     % Inclusão de gráficos
+  \usepackage{listings}     % Inclusão de código
+  \usepackage{color}
+
+  \definecolor{dkgreen}{rgb}{0,0.6,0}
+  \definecolor{gray}{rgb}{0.5,0.5,0.5}
+  \definecolor{mauve}{rgb}{0.58,0,0.82}
+
+  \lstset{
+      frame=tb,
+      language=Python,
+      aboveskip=3mm,
+      belowskip=3mm,
+      showstringspaces=false,
+      columns=flexible,
+      basicstyle={\small\ttfamily},
+      numbers=none,
+      numberstyle=\tiny\color{gray},
+      keywordstyle=\color{blue},
+      commentstyle=\color{dkgreen},
+      stringstyle=\color{mauve},
+      breaklines=true,
+      breakatwhitespace=true,
+      tabsize=4
+  }
   % ---
 
   % ---
@@ -403,6 +427,8 @@
   \begin{siglas}
     %\item[Fig.] Area of the $i^{th}$ component
     \item[FraG] *A CONFIRMAR*
+    \item[XP] Extreming Programming
+    \item[TDD] Test Development Driven
     %\item[123] Isto é outro número
     %\item[lauro cesar] este é o meu nome
   \end{siglas}
@@ -552,7 +578,7 @@
           por novos softwares foi surgindo.
 
           Entretanto, os softwares que estavam, e continuam, sendo exigidos pelo
-          mercado era aplicativos com cada vez mais complexidade. Não bastasse isso,
+          mercado eram aplicativos com complexidade cada vez maior. Não bastasse isso,
           as datas de planejamento de projeto começaram a ficar ainda mais apertadas
           para poder suprir a necessidade de seus clientes. Esse cenário dantesco
           que começou a se formar para os progamadores, começou a levar os desenvolvedores
@@ -568,13 +594,13 @@
 
           É claro que esse processo de reuso de diferentes partes de um software,
           em termos de granularidade, foi aumento aos poucos através dos tempos.
-          Inicialmente começou-se com funções básicas com na linguagem C, por exemplo,
+          Inicialmente começou-se com funções básicas como na linguagem C, por exemplo,
           foi avançando para estruturas mais complexas como classes até que chegou
           no que conhecemos por frameworks nos dias de hoje.
 
           Um framework é, então, nada mais que um conjunto bem estruturado de classes
           relaciodas através de associações e heranças. Porém esse conjunto ele não
-          é totalmente finalizado, algumas partes ficam não finalizadas, propositalmente,
+          é totalmente finalizado, algumas partes ficam não terminadas, propositalmente,
           para poder dar uma certa de liberdade de domínio de problema. Ou seja, nada
           andiantaria o framework ser totalmetne implementado por ele próprio, pois
           aí ele não daria uma certa flexibilidade para o usuário e o único problema
@@ -590,7 +616,7 @@
 
           \begin{figure}[htbp]
               \begin{center}
-                  \includegraphics[width=1.0\textwidth]{frag.png}
+                  \includegraphics[width=1.0\textwidth]{img/frag.png}
               \end{center}
               \caption{\label{fig:passaro}Modelagem do framework FraG.}
           \end{figure}
@@ -630,7 +656,7 @@
 
           \begin{figure}[htbp]
               \begin{center}
-                  \includegraphics[width=1.0\textwidth]{scratch.png}
+                  \includegraphics[width=1.0\textwidth]{img/scratch.png}
               \end{center}
               \caption{\label{fig:passaro}Um exemplo de aplicação \textit{from scratch}}
           \end{figure}
@@ -700,7 +726,7 @@
 
           \begin{figure}[htbp]
               \begin{center}
-                  \includegraphics[width=1.0\textwidth]{templateHook.png}
+                  \includegraphics[width=1.0\textwidth]{img/templateHook.png}
               \end{center}
               \caption{\label{fig:passaro}Modelagem dos métodos Template e Hook}
           \end{figure}
@@ -742,6 +768,141 @@
   % ---
   \chapter{Testes}
   % ---
+      Nos primórdios da história do desenvolvimento de software, a etapa de testes
+      era geralmente um parte vista com maus olhos pelos programadores e rotineiramente
+      só se realizava quando "sobrava tempo" no projeto. Com o passar do tempo, foi
+      ficando evidente para as empresas que a parte de testes é essencial para
+      assegurar a qualidade do produto. Ela não só é importante para comprovar
+      o correto funcionamento, como também ajuda a garantir estabilidade durante a
+      refatoração de código, pois se um teste estava obtendo sucesso antes da
+      alteração e passou apresentar falhas depois das mudanças é porque certamente
+      houve algum equívoco por parte de quem alterou o código.
+
+      Nessa parte do trabalho é de suma importância deixar esclarecido
+      que um projeto que foi iniciado sem testes, pode muito bem ter implementado
+      a parte de qualidade no meio do processo, mas isso provavelmente terá um
+      custo alto, uma vez que a probilidade de se detectar uma grande quantidade
+      de defeitos é alto. Sendo assim, o time de desenvolvimento terá que gastar
+      mais tempo arrumando falhas que poderiam ter sido percebidas mais cedo.
+      Isso faz com que o tempo de projeto aumente bem como os custos. Dessa forma
+      é sempre importante que a parte de qualidade esteja prevista no planejamento
+      inicial de um projeto de software.
+
+      É importante deixar claro, também, desde já, que o teste de software em momento algum
+      diz que o módulo implementado está livre de defeitos. A única coisa que o
+      teste garante para o desenvolvedor é que para as entradas especificadas o
+      componente está se comportando como o programador desejava. O teste costuma
+      ser implementado pensando em como fazer com que o módulo dê problemas, mas
+      também não esquecendo da \textit{happy path}, também conhecido como sequência
+      de estados em que não há ações inválidas.
+
+      Pensando em um cenário mais prático, propõe-se um módulo simples em que a única
+      responsabilidade é verificar se um dado CPF é válido ou não mesmo que possua uma
+      máscara. Abaixo pode-se observar as assinaturas de método do mesmo na linguagem
+      \textit{Python}.
+
+      \begin{figure}[htbp]
+          \begin{lstlisting}
+              class CpfValidator(object):
+                def __init__(self):
+                  # TODO
+                  pass
+
+                def cpf_is_valid(cpf):
+                  # TODO
+                  pass
+
+                def cpf_with_mask_is_valid(cpf_with_mask):
+                  # TODO
+                  pass
+          \end{lstlisting}
+          \caption{\label{fig:passaro}Módulo com assinaturas de método para validar CPF}
+      \end{figure}
+
+      Apesar de nenhum dos métodos ter sido realmente implementados, é perfeitamente
+      possível desenvolver um arquivo de teste para esse módulo. Basta que o programador
+      tenha conhecimento do algoritmo de validação de CPF. Dessa forma, ele saberá quando
+      um CPF é válido mesmo estando sem a máscara (i.e. foramtação). Ou seja, quando
+      o teste for implementado basta ele escrever que os CPFs que obedeçam o algoritmo
+      devam ser classificados como válidos, enquanto que os que não são validados pelo
+      algoritmo devem ser rejeitados. Com o teste desenvolvido basta ele executá-lo e
+      obviamente o teste retornará mensagem de erro, isso porque o módulo ainda não
+      foi implementado. Caso o teste retorne somente mensagens de sucesso é porque o
+      teste possui algum equívoco.
+
+      Com o teste produzido, o progamador dever seguir aquilo que é conhecido como
+      \textit{baby steps}. O teste, uma vez escrito e executado, dirá qual o erro
+      que está acontecendo, seja função não implementada, método retornando valores
+      incorretos, objeto nulo. Dessa forma, o desenvolvedor irá corrigir o erro e
+      irá executar novamente. Provalvelmente na segunda iteração, o teste apontará
+      um novo erro. O programador deve, então, proseguir nesse processo até que o
+      teste retorne somente mensagens de sucesso.
+
+      Esse processo é também conhecido como TDD. O diagrama seguinte ilustra bem esse
+      processo e também é conhecido como \textit{red, green and refactor}, já que o
+      programdor começa inicialmente na fase de erros (\textit{red}), faz somente o
+      necessário para que o módulo passe no teste (\textit{green}) e melhora no final
+      a qualidade do código a medida do necessário (\textit{refactor}).
+
+      \begin{figure}[htbp]
+          \begin{center}
+              \includegraphics[width=0.5\textwidth]{img/rgf.png}
+          \end{center}
+          \caption{\label{fig:passaro}Diagrama que representa o padrão RGF}
+      \end{figure}
+
+      Nos dias atuais, o mercado é repleto de ferramentas e frameworks capazes de
+      auxiliar os desenvolvedor durante a implementação de testes, fornecendo
+      objetos falsos, também conhecidos como \textit{mocks}, funções de asserção,
+      execução de testes em ordem aleatória. Como o intuito de trabalho é desenvolver
+      um framework que seja capaz de automatizar a produção de testes, esse capítulo
+      tratará essencialmente de tipos de teste, níveis e técnicas de teste.
+
+      \section{Modelagem de testes}
+          A modelagem de testes é uma fase muito importante, visto que é responsável
+          por garantir o mínimo de qualidade no módulo que está sendo implementado.
+          O desenvolvimento de uma aplicação, como foi visto anteriormente, pode ser
+          seguindo a filosofia TDD em que o programador primeiro implementa o teste
+          e depois desenvolva o módulo que lhe foi designado, porém nada impede que
+          o desenvolvedor implemente inicialmente o módulo e depois avançe para a
+          parte de teste.
+
+          Porém, durante a modelagem de testes o mínimo que o desenvolvedor precisa
+          conhecer para poder implementar o teste são os métodos que da classe que
+          lhe foi atribuida bem como a ideia de seus algoritmos. Dessa forma ele
+          consegue separar as entradas para o teste em dois grandes conjuntos: o
+          conjunto das entradas válidas e das inválidas. De posse de tais informações
+          básicas, ele pode escrever testes que seguem o \textit{happy path} e aqueles
+          que devem lançar algum tipo de exceção.
+
+          Para deixar mais claro, voltemos ao exemplo do módulo de validação de CPF
+          escrito em \textit{Python}. Como pode se perceber pelo código fornecido na
+          Figura 4, é facilmente perceptível que a linguagem é \textbf{fracamente tipada},
+          ou seja, é deixado ao interpretador inferir a tipagem de cada variável. Para
+          efeitos práticos, será considerado que os parâmetros fornecidos para os dois
+          métodos de validação sejam do tipo \textit{string}. Um possível cenário de teste
+          que segue o \textit{happy path} seria fornecer um CPF válido e o teste iria
+          retornar dizendo que tudo ocorreu como esperado. Por outro lado, se em algum
+          cenário de teste em que seja fornecida uma sequência de inteiros, o correto
+          seria que o módulo lançasse alguma exeção do tipo \textit{InvalidFormat} e o
+          teste detectasse que essa exeção foi lançada. Ao perceber que houve uma exceção
+          o teste deve informar, novamente, tudo ocorreu como esperado. Do contrário, ele
+          deve trazer um relatório escrito dizendo que estava sendo esperado uame exceção,
+          porém ela não ocorreu.
+
+          Na modelagem de testes é importante também que durante a implmentação existam
+          o teste de entradas aleatórias para simular uma possível simulação com o usuário.
+          Nos dias atuais, existem várias bibliotecas capazes de gerar dados falsos que
+          cumprem com este objetivo e são capazes de criar informações falsas, porém válidas,
+          como: nomes, emails, senhas, cartões de crédito, CPF. Sendo assim, é importante
+          também que durante a modelagem de teste o desenvolvedor preveja ao menos um cenário
+          em que ele possa tirar proveitos dessas bibliotecas.
+
+
+
+      \section{Níveis de teste}
+      \section{Tipos de teste}
+      \section{Técnicas de teste}
 
   % ---
   \chapter{Desenvolvimento Mobile}
@@ -815,7 +976,12 @@
   \url{https://techbeacon.com/survey-agile-new-norm}. Acesso em 2 de Setembro de 2017.
 
   \noindent
-  ERIKSSON, U. \textit{How much time should you spend on testing?}. [S.I.:s.n.], 2014 Disponível em: \url{http://reqtest.com/uncategorized/how-to-determine-how-much-time-you-should-spend-on-testing/}. Acesso em 2 de Setembro de 2017.
+  KELLY, A. \textit{Programmers Without TDD Will be Unemployable by 2022}. [S.I.:s.n.],
+  2014 Disponível em: \url{https://dzone.com/articles/programmers-without-tdd-will}. Acesso em 22 de Abril de 2018.
+
+  \noindent
+  ERIKSSON, U. \textit{How much time should you spend on testing?}. [S.I.:s.n.], 2014 Disponível em:
+  \url{https://goo.gl/bTfQsa}. Acesso em 2 de Setembro de 2017.
 
   \noindent
   SILVA, Ricardo P. e, PRICE, R. T. \textit{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}. [S.I.:s.n.], 1998 Disponível em: \url{https://www.inf.ufsc.br/~ricardo.silva/publications/Ideas98.PDF}. Acesso em 4 de Março de 2018.
