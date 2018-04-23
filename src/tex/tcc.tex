@@ -43,6 +43,7 @@
   \usepackage{graphicx}     % Inclusão de gráficos
   \usepackage{listings}     % Inclusão de código
   \usepackage{color}
+  \usepackage[section]{placeins}
 
   \definecolor{dkgreen}{rgb}{0,0.6,0}
   \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -429,6 +430,7 @@
     \item[FraG] *A CONFIRMAR*
     \item[XP] Extreming Programming
     \item[TDD] Test Development Driven
+    \item[DRY] Don't Repeat Yourself
     %\item[123] Isto é outro número
     %\item[lauro cesar] este é o meu nome
   \end{siglas}
@@ -846,7 +848,7 @@
 
       \begin{figure}[htbp]
           \begin{center}
-              \includegraphics[width=0.5\textwidth]{img/rgf.png}
+              \includegraphics[width=0.4\textwidth]{img/rgf.png}
           \end{center}
           \caption{\label{fig:passaro}Diagrama que representa o padrão RGF}
       \end{figure}
@@ -858,7 +860,7 @@
       um framework que seja capaz de automatizar a produção de testes, esse capítulo
       tratará essencialmente de tipos de teste, níveis e técnicas de teste.
 
-      \section{Modelagem de testes}
+      \section{Modelagem e implementação de testes}
           A modelagem de testes é uma fase muito importante, visto que é responsável
           por garantir o mínimo de qualidade no módulo que está sendo implementado.
           O desenvolvimento de uma aplicação, como foi visto anteriormente, pode ser
@@ -890,7 +892,7 @@
           deve trazer um relatório escrito dizendo que estava sendo esperado uame exceção,
           porém ela não ocorreu.
 
-          Na modelagem de testes é importante também que durante a implmentação existam
+          Na modelagem de testes é importante também que durante a implementação existam
           o teste de entradas aleatórias para simular uma possível simulação com o usuário.
           Nos dias atuais, existem várias bibliotecas capazes de gerar dados falsos que
           cumprem com este objetivo e são capazes de criar informações falsas, porém válidas,
@@ -898,9 +900,79 @@
           também que durante a modelagem de teste o desenvolvedor preveja ao menos um cenário
           em que ele possa tirar proveitos dessas bibliotecas.
 
+          A modelagem de teste em si pode ser abordada de inúmeras formas. Dentro da ciência
+          da computação, o mais comum é enxergar o teste do módulo como sendo uma \textbf{
+          autômato finito}. Os estados representam o objeto em si e as transições
+          seriam os métodos e os possíveis valores de retorno, ou execções, dependendo dos
+          valores passados para o método. O objetivo do teste, vendo a modelagem por essa
+          ótica, seria  verificar se a máquina chegou num estado de transição, ou não.
+          Nesse sentido, podemos ver um autômato representando o teste para a validação de
+          um CPF no módulo representado anteriormente.
 
+          \begin{figure}[htbp]
+              \begin{center}
+                  \includegraphics[width=0.85\textwidth]{img/afd.png}
+              \end{center}
+              \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
+          \end{figure}
+
+          Olhando para o autômato descrito na Figura 6, o desenvolvedor se quisesse garantir
+          o máximo de qualidade possível ele teria que testar todos os caminhos possíveis
+          partido do estado inicial. Nesse exemplo, a tarefa de testar o módulo é perfeitamente
+          realizável, uma vez que existem poucas transições. Porém, pensando em casos mais
+          reais em que as classes possuem pelo menos de 6 a 8 métodos e que podem ter
+          suas próprias execeções, a tarefa de testar completamente um módulo começa a ficar
+          inviável. Nesse sentido, o programador deve priorizar as entradas mais comuns
+          e algumas exóticas para garantir uma certa qualidade.
+
+          Ainda dentro do contexto do autômato é importante lembrar que não foram representadas
+          mais transições dos estados mais a direita em direção a outros estados por uma mera
+          questão de legibilidade. Entretanto, dentro de um contexto de um objeto que é utilizado
+          várias vezes, a chamada reptitiva de vários métodos sucessivamente pode acarretar,
+          eventualmente, na mudança de algum atributo que poderia encadear alguma mudança no
+          comportamente do método, dependendo do algoritmo implementado. Sendo assim, é importante
+          que o programador tenha em mente essas possibilidades também.
+
+          Já no que se refere à parte de implementação, a implementação do padrão de projeto
+          \textit{factory} costuma ser muito comum, já que é uma solução necessária e elegante
+          para os testes. Esse padrão se faz essencial para manter um código mais limpo, visto
+          que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
+          atributos diferentes. Dessa forma, ele pode usar uma biblioteca que implemente a
+          o padrão para os objetos necessários para o teste e para cada cenário ele pede
+          objetos diferentes para a fábrica. Isso ajuda a manter um código mais legível, visto
+          que se esse padrão não fosse utilizado, para cada teste o prgramador teria que sempre
+          estar instanciando um objeto da mesma classe e configurando os valores manualmente,
+          o que não é nada DRY.
 
       \section{Níveis de teste}
+          Dentro do universo de teste de software, pode-se classificar os testes pelos seus
+          níveis ou fases. A classificação decorre do fato de que a medida que a aplicação
+          vai crescendo os testes também precisam ter uma complexidade maior pois o número
+          de possibilidades vai aumentando e precisam sempre as mais prováveis açoes do
+          usuário. Classicamente, os testes, quando dividos dessa forma, podem pertencer
+          alguma dessas classes: unidade, integração, sistema, aceitação e o de regressão.
+          Nas próximas subsecções seram apresentados previamente cada uma dessas classificações.
+
+          \subsection{Teste de unidade}
+              O teste de unidade é o teste mais básico de um software. O intuito dele é basicamente
+              testar a classe que está para ser implementada ou que recém foi programada. Boa
+              parte dos testes de uma aplicação são classificados dessa forma, uma vez que são
+              os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FLOW, 2012).
+              Esse fato é também conhecido como \textit{pirâmide de testes}.
+              É importante também, que este nível de teste visa somente fazer o teste de uma classe
+              isolada. Caso a classe que está sendo testada iteraja de alguma forma com outras classes
+              , seja por atributos ou parâmetros de funções, o programador, deve, então, usar
+              objetos falsos, também conhecidos como \textit{mock}, para simular a classe que possui
+              relação com a classe que está sendo testada. Essa metodologia garante que caso qualquer defeito detectado pelo teste, o defeito vem única e exclusivamente da classe que está sendo testada, e não de classes terceiras.
+
+              \begin{figure}[!htb]
+                  \begin{center}
+                      \includegraphics[width=0.55\textwidth]{img/pyramid.jpg}
+                  \end{center}
+                  \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
+              \end{figure}
+
+
       \section{Tipos de teste}
       \section{Técnicas de teste}
 
