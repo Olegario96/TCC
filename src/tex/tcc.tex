@@ -796,7 +796,10 @@
       componente está se comportando como o programador desejava. O teste costuma
       ser implementado pensando em como fazer com que o módulo dê problemas, mas
       também não esquecendo da \textit{happy path}, também conhecido como sequência
-      de estados em que não há ações inválidas.
+      de estados em que não há ações inválidas. O teste é, então, nada mais que um conjunto
+      de código que coloca o módulo que está sendo testado em um determinado estado,
+      ou seja com valores específicos para as variáveis e analisa como o módulo está
+      reagindo.
 
       Pensando em um cenário mais prático, propõe-se um módulo simples em que a única
       responsabilidade é verificar se um dado CPF é válido ou não mesmo que possua uma
@@ -852,6 +855,29 @@
           \end{center}
           \caption{\label{fig:passaro}Diagrama que representa o padrão RGF}
       \end{figure}
+
+      Ainda no contexto de desenvolvimento de testes, é importante que os desenvolvedores
+      e o time de qualidade estejam constantemente revisando o código produzidos por
+      cada um. Isso é importante, pois quem está desenvolvendo o módulo já sabe como
+      o código funciona e fica mais difícil em perceber o local do defeito. Entretanto,
+      qunado alguém que não desenvolveu o componente começa a se iterar mais com o código
+      ela vai, usualmente, ler cada linha do código e tentar enteder a semântica de cada
+      uma delas. Dessa forma, ficará muito mais evidente para quem está de fora identificar
+      o erro. Por isso, os cenários de teste devem ser sempre atualizados e revisados.
+
+      Outro ponto importante a ser ressaltado é a questão das \textit{pré e pós condições} de
+      um dado caso de teste. A pré-condição é uma obrigatoriedade que deve ocorrer
+      antes que um dado método inicialize. Pensando num exemplo mais prático,
+      imagina-se uma outra classe que executa algum procedimento depois de a classe
+      de validaçao de CPF ter comprovado que o dado informado está correto. Nos métodos
+      que essa nova classe implementa, o desenvolvedor não precisa se preocupar se o
+      dado está correto ou não, pois a classe anterior já o fez. Isso é o que se chama
+      de pré-condição. Já a pós-condição é o estado que o sistema deve se encontrar
+      após o procedimento ter sido executado. Muitas vezes, o teste deve verificar
+      se o sistema chegou no estado esperado. No mesmo exemplo, supõe-se que a nova
+      classe pesquise no banco o usuário pelo CPF e mande um email para o mesmo. Para
+      ver se a pós-condição foi atendida, o sistema deve verificar se o usuário recebeu
+      o email.
 
       Nos dias atuais, o mercado é repleto de ferramentas e frameworks capazes de
       auxiliar os desenvolvedor durante a implementação de testes, fornecendo
@@ -972,9 +998,59 @@
                   \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
               \end{figure}
 
+          \subsection{Teste de integração}
+              Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois módulos
+              que trabalham em conjunto. Nesse nível deve-se testar todas as classes que possuêm
+              alguma relação do tipo: associação, composição ou agregação. Ao em vez de usar objetos
+              falsos, como era feito no nível anterior, deve-se objetos verdadeiros e testar os
+              métodos os quais estes objetos trocam mensagens. Em casos em que um dos módulos
+              estava funcionando no teste de unidade e passou a não funcionar no teste de integração,
+              é porque muito provalmente o módulo que foi integrado está com algum problema. Este tipo
+              de teste não deve cubrir integrações com interfaces ou integração com sisteamas de
+              terceiros, APIs por exemplo.
 
-      \section{Tipos de teste}
+          \subsection{Teste de sistema}
+              O teste de sistema é o teste em que os desenvolvedores utilizam o sistema no modo de
+              produção fingindo ser um usuário comum e simulando suas respectivas ações. Esse teste,
+              geralmente usa como base algum caso de uso descrito no processo de engenharia de
+              requisitos e também busca achar eventuais defeitos na interface com o usuário. Esse
+              teste atualmente pode ser facilmente automatizado, mas como a interface é um componente
+              que usulamente está sendo alterado algumas empresas ainda preferem realizá-lo de maneira
+              manual e automatizar somente quando a interface já está bem estabelecida.
+
+          \subsection{Teste de aceitação}
+              O teste aceitação é o teste mais importante de todos, pois é nesse teste em que o
+              usuário utiliza o sistema sem auxílio dos desenvolvedores. Ele é o mais importante,
+              pois o cliente dirá se as funcionalidades requisitadas foram cumpridas e valida
+              se a coleta de requisitos foi feito da forma correta.
+
+          \subsection{Teste de regressão}
+              O teste de regressão é um caso. Esse nível de teste busca executar toda a base de
+              testes para um sistema que foi recém refatorado ou que teve uma nova versão lançada.
+              O nome vem do fato de que caso o sistema que foi atualizado estava sendo aprovado
+              nos testes e passou a ter erros, é dito, então, que o sistema regrediu.
+
       \section{Técnicas de teste}
+          As técnicas de teste dizem respeito a forma como os casos de teste serão implementados.
+          Todas elas possuêm em comum em encontrar falhas no componente desenvolvido. As principais
+          técnicas que podem ser aplicadas são: caixa-branca, caixa-preta e caixa-cinza. Os próximos
+          tópicos detalharão cada uma dessas técnicas.
+
+          \subsection{Técnica da caixa preta}
+              É também conhecida como teste comportamental e, usualmente, é a técnica mais aplicada.
+              O desenvolvedor fornece um conjunto de entradas e utiliza uma função de asserção
+              para avaliar o resultado retornado, sem se preocupar com a execução interna do código.
+              Essa técnica pode ser aplicada em qualquer nível de teste. Obviamente, quanto mais
+              entradas sejam testadas, melhor o teste é. Como já foi dito anteriormente que é
+              impossível testar todas as entradas possíveis o programador pode utilizar classes
+              de equivalência para maximizar os casos de teste coberto. As classes de equivalência
+              nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis
+              em que um subconjunto representa as entradas válidas e o outro as entradas válidas.
+
+
+          \subsection{Técnica da caixa branca}
+
+          \subsection{Técnica da caixa cinza}
 
   % ---
   \chapter{Desenvolvimento Mobile}
