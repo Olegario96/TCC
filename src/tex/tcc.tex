@@ -366,16 +366,16 @@
   % resumo em português
   \begin{resumo}
     No escopo da engenharia de software, durante o processo de desenvolvimento
-   de aplicações, sabe-se que as fases de desenvolvimento e testes são as que,
-   costumeiramente, demandam mais tempo. Desta forma, uma ferramenta capaz
-   de gerar testes automatizados para certas aplicações, no mundo de
-   dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
-   desenvolvimento e permitir que os desenvolvedores se concentrem em
-   atividades que demandem mais inteligência do que trabalho manual. Nesse
-   sentido, a proposta desse trabalho é desenvolver um framework orientado
-   a objetos capaz de executar tal função dentro de dispositvos móveis
-   que possuem o sistema operacional Android. A finalidade do framework é diminuir
-   o esforço e tempo investidos durante a fase de testes.
+    de aplicações, sabe-se que as fases de desenvolvimento e testes são as que,
+    costumeiramente, demandam muito esforço. Desta forma, uma ferramenta capaz
+    de gerar testes automatizados para certas aplicações, no mundo de
+    dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
+    desenvolvimento e permitir que os desenvolvedores se concentrem em
+    atividades que demandem mais inteligência do que trabalho manual. Nesse
+    sentido, a proposta desse trabalho é desenvolver um framework orientado
+    a objetos capaz de apoiar tal atividade no contexto dos dispositvos móveis
+    que possuem o sistema operacional Android. A finalidade do framework é diminuir
+    o esforço e tempo investidos durante a fase de testes automatizados.
 
    \vspace{\onelineskip}
 
@@ -389,14 +389,14 @@
    \begin{otherlanguage*}{english}
      In the software engineering scope, through the development process of
      applications, the stages of development and tests, usually, are the
-     ones that require more time. Therefore, a tool capable to generate
-     automated tests for certain applications, in the scope of mobile
-     gadgets, can be seen as an accelerator during the process of
+     ones that require more effort. Therefore, a tool capable to generate
+     automated tests for certain applications, at the context of mobile
+     phones, can be seen as an accelerator during the process of
      tests allowing the developers to focus on tasks that demands
      more intelligence than handwork. So, the main objective of this work
-     is to develop a framework capble to execute this functions in mobile
-     gadgets that run Android. The framework aims to decrease the amount of
-     time and efforts invested during the period of tests.
+     is to develop a framework capble to support this task in mobile
+     gadgets context that runs Android. The framework aims to decrease the amount of
+     time and efforts invested during the period of development of automated tests.
 
      \vspace{\onelineskip}
 
@@ -431,6 +431,7 @@
     \item[XP] Extreming Programming
     \item[TDD] Test Development Driven
     \item[DRY] Don't Repeat Yourself
+    \item[AFD] Autômato Finito Determínistico
     %\item[123] Isto é outro número
     %\item[lauro cesar] este é o meu nome
   \end{siglas}
@@ -484,43 +485,42 @@
   que os desenvolvedores possam se focar em outras tarefas enquanto
   que o Framework se encarrega de gerar os testes por conta própria.
 
-  Sendo assim, nas próximas partes desse trabalho será, primeiro, apresentado de maneira melhor
-  as especificações do framework. Em seguida, será feito um estudo de técnicas de testes
-  de software e quais as ferramentas disponíveis atualmente no mercado. Por último, será feito
-  o desenvolvimento do framework e uma apresentação de suas capacidades.
+  Sendo assim, nas próximas partes desse trabalho é, primeiro, apresentado de maneira
+  mais precisa o framework. Em seguida, é feito um estudo de técnicas de testes
+  de software e quais as ferramentas disponíveis atualmente no mercado. Por último, a
+  proposta de desenvolvimento do framework e uma apresentação de suas capacidades.
 
   \section{Justificativa}
       Como dito previamente na introdução, a fase que mais toma tempo durante
       um projeto de desenvolvimento de software é a parte de testes. Muitos
       projetos poderiam ter seu tempo reduzido ou incluir mais requisitos
       implementados por entrega, se os desenvolvedores pudessem investir mais
-      tempo nisso ao em vez de investirem esforços. Sendo assim, este
-      trabalho se propõe em implementar um framework capaz de gerar testes
-      de maneira automática, a fim de que os programadores possam foca
-      naquilo que realmente importa: suas aplicações.
+      tempo nisso ao invés de investirem esforços em desenvolvimento de testes.
+      Sendo assim, este trabalho se propõe em implementar um framework capaz de
+      suportar a produção de testes de maneira automática, a fim de que os
+      programadores possam focar naquilo que realmente importa: suas aplicações.
 
 
   \section{Objetivos geral}
-      Analisar e desenvolver um framework orientado a objetos capaz de gerar testes automatizados para
-      aplicações específicas de dispositivos que possuam como sistema operacional o Android.
+      Analisar e desenvolver um framework orientado a objetos capaz de suportar a produção
+      de testes automatizados para aplicações específicas de dispositivos que possuam como
+      sistema operacional o Android.
 
   \section{Objetivos específicos}
   \begin{enumerate}
       \item Diminuir tempo e esforço investidos durante a fase de testes de um projeto de software
             de determinadas aplicações Android.
-      \item Desenvolver uma ferramenta gratuita que permitam desenvolvedores Android focarem
+      \item Desenvolver uma ferramenta gratuita que permita desenvolvedores Android focarem
             em tarefas que demandem mais inteligência do que trabalho braçal.
-      \item Gerar testes de maneira igual ou melhor do aquele que seria
-      implementado manualmente pelo desenvolvedor.
   \end{enumerate}
 
   \section{Estrutura do documento}
       Esta secção inicial aborda a justificativa do trabalho, bem como seus
-      objetivos gerais e específicos. Na secção 2, serão apresentados os
+      objetivos gerais e específicos. Na secção 2, são apresentados os
       conceitos relevantes ao trabalho para melhor compreensão do leitor.
       A secção 3 apresentará trabalhos relacionados. Em seguida,
-      na secção 4 será mostrado como o framework foi implementado e, por
-      último, a secção 5 mostrará os resultados obtidos juntamente com
+      na secção 4 é mostrado como o framework foi implementado e, por
+      último, a secção 5 mostra-se os resultados obtidos juntamente com
       sugestões de trabalhos futuros.
   % ----------------------------------------------------------
   % Capitulo com exemplos de comandos inseridos de arquivo externo
@@ -540,7 +540,7 @@
 
       Como este trabalho se propõe a implementar um framework de geração
       automática de testes é importante que este conceito esteja muito bem
-      definido. No mundo da programação, os desenvolvedores estão muito
+      definido. No mundo da programação, os desenvolvedores estão
       acostumados a usar bibliotecas ou código de terceiros. Esse processo
       geralmente resume-se, basicamente, a executar um comando de inclusão
       de arquivo e as funções previamente implementadas já podem ser usadas.
@@ -555,7 +555,7 @@
 
       Entrento, o conceito de framework em si, vai muito além do que uma
       simples coleção de funções que podem ser reusadas entre vários
-      projetos. Como o próprio nome já sugere, o framework vai ser
+      projetos. O framework vai ser
       responsável por orientar o programador de como ele deve desenvolver
       o projeto, ou pelo menos uma parte dele. O framework geralmente
       indica ao programdor aonde o código deve ser produzido e de que forma.
@@ -568,7 +568,7 @@
 
       Nas próximas subseções será apresentado como foi o surgimento inicial
       do conceito de framework, quais os principais pontos positivos e
-      negativos de se usar uma ferramenta como essa e as principais filosofias
+      negativos de se usar uma ferramenta como essa e as princípios
       seguidas por frameworks.
 
       \section{Origem dos Frameworks}
@@ -608,12 +608,13 @@
           aí ele não daria uma certa flexibilidade para o usuário e o único problema
           que ele resolveria seria o que ele mesmo implementa.
 
-          No framework FraG (SILVA, 1998), podemos ver um exemplo disso. Existe
+          No framework FraG, um framework voltado a suportar o desenvolvimento de
+          programas de jogos de tabuleiro (SILVA, 1998), podemos ver um exemplo disso. Existe
           a classe Board, que representa o tabuleiro de um jogo. Porém, um
           tabuleiro, como sabemos, pode variar muito de jogo para jogo. Dessa
-          forma deixa-se alguns métodos abstratos e o usuário apenas extende
+          forma deixam-se alguns métodos abstratos e o usuário apenas estende
           essa classe para seu domínio de aplicação e implementa os métodos que
-          necessita e adicionar os atributos que forem necessários, mantendo
+          necessita e adiciona os atributos que forem necessários, mantendo
           um código organizado e seguindo boas práticas de orientação a objetos.
 
           \begin{figure}[htbp]
@@ -627,18 +628,19 @@
           partes para ter uma aplicação totalmente pronta, tendo a maior parte
           do software implementado pelo framework.
 
-          A implementação de um framework consiste em principalmente em identificar
-          qual domínio de problema ele deve dar suporte. Ainda utilizando o exemplo
-          anterior do FraG, fica evidente que era um framework totalmente voltado a
+          A implementação de um framework consiste principalmente em identificar
+          qual domínio de problema ele deve dar suporte. FraG, fica evidente que
+          era um framework voltado a
           desenvolvimento de jogos de tabuleiro. O processo de modelagem
-          requer que o desenvolvedor identifique as classes mais comum de um domínio
+          requer que o desenvolvedor identifique as classes mais comuns de um domínio
           problema, também conhecidos como "hot spots". Esse processo costuma ser
           não trivial, pois o responsável pela modelagem do framework deve estudar
-          ao menos 3 aplicações que compartilham o mesmo domínio (SILVA, Ricardo P. e, 1998), porém sem se prender muito aos detalhes do problema específico que
-          está sendo resolvido.
+          ao menos 3 aplicações que compartilham o mesmo domínio (JOHNSON, 1993),
+          porém sem se prender muito aos detalhes do problema específico que está
+          sendo resolvido.
 
-          Após identificada as classes que semanticamente são mais utilizadas em um
-          certo domínio, inicia-se o processo, oficialmente, de modelagem que
+          Após identificadas as classes que semanticamente são mais utilizadas em um
+          certo domínio, inicia-se o processo de modelagem que
           que deve-se definir quais classes deverão ser implementadas e quais serão
           redifinidas pelo desenvolvedor. A partir daí, consegue-se obter resultados
           de quão eficiente o framework desenvolvido é. Para analisar esse dado
@@ -650,11 +652,11 @@
       \section{Aspectos postivos e negativos}
           Quando um framework é utilizado em um projeto de software, é importante estar
           atento ao que se ganha e ao que se perde em termos de implementação. Quando
-          um projeto é feito totalmente "from scratch", ou seja, todas as classes são
+          um projeto é feito "from scratch", ou seja, todas as classes são
           produzidas do zero pelo próprio time de desenvolvimento, os programadores tem
           total liberdade para implementar as classes como julgarem melhor. Contudo, o
-          problema disso, obviamente, é que nada é reusado e a aplicação fica muito
-          suscetível a defeitos.
+          problema disso, obviamente, é que nada é reusado, a aplicação fica muito
+          suscetível a defeitos e demanda muito esforço.
 
           \begin{figure}[htbp]
               \begin{center}
@@ -664,23 +666,23 @@
           \end{figure}
 
           Quando um framework é utilizado para suprir as necessidades um projeto, muitas
-          das classes que inicialmente seria implementadas do zero, já estão praticamente
+          das classes que inicialmente seriam implementadas do zero, já estão praticamente
           prontas, necessitando, geralmente, apenas de poucas sobrescritas de métodos.
-          Os ganhos necesse processo é que os desenvolvedores tem seus esforços
+          Os ganhos nesse processo é que os desenvolvedores têm seus esforços
           minimizados, uma vez que boa parte das classes já estão totalmente implementadas.
           Outro aspecto positivo ao se utilizar um framework é que a granularidade do
           reuso é muito maior do que se comparada a um projeto em que não se use frameworks.
           Em outras palavras, ao utilizar-se um framework dentro de uma aplicação o reuso
           costuma atingir facilmente dezenas de classes. Entretanto, se o mesmo projeto
-          fosse implementado pelo time de desenvolvimento, provavelmente o número de
-          classes reusadas seria bem menor.
+          fosse implementado pelo time de desenvolvimento, a partir da busca de classes
+          reusáveis provavelmente o número de classes reusadas seria bem menor.
 
           Quanto aos aspectos negativos, o mais fácil de ser observado é que os
           desenvolvedores da aplicação ficam presos à arquitetura e ao controle
-          de fluxo de dados impostos pelo framework. Isso decorre do fato de que como a
+          de fluxo de dados impostos pelo framework. Isso decorre do fato de que, como a
           maioria das classes do domínio do problema já estão sendo implementadas pelo
-          framework, a arquitetura, juntamente com o controle de fluxo, já é, por
-          definição pré-estabelecida.
+          framework, a arquitetura, juntamente com o fluxo de controle, já sao, por
+          definição pré-estabelecidas.
 
           Outro ponto negativo é que os programadores precisam ter um bom conhecimento
           de como funciona o framework para poder utilizá-lo corretamente. É necessário
@@ -696,22 +698,20 @@
           Já a alternativa de analisar o código fonte é, de longe, a maneira mais árdua
           de aprender como a ferramenta funciona. Exige do programador uma atividade
           de engenharia reversa e costuma ter um baixo rendimento. Em alguns cenários
-          pode até mesmod deixar o desenvolvedor mais confuso ainda. Isso é claro
+          pode até mesmo deixar o desenvolvedor mais confuso ainda. Isso é claro
           considerando um framework de código aberto, do contrário nem mesmo acesso
           ao fonte o desenvolvedor teria.
 
-      \section{Principais filosfias de frameworks}
-          Nessa secção serão apresentados alguns conceitos implementados pela maioria
+      \section{Princípios de frameworks}
+          Nessa secção são apresentados alguns conceitos implementados pela maioria
           dos frameworks, mas isso não siginifica que caso algum framework não implemente
           alguma dessas ideias ele não possa ser classificado como tal. Voltando mais uma
           vez ao exemplo do framework do FraG, fica evidente que os frameworks se baseiam
-          fortemente nas caracrísticas de associações e heranças. A herança acontece
-          principalmente pois ela é o melhor tipo de relação que consegue tirar proveito
-          do reuso.
+          fortemente nas caracrísticas de associações e heranças.
 
           É fácil de compreender o motivo pelo qual a herança é tão usada no universo de
           frameworks. Quando utilizada em classes abstratas, por definição, é exigido que
-          o programador implemente os métodos abstratos definidos pela classe mãe. Isso
+          o programador implemente os métodos abstratos definidos pela superclasse. Isso
           garante que sempre que qualquer objeto que herde a classe abstrata, no momento
           que for utilizado interna ou externamente pelo framework, os métodos estarão
           implementados, o que possibilita uma certa customização dentro do framework e
@@ -753,8 +753,7 @@
           \textit{factory, composite, decorator}. Não cabe aqui nesse escopo explanar
           cada um desses \textit{Design Patterns}, muito menos todos os existentes,
           mas é importante deixar claro que cada framework, muito provavelmente, terá
-          padrões implementados conforme a necessidade, uma vez que existem mais de
-          20 padrões de projeto atualmente.
+          padrões implementados conforme a necessidade.
 
           Outro ponto muito forte, é que o framework deve ser capaz de dar suporte a
           uma grande quantidade de aplicações com o mesmo domínio que ele. Como foi
@@ -935,9 +934,9 @@
           Nesse sentido, podemos ver um autômato representando o teste para a validação de
           um CPF no módulo representado anteriormente.
 
-          \begin{figure}[htbp]
+          \begin{figure}[!htb]
               \begin{center}
-                  \includegraphics[width=0.85\textwidth]{img/afd.png}
+                  \includegraphics[width=0.80\textwidth]{img/afd.png}
               \end{center}
               \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
           \end{figure}
@@ -995,7 +994,7 @@
                   \begin{center}
                       \includegraphics[width=0.55\textwidth]{img/pyramid.jpg}
                   \end{center}
-                  \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
+                  \caption{\label{fig:passaro}Pirâmide que correlaciona quantidade de cada nível de teste}
               \end{figure}
 
           \subsection{Teste de integração}
@@ -1041,16 +1040,87 @@
               O desenvolvedor fornece um conjunto de entradas e utiliza uma função de asserção
               para avaliar o resultado retornado, sem se preocupar com a execução interna do código.
               Essa técnica pode ser aplicada em qualquer nível de teste. Obviamente, quanto mais
-              entradas sejam testadas, melhor o teste é. Como já foi dito anteriormente que é
-              impossível testar todas as entradas possíveis o programador pode utilizar classes
-              de equivalência para maximizar os casos de teste coberto. As classes de equivalência
+              entradas sejam testadas, melhor o teste é. Como já foi dito anteriormente, é
+              impossível testar todas as entradas possíveis. Nesse caso, o programador pode utilizar
+              classes de equivalência para maximizar os casos de teste coberto. As classes de equivalência
               nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis
               em que um subconjunto representa as entradas válidas e o outro as entradas válidas.
 
+              \begin{figure}[htbp]
+                  \begin{center}
+                      \includegraphics[width=0.7\textwidth]{img/blackbox.png}
+                  \end{center}
+              \caption{\label{fig:passaro}Visão da técnica da caixa preta.}
+              \end{figure}
+
+              A filosofia por trás dessa técnica, encontra-se na ideia de que basta o programador
+              saber o que um determinado método deveria retornar para um certo parâmetro
+              \textit{X}, ou qual atributo deveria ser atualizado. Para melhor exemplificar essa
+              ideia, propõe-se mais adiante um módulo em escrito na linguagem Python capaz de fazer
+              cálculo da função fatorial. Mesmo que, por um acaso, o progamador não soubesse como a
+              função fatorial funcionasse ou se ainda ela fosse muito complexa envolvendo cálculos
+              matemáticos avançados, basta que ele saiba que fornecendo um valor \textit{X}, o método
+              deve retornar obrigatoriamente \textit{X*(X-1)*(X-2)*...*1} .
+
+              Dessa forma, ao criar um teste para esse método basta que o programador escreva que
+              quando o algoritmo for executado com o valor 4, por exemplo, deve ser retornado
+              o valor 24. Caso seja retornado qualquer coisa diferente desse valor ou uma mensagem
+              de erro é porque, então, existe um defeito no módulo implementado. É claro que a
+              a função de cálculo de fatorial é um algoritmo trivial de ser testado. Porém, em
+              projetos mais complexos de software há a necessidade de se explicitar o que cada
+              método deve retornar a fim de que quem escrever um teste baseado na técnica da caixa
+              preta possa fazê-lo sem saber como o método é realmente implementado.
+
+              \begin{figure}[!htbp]
+                  \begin{lstlisting}
+                      class FactorialCalculator(object):
+                        def __init__(self):
+                          pass
+
+                        def factorial(n):
+                          result = 1
+                          while (n != 0):
+                            result *= n
+                            n -= 1
+
+                  \end{lstlisting}
+                  \caption{\label{fig:passaro}Módulo com implementação de método que calcula fatorial}
+              \end{figure}
+
+              Usualmente, nesse tipo de técnica, costuma-se buscar valores limites de para verificar
+              se o módulo está se comportando como deveria, uma vez que os defeitos de um software
+              costumam ficar em suas frestas (WAZLAWICK, 2012). Considerando que o método recebe somente
+              valores inteiros, o algoritmo possui uma grande falha no que se refere as frestas. Ele, apesar de
+              calcular corretamente os valores para qualquer inteiro não negativo, se eventualmente o método
+              for executado usando como parâmetro um inteiro negativo, então o módulo ficará computando até o
+              processo ser morto, eventualmente.
+
+              Aplicando o princípio dos conjuntos de equivalência para um possível arquivo de teste
+              para este módulo, o desenvolvedor poderia criar testes usando os seguintes valores como
+              parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
+              lançar uma exceção e o teste, ao receber a exceção, deveria afirmar que tudo ocorreu como
+              esperado. Nesse caso, para arrumar o módulo implementado, ao em vez de usar o
+              operador de diferença, basta utilizar o operado de >. Para os demais valores, basta criar os
+              casos de teste utilizando a técnica da caixa preta como foi descrita anteriormente.
 
           \subsection{Técnica da caixa branca}
+              A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada a da
+              caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado na no componente. Esse tipo de teste visa eliminiar trechos que nunca
+              são alcançados dentro de um método ou que sejam reduntantes. Quando esta técnica é aplicada
+              todas as possibilidades de fluxo um método devem ser testados (i.e. \textit{while, for,
+              if, else, try, catch, finally}).
+
+              Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca otimizá-lo,
+              em termos de processamento. Isso decorre do fato de que, podem haver estruturas de controle de
+              fluxo que estão sendo declaradas, mas nunca são alcançadas. Ou seja, o módulo está funcionando
+              corretamente, justamente por tais estruturas não estarem sendo executas. Dessa forma, a finalidade
+              do teste é diminuir as linhas de código e deixar ele com um desempenho ainda maior.
+
+              COMENTAR DE GRAFOS
 
           \subsection{Técnica da caixa cinza}
+
+      \section{Testes de desempenho}
 
   % ---
   \chapter{Desenvolvimento Mobile}
@@ -1139,6 +1209,9 @@
   2018. Disponível em:
   \url{https://en.wikipedia.org/w/index.php?title=Software_design_pattern&oldid=834346932}. Accesso
   em 19 de Abril 2018.
+
+  \noindent
+  JOHNSON, R. E. \textit{Design Patterns: Abstraction and Reuse of Object-Oriented Design}. [S.I.:s.n.], 1993 Disponível em: \url{https://link-springer-com.ez46.periodicos.capes.gov.br/chapter/10.1007%2F3-540-47910-4_21}. Acesso em 26 de Março de 2018.
 
   % ----------------------------------------------------------
   % Glossário
