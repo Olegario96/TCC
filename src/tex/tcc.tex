@@ -805,7 +805,7 @@
       máscara. Abaixo pode-se observar as assinaturas de método do mesmo na linguagem
       \textit{Python}.
 
-      \begin{figure}[htbp]
+      \begin{figure}[htpb]
           \begin{lstlisting}
               class CpfValidator(object):
                 def __init__(self):
@@ -820,7 +820,8 @@
                   # TODO
                   pass
           \end{lstlisting}
-          \caption{\label{fig:passaro}Módulo com assinaturas de método para validar CPF}
+          \caption{\label{fig:passaro}Módulo com assinaturas de método para validar CPF}\vspace{-1.2\baselineskip}
+          \centering
       \end{figure}
 
       Apesar de nenhum dos métodos ter sido realmente implementados, é perfeitamente
@@ -883,7 +884,9 @@
       objetos falsos, também conhecidos como \textit{mocks}, funções de asserção,
       execução de testes em ordem aleatória. Como o intuito de trabalho é desenvolver
       um framework que seja capaz de automatizar a produção de testes, esse capítulo
-      tratará essencialmente de tipos de teste, níveis e técnicas de teste.
+      tratará essencialmente de tipos de teste, níveis e técnicas de teste. Neste trabalho,
+      testes relacionados a segurança e desempenho, como de carga e stress, não serão
+      contemplados, uma que fogem muito do escopo do que o trabalho se propõe a fazer.
 
       \section{Modelagem e implementação de testes}
           A modelagem de testes é uma fase muito importante, visto que é responsável
@@ -1082,6 +1085,7 @@
                           while (n != 0):
                             result *= n
                             n -= 1
+                          return result
 
                   \end{lstlisting}
                   \caption{\label{fig:passaro}Módulo com implementação de método que calcula fatorial}
@@ -1116,11 +1120,50 @@
               corretamente, justamente por tais estruturas não estarem sendo executas. Dessa forma, a finalidade
               do teste é diminuir as linhas de código e deixar ele com um desempenho ainda maior.
 
-              COMENTAR DE GRAFOS
+              Nessa subsecção, cabe um comentário para complementar o que foi apresentado quanto a questão de
+              modelagem de testes baseado em autômatos. Conforme Wazlawick (2012, p. 400) é apresentado uma
+              forma de modelar testes, baseados nessa técnica, muito interessante. A ideia consiste em modelar
+              um autômato finito em que que cada nodo representa uma linha ou um conjunto de linhas sequenciais
+              que contenham no máximo uma estrutura de controle e as arestas representam o atendimento ou
+              não da condição imposta pela estrutura. A modelagem com esse tipo autômato para o método
+              de cálculo de fatorial pode ser visto na Figura 10.
+
+              Através da gravura, é percebido que, então, o princípio do teste é passar por todas as arestas do
+              automâto e caso alguma aresta em nenhuma hipótese seja utilizada é porque a estrutura jamais
+              é alcançada ou possui uma condição impossível de ser atendida. Um exemplo claro disso seria algo
+              como \textit{if (age < 0)}. Isso jamais vai ocorrer se a variável que carrega a idade possui
+              a pré condição de sempre ser positiva.
+
+              \begin{figure}[htbp]
+                  \begin{center}
+                      \includegraphics[width=0.15\textwidth]{img/whitebox.png}
+                  \end{center}
+              \caption{\label{fig:passaro}Visão da técnica da caixa branca usando AFD.}
+              \end{figure}
+
+              Fica evidente pela figura que quanto mais arestas o autômato possui (i.e. estruturas
+              condicionais), fica mais complexo de se testar o módulo. Isso mostra a importância clara de
+              que todo método deve ter no máximo 20 linhas, pois além de ser mais trivial de ser testado,
+              mantém uma maior legibilidade.
 
           \subsection{Técnica da caixa cinza}
+              Essa técnica tem por finalidade combinar as duas técnicas apresentadas anteriormente em uma
+              só. A caixa cinza baseia-se em testar quais são as saídas para cada uma das entradas
+              fornecidas, bem como rastrear quais foram os trechos que foram executados para gerar aquele
+              resultado e avaliar se faz sentido, ou não. Utilizando o exemplo do fatorial, imaginando
+              um cenário que o desenvolvedor fornece como parâmetro o valor 4 ele deveria obrigatoriamente
+              retornar o valor 24. Mas, mais do que isso, a estrutura de controle \textit{while} deveria
+              ser executada 4 vezes e depois retornar o valor esperado.
 
-      \section{Testes de desempenho}
+              Porém, em um cenário hipotético, o método poderia estar implementado de tal forma que,
+              independentemente do valor fornecido como parâmetro, estaria sempre retornando o valor
+              24. Isso poderia ocorrer caso o desenvolvedor estivesse com pouco tempo disponível para
+              implementar a função fatorial e tivesse que priorizar outras implementações. Dessa forma,
+              um teste com a caixa cinza seria a melhro técnica a ser aplicada para detectar essa falha,
+              já que a técnica da caixa preta, caso estivesse sendo utilizada única e exclusivamente com
+              o valor 4 jamais detectaria que o módulo possui um problema. Com a caixa branca combinada
+              (i.e. a caixa cinza em si), o teste apontaria que apesar de o valor retornado ser o esperado,
+              o método while não foi exeuctado o número de veazes esperado.
 
   % ---
   \chapter{Desenvolvimento Mobile}
