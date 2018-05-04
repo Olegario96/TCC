@@ -773,24 +773,24 @@
       era geralmente um parte vista com maus olhos pelos programadores e rotineiramente
       só se realizava quando "sobrava tempo" no projeto. Com o passar do tempo, foi
       ficando evidente para as empresas que a parte de testes é essencial para
-      assegurar a qualidade do produto. Ela não só é importante para comprovar
-      o correto funcionamento, como também ajuda a garantir estabilidade durante a
-      refatoração de código, pois se um teste estava obtendo sucesso antes da
-      alteração e passou apresentar falhas depois das mudanças é porque certamente
-      houve algum equívoco por parte de quem alterou o código.
+      assegurar a qualidade do produto (WAZLAWICK, 2012). Ela não só é importante
+      para comprovar o correto funcionamento, como também ajuda a garantir
+      estabilidade durante a refatoração de código, pois se um teste estava obtendo
+      sucesso antes da alteração e passou apresentar falhas depois das mudanças é
+      porque certamente houve algum equívoco por parte de quem alterou o código.
 
       Nessa parte do trabalho é de suma importância deixar esclarecido
-      que um projeto que foi iniciado sem testes, pode muito bem ter implementado
-      a parte de qualidade no meio do processo, mas isso provavelmente terá um
+      que um projeto que foi conduzido sem testes, pode atigingir um patamar
+      satifatório de qualidade ao longo do processo, mas isso provavelmente terá um
       custo alto, uma vez que a probilidade de se detectar uma grande quantidade
       de defeitos é alto. Sendo assim, o time de desenvolvimento terá que gastar
       mais tempo arrumando falhas que poderiam ter sido percebidas mais cedo.
       Isso faz com que o tempo de projeto aumente bem como os custos. Dessa forma
-      é sempre importante que a parte de qualidade esteja prevista no planejamento
+      é sempre importante que a parte de testes esteja prevista no planejamento
       inicial de um projeto de software.
 
-      É importante deixar claro, também, desde já, que o teste de software em momento algum
-      diz que o módulo implementado está livre de defeitos. A única coisa que o
+      É importante deixar claro, também, desde já, que o teste de software em momento
+      algum supõe que o módulo implementado esteja livre de defeitos. A única coisa que o
       teste garante para o desenvolvedor é que para as entradas especificadas o
       componente está se comportando como o programador desejava. O teste costuma
       ser implementado pensando em como fazer com que o módulo dê problemas, mas
@@ -801,8 +801,8 @@
       reagindo.
 
       Pensando em um cenário mais prático, propõe-se um módulo simples em que a única
-      responsabilidade é verificar se um dado CPF é válido ou não mesmo que possua uma
-      máscara. Abaixo pode-se observar as assinaturas de método do mesmo na linguagem
+      responsabilidade é verificar se um dado CPF é válido ou não, mesmo que possua uma
+      máscara. Abaixo, podem-se observar as assinaturas de método do mesmo na linguagem
       \textit{Python}.
 
       \begin{figure}[htpb]
@@ -824,13 +824,13 @@
           \centering
       \end{figure}
 
-      Apesar de nenhum dos métodos ter sido realmente implementados, é perfeitamente
+      Apesar de nenhum dos métodos ter sido realmente implementado, é perfeitamente
       possível desenvolver um arquivo de teste para esse módulo. Basta que o programador
       tenha conhecimento do algoritmo de validação de CPF. Dessa forma, ele saberá quando
-      um CPF é válido mesmo estando sem a máscara (i.e. foramtação). Ou seja, quando
+      um CPF é válido mesmo estando sem a máscara (i.e. formatação). Ou seja, quando
       o teste for implementado basta ele escrever que os CPFs que obedeçam o algoritmo
       devam ser classificados como válidos, enquanto que os que não são validados pelo
-      algoritmo devem ser rejeitados. Com o teste desenvolvido basta ele executá-lo e
+      algoritmo devem ser rejeitados. Com o teste desenvolvido, basta ele executá-lo e
       obviamente o teste retornará mensagem de erro, isso porque o módulo ainda não
       foi implementado. Caso o teste retorne somente mensagens de sucesso é porque o
       teste possui algum equívoco.
@@ -844,10 +844,10 @@
       teste retorne somente mensagens de sucesso.
 
       Esse processo é também conhecido como TDD. O diagrama seguinte ilustra bem esse
-      processo e também é conhecido como \textit{red, green and refactor}, já que o
+      processo e tamanhobém é conhecido como \textit{red, green and refactor}, já que o
       programdor começa inicialmente na fase de erros (\textit{red}), faz somente o
       necessário para que o módulo passe no teste (\textit{green}) e melhora no final
-      a qualidade do código a medida do necessário (\textit{refactor}).
+      a qualidade do código a medida do necessário (\textit{refactor}) (BECK, 2004).
 
       \begin{figure}[htbp]
           \begin{center}
@@ -857,13 +857,14 @@
       \end{figure}
 
       Ainda no contexto de desenvolvimento de testes, é importante que os desenvolvedores
-      e o time de qualidade estejam constantemente revisando o código produzidos por
+      e o time de qualidade estejam constantemente refatorando o código produzido por
       cada um. Isso é importante, pois quem está desenvolvendo o módulo já sabe como
       o código funciona e fica mais difícil em perceber o local do defeito. Entretanto,
-      qunado alguém que não desenvolveu o componente começa a se iterar mais com o código
+      quando alguém que não desenvolveu o componente começa a se familarizar mais com o código
       ela vai, usualmente, ler cada linha do código e tentar enteder a semântica de cada
       uma delas. Dessa forma, ficará muito mais evidente para quem está de fora identificar
-      o erro. Por isso, os cenários de teste devem ser sempre atualizados e revisados.
+      o erro. Por isso, os cenários de teste devem ser sempre atualizados e refatorados
+      (REID, 2016).
 
       Outro ponto importante a ser ressaltado é a questão das \textit{pré e pós condições} de
       um dado caso de teste. A pré-condição é uma obrigatoriedade que deve ocorrer
@@ -886,27 +887,26 @@
       um framework que seja capaz de automatizar a produção de testes, esse capítulo
       tratará essencialmente de tipos de teste, níveis e técnicas de teste. Neste trabalho,
       testes relacionados a segurança e desempenho, como de carga e stress, não serão
-      contemplados, uma que fogem muito do escopo do que o trabalho se propõe a fazer.
+      contemplados, pois fogem do escopo do que o trabalho se propõe a fazer.
 
       \section{Modelagem e implementação de testes}
-          A modelagem de testes é uma fase muito importante, visto que é responsável
+          A modelagem de testes é uma fase importante, visto que é responsável
           por garantir o mínimo de qualidade no módulo que está sendo implementado.
-          O desenvolvimento de uma aplicação, como foi visto anteriormente, pode ser
-          seguindo a filosofia TDD em que o programador primeiro implementa o teste
-          e depois desenvolva o módulo que lhe foi designado, porém nada impede que
-          o desenvolvedor implemente inicialmente o módulo e depois avançe para a
-          parte de teste.
+          O desenvolvimento de uma aplicação pode seguir a filosofia TDD em que o
+          programador primeiro implementa o teste e depois desenvolva o módulo que
+          lhe foi designado. Porém, nada impede que o desenvolvedor implemente
+          inicialmente o módulo e depois avançe para a parte de teste.
 
-          Porém, durante a modelagem de testes o mínimo que o desenvolvedor precisa
-          conhecer para poder implementar o teste são os métodos que da classe que
-          lhe foi atribuida bem como a ideia de seus algoritmos. Dessa forma ele
+          Entretanto, durante a modelagem de testes, o mínimo que o desenvolvedor precisa
+          conhecer para poder implementar o teste são os métodos do artefeato que
+          lhe foi atribuido, bem como a ideia de seus algoritmos. Dessa forma ele
           consegue separar as entradas para o teste em dois grandes conjuntos: o
           conjunto das entradas válidas e das inválidas. De posse de tais informações
           básicas, ele pode escrever testes que seguem o \textit{happy path} e aqueles
           que devem lançar algum tipo de exceção.
 
           Para deixar mais claro, voltemos ao exemplo do módulo de validação de CPF
-          escrito em \textit{Python}. Como pode se perceber pelo código fornecido na
+          escrito em \textit{Python}. Como pode-se perceber pelo código fornecido na
           Figura 4, é facilmente perceptível que a linguagem é \textbf{fracamente tipada},
           ou seja, é deixado ao interpretador inferir a tipagem de cada variável. Para
           efeitos práticos, será considerado que os parâmetros fornecidos para os dois
@@ -920,16 +920,16 @@
           deve trazer um relatório escrito dizendo que estava sendo esperado uame exceção,
           porém ela não ocorreu.
 
-          Na modelagem de testes é importante também que durante a implementação existam
+          Na modelagem de testes é importante também que durante a implementação exista
           o teste de entradas aleatórias para simular uma possível simulação com o usuário.
           Nos dias atuais, existem várias bibliotecas capazes de gerar dados falsos que
           cumprem com este objetivo e são capazes de criar informações falsas, porém válidas,
           como: nomes, emails, senhas, cartões de crédito, CPF. Sendo assim, é importante
           também que durante a modelagem de teste o desenvolvedor preveja ao menos um cenário
-          em que ele possa tirar proveitos dessas bibliotecas.
+          em que ele possa tirar proveito dessas bibliotecas.
 
           A modelagem de teste em si pode ser abordada de inúmeras formas. Dentro da ciência
-          da computação, o mais comum é enxergar o teste do módulo como sendo uma \textbf{
+          da computação, o mais comum é enxergar o teste do módulo como sendo um \textbf{
           autômato finito}. Os estados representam o objeto em si e as transições
           seriam os métodos e os possíveis valores de retorno, ou execções, dependendo dos
           valores passados para o método. O objetivo do teste, vendo a modelagem por essa
@@ -945,30 +945,30 @@
           \end{figure}
 
           Olhando para o autômato descrito na Figura 6, o desenvolvedor se quisesse garantir
-          o máximo de qualidade possível ele teria que testar todos os caminhos possíveis
-          partido do estado inicial. Nesse exemplo, a tarefa de testar o módulo é perfeitamente
+          o máximo de qualidade possível, teria que testar todos os caminhos possíveis
+          partindo do estado inicial. Nesse exemplo, a tarefa de testar o módulo é perfeitamente
           realizável, uma vez que existem poucas transições. Porém, pensando em casos mais
-          reais em que as classes possuem pelo menos de 6 a 8 métodos e que podem ter
-          suas próprias execeções, a tarefa de testar completamente um módulo começa a ficar
+          reais em que os módulos possuem pelo menos de 6 a 8 procedimentos e que podem ter
+          suas próprias execeções, a tarefa de testar completamente um artefato começa a ficar
           inviável. Nesse sentido, o programador deve priorizar as entradas mais comuns
           e algumas exóticas para garantir uma certa qualidade.
 
-          Ainda dentro do contexto do autômato é importante lembrar que não foram representadas
-          mais transições dos estados mais a direita em direção a outros estados por uma mera
+          Ainda dentro do contexto do autômato, é importante lembrar que não foram representadas
+          mais transições dos estados mais à direita em direção a outros estados por uma mera
           questão de legibilidade. Entretanto, dentro de um contexto de um objeto que é utilizado
-          várias vezes, a chamada reptitiva de vários métodos sucessivamente pode acarretar,
+          várias vezes, a chamada repetitiva de vários métodos sucessivamente pode acarretar,
           eventualmente, na mudança de algum atributo que poderia encadear alguma mudança no
           comportamente do método, dependendo do algoritmo implementado. Sendo assim, é importante
           que o programador tenha em mente essas possibilidades também.
 
           Já no que se refere à parte de implementação, a implementação do padrão de projeto
-          \textit{factory} costuma ser muito comum, já que é uma solução necessária e elegante
+          \textit{factory} (FOWLER, 2003) costuma ser muito comum, já que é uma solução necessária e elegante
           para os testes. Esse padrão se faz essencial para manter um código mais limpo, visto
           que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
           atributos diferentes. Dessa forma, ele pode usar uma biblioteca que implemente a
           o padrão para os objetos necessários para o teste e para cada cenário ele pede
           objetos diferentes para a fábrica. Isso ajuda a manter um código mais legível, visto
-          que se esse padrão não fosse utilizado, para cada teste o prgramador teria que sempre
+          que se esse padrão não fosse utilizado, para cada teste o programador teria que sempre
           estar instanciando um objeto da mesma classe e configurando os valores manualmente,
           o que não é nada DRY.
 
@@ -977,21 +977,23 @@
           níveis ou fases. A classificação decorre do fato de que a medida que a aplicação
           vai crescendo os testes também precisam ter uma complexidade maior pois o número
           de possibilidades vai aumentando e precisam sempre as mais prováveis açoes do
-          usuário. Classicamente, os testes, quando dividos dessa forma, podem pertencer
-          alguma dessas classes: unidade, integração, sistema, aceitação e o de regressão.
-          Nas próximas subsecções seram apresentados previamente cada uma dessas classificações.
+          usuário. Classicamente (WAZLAWICK, 2012), os testes, quando dividos dessa forma,
+          podem pertencer alguma dessas classes: unidade, integração, sistema, aceitação e
+          o de regressão. Nas próximas subsecções seram apresentados previamente cada uma
+          dessas classificações.
 
           \subsection{Teste de unidade}
               O teste de unidade é o teste mais básico de um software. O intuito dele é basicamente
               testar a classe que está para ser implementada ou que recém foi programada. Boa
               parte dos testes de uma aplicação são classificados dessa forma, uma vez que são
-              os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FLOW, 2012).
-              Esse fato é também conhecido como \textit{pirâmide de testes}.
-              É importante também, que este nível de teste visa somente fazer o teste de uma classe
-              isolada. Caso a classe que está sendo testada iteraja de alguma forma com outras classes
-              , seja por atributos ou parâmetros de funções, o programador, deve, então, usar
-              objetos falsos, também conhecidos como \textit{mock}, para simular a classe que possui
-              relação com a classe que está sendo testada. Essa metodologia garante que caso qualquer defeito detectado pelo teste, o defeito vem única e exclusivamente da classe que está sendo testada, e não de classes terceiras.
+              os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FOWLER, 2012).
+              Isso é também conhecido como \textit{pirâmide de testes}. Este nível de teste visa somente
+              fazer o teste de uma classe isolada. Caso a classe que está sendo testada iteraja
+              de alguma forma com outras classes, seja por atributos ou parâmetros de funções,
+              o programador, deve, então, usar objetos falsos, também conhecidos como \textit{mock},
+              para simular a classe que possui relação com a classe que está sendo testada.
+              Essa metodologia garante que caso qualquer defeito detectado pelo teste, o defeito
+              vem única e exclusivamente da classe que está sendo testada, e não de classes terceiras.
 
               \begin{figure}[!htb]
                   \begin{center}
@@ -1002,13 +1004,13 @@
 
           \subsection{Teste de integração}
               Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois módulos
-              que trabalham em conjunto. Nesse nível deve-se testar todas as classes que possuêm
-              alguma relação do tipo: associação, composição ou agregação. Ao em vez de usar objetos
-              falsos, como era feito no nível anterior, deve-se objetos verdadeiros e testar os
-              métodos os quais estes objetos trocam mensagens. Em casos em que um dos módulos
+              que trabalham em conjunto. Nesse nível deve-se testar todas os módulos que possuêm
+              alguma relação do tipo: associação, composição ou agregação. Ao invés de usar objetos
+              falsos, como era feito no nível anterior, usam-se objetos verdadeiros e testam-se os
+              métodos pelos quais estes objetos trocam mensagens. Em casos em que um dos módulos
               estava funcionando no teste de unidade e passou a não funcionar no teste de integração,
               é porque muito provalmente o módulo que foi integrado está com algum problema. Este tipo
-              de teste não deve cubrir integrações com interfaces ou integração com sisteamas de
+              de teste não deve cobrir integrações com interfaces ou integração com sisteamas de
               terceiros, APIs por exemplo.
 
           \subsection{Teste de sistema}
@@ -1034,7 +1036,7 @@
 
       \section{Técnicas de teste}
           As técnicas de teste dizem respeito a forma como os casos de teste serão implementados.
-          Todas elas possuêm em comum em encontrar falhas no componente desenvolvido. As principais
+          Todas elas possuem em comum encontrar falhas no artefato desenvolvido. As principais
           técnicas que podem ser aplicadas são: caixa-branca, caixa-preta e caixa-cinza. Os próximos
           tópicos detalharão cada uma dessas técnicas.
 
@@ -1109,10 +1111,10 @@
 
           \subsection{Técnica da caixa branca}
               A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada a da
-              caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado na no componente. Esse tipo de teste visa eliminiar trechos que nunca
-              são alcançados dentro de um método ou que sejam reduntantes. Quando esta técnica é aplicada
-              todas as possibilidades de fluxo um método devem ser testados (i.e. \textit{while, for,
-              if, else, try, catch, finally}).
+              caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado no componente.
+              Esse tipo de teste visa eliminiar trechos que nunca são alcançados dentro de um método ou que
+              sejam reduntantes. Quando esta técnica é aplicada todas as possibilidades de fluxo um método
+              devem ser testados (i.e. \textit{while, for, if, else, try, catch, finally}).
 
               Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca otimizá-lo,
               em termos de processamento. Isso decorre do fato de que, podem haver estruturas de controle de
@@ -1121,22 +1123,20 @@
               do teste é diminuir as linhas de código e deixar ele com um desempenho ainda maior.
 
               Nessa subsecção, cabe um comentário para complementar o que foi apresentado quanto a questão de
-              modelagem de testes baseado em autômatos. Conforme Wazlawick (2012, p. 400) é apresentado uma
+              modelagem de testes baseado em autômatos. Conforme Wazlawick (2012 em p. 400) é apresentada uma
               forma de modelar testes, baseados nessa técnica, muito interessante. A ideia consiste em modelar
               um autômato finito em que que cada nodo representa uma linha ou um conjunto de linhas sequenciais
               que contenham no máximo uma estrutura de controle e as arestas representam o atendimento ou
               não da condição imposta pela estrutura. A modelagem com esse tipo autômato para o método
               de cálculo de fatorial pode ser visto na Figura 10.
 
-              Através da gravura, é percebido que, então, o princípio do teste é passar por todas as arestas do
+              Através do diagrama, é percebido que, então, o princípio do teste é passar por todas as arestas do
               automâto e caso alguma aresta em nenhuma hipótese seja utilizada é porque a estrutura jamais
-              é alcançada ou possui uma condição impossível de ser atendida. Um exemplo claro disso seria algo
-              como \textit{if (age < 0)}. Isso jamais vai ocorrer se a variável que carrega a idade possui
-              a pré condição de sempre ser positiva.
+              é alcançada ou possui uma condição impossível de ser atendida.
 
               \begin{figure}[htbp]
                   \begin{center}
-                      \includegraphics[width=0.15\textwidth]{img/whitebox.png}
+                      \includegraphics[width=1.0\textwidth]{img/whitebox.png}
                   \end{center}
               \caption{\label{fig:passaro}Visão da técnica da caixa branca usando AFD.}
               \end{figure}
@@ -1255,6 +1255,22 @@
 
   \noindent
   JOHNSON, R. E. \textit{Design Patterns: Abstraction and Reuse of Object-Oriented Design}. [S.I.:s.n.], 1993 Disponível em: \url{https://link-springer-com.ez46.periodicos.capes.gov.br/chapter/10.1007%2F3-540-47910-4_21}. Acesso em 26 de Março de 2018.
+
+  \noindent
+  KENT, B., ANDRES, C. \textit{Extreme Programming Explained}. [S.I.:s.n.], 2004.
+
+  \noindent
+  ERIKSSON, U. \textit{3 Reasons Why It's Important to Refactor Tests}. [S.I.:s.n.], 2016 Disponível em:
+  \url{https://qualitycoding.org/why-refactor-tests/#comments}. Acesso em 4 de Maio de 2018.
+
+  \noindent
+  FOWLER, M. \textit{Making Stubs}. [S.I.:s.n.], 2003 Disponível em:
+  \url{https://martinfowler.com/bliki/MakingStubs.html}. Acesso em 4 de Maio de 2018.
+
+  \noindent
+  FOWLER, M. \textit{Test Pyramid}. [S.I.:s.n.], 2012 Disponível em:
+  \url{https://martinfowler.com/bliki/TestPyramid.html}. Acesso em 4 de Maio de 2018.
+
 
   % ----------------------------------------------------------
   % Glossário
