@@ -1209,16 +1209,68 @@
       ter suas aplicações disponíveis em todas as plataformas, é o da linguagem de programação.
       Enquanto que o ambiente da Google suporta apenas Java e Kotlin, o iOS era uma plataforma
       que exigia que os programadores programassem em Objective-C, mas que agora usa como linguagem
-      nativa o Swift. Por último, a Microsoft possui como linguagem padrão o Visual C++ e o C#.
+      nativa o Swift. Por último, a Microsoft possui como linguagem padrão o Visual C++ e o C\#.
       Dessa forma, por mais que uma aplicação mobile seja bem projetada, do ponto de vista de
       orientação a objetos, sempre será necessário replicar a aplicação para outra linguagem,
       seja através de um transpilador ou de trabalho puramente manual. Por tal razão, o foco
       desse trabalho focará exclusivamente na plataforma Android.
 
-      Nesse sentido, nas próximas secções será apresentada um pouco de como funciona o
-      desenvolvimento de um aplicativo mobile em uma visão mais alto nível, em seguida
-      uma breve abordagem técnica e histórica do Android e por último uma visão
-      mais próxima do código e de como funciona uma aplicação real dentro dessa plataforma.
+      Nesse sentido, nas próximas secções será apresentado uma breve abordagem técnica do
+      Android, seguida de uma explicação, em mais alto nível, de como funciona uma aplicação nesse
+      tipo de plataforma. Por último será apresentado, usando um caso real, de como funciona realmente
+      uma aplicação dentro Android, apresentando uma modelagem clássica de MVC e como cada um
+      desses componentes é descrito, via código, na aplicação.
+
+      \section{Especificações técnicas do Android}
+        O Android foi uma plataforma que teve seu primeiron lançamento, oficial, em 2008. Na época,
+        a divisão que desenvolveu o sistema já pertencia a Google. O objetivo inicial do projeto,
+        era desenvolver um sistema operacional para celulares capaz de identificar a localização
+        do usuário e suas principai preferências. No que se refere a termos de licença, o Android
+        possui uma licença própria criada pela Google conhecida como AOSP (Android Open Source
+        Project), ou seja uma licença de código aberto.
+
+        O Android, atualmente, é baseado em uma das versões do kernel do Linux, mais especificamente
+        as versões: 3.18 e 4.4, dependendo do aparelho. Apesar de o Android ter o kernel baseado
+        em versões LTS (Long Term Support), muitas modificações tiveram que ser feitas para atender
+        aos requisitos da Google. Uma das principais mudanças foi que a Google teve que desenvolver
+        uma biblioteca alternativa a GNU C, visto que os processadores que iriam executar o sistema
+        eram CPU's com baixa frequência, apesar de usar a mesma licença da GNU. A biblioteca ficou conhecida como \textit{Bionic}.
+
+        As principais arquiteturas suportadas atualmente pelo Android são a ARM, x86 e MIPS. Como
+        pode ser visto no gráfico seguinte, a arquitetura ARM é a dominante, visto que é uma ISA
+        (Instruction Set Architecture) que preza pela eficiência energética. Já quanto ao x86 e
+        o MIPS foram arquiteturas que foram ganhar suporte somente mais tarde, visto essas eram
+        as arquiteturas utilizadas nos computadores dos desenvolvedores que emulavam as aplicações
+        Android. Mais recentemetne, as versões 64 bits dessas mesmas ISA estão, gradativamente,
+        ganhando suporte da plataforma.
+
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=1.0\textwidth]{img/cpusPercentage.png}
+            \end{center}
+        \caption{\label{fig:passaro}Porcentagem de ISA's que atualmente estão executando Android.}
+        \end{figure}
+
+
+        No que se refere a execução de processos dentro do o sistema operacional utiliza
+        o Dalvik, uma máquina virtual de processos, que recompila o Java bytecode para rodar nativamente. Na versão 4.4, o Android introduziu o ambiente \textit{Android Runtime}
+        que usava a técnica de compilação AOT (\textit{ahead-of-time}). A ideia consistia
+        basicamente em recompilar o bytecode inteiro pra código de máquina nativo.
+
+        Sobre a gerência de memória, a plataforma utiliza um sistema de gerenciamento bem simples.
+        Quando o usuário interrompe o uso de um aplicativo, o SO apenas suspende a aplicação para
+        que pare consumir recursos da CPU, mas continua mantendo os dados na memória. Porém, caso
+        a memória comece a ficar escassa, então o sistema começa a matar os processos que estão
+        a mais tempo sem serem utilizaods.
+
+        Já quanto as aplicações que são desenvolvidas para o Android, estas utilizam como suporte
+        o SDK (\textit{Android software development kit}). O SDK possui ferramentas como: debugger,
+        bibliotecas (API's), emulador baseado no QEMU, documentação. O SDK possui suporte nativo
+        a linguagem Java que pode ser combinada com C/C++ e, mais recentemente, a Google anunciou
+        que a linguagem Kotlin também passou a ser suportada pelo SDK.
+
+      \section{Desenvolvimento de aplicações mobile}
+      \section{Desenvolvimento de aplicações mobile, usando um caso real}
 
   % ----------------------------------------------------------
   % Resultados
