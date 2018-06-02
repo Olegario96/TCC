@@ -375,7 +375,7 @@
     sentido, a proposta desse trabalho é desenvolver um framework orientado
     a objetos capaz de apoiar tal atividade no contexto dos dispositvos móveis
     que possuem o sistema operacional Android. A finalidade do framework é diminuir
-    o esforço e tempo investidos durante a fase de testes automatizados.
+    o esforço e tempo investidos durante a fase de elaboração testes automatizados.
 
    \vspace{\onelineskip}
 
@@ -428,6 +428,7 @@
   \begin{siglas}
     \item[FraG] *A CONFIRMAR*
     \item[XP] Extreming Programming
+    \item[UML] Unified Modeling Language
     \item[TDD] Test Development Driven
     \item[DRY] Don't Repeat Yourself
     \item[AFD] Autômato Finito Determínistico
@@ -487,8 +488,10 @@
   que o Framework se encarrega de gerar os testes por conta própria.
 
   Sendo assim, nas próximas partes desse trabalho é, primeiro, apresentado de maneira
-  mais precisa o framework. Em seguida, é feito um estudo de técnicas de testes
-  de software e quais as ferramentas disponíveis atualmente no mercado. Por último, a
+  mais precisa o tema framework orientado a objetos. Em seguida, é feito um estudo de
+  técnicas de testes de software e quais as ferramentas disponíveis atualmente
+  no mercado. Na sequência será abordado alguns aspectos no que se refere a
+  desenvolvimento de aplicações mobile dentro da plataforma Android.Por último, a
   proposta de desenvolvimento do framework e uma apresentação de suas capacidades.
 
   \section{Justificativa}
@@ -521,7 +524,7 @@
       conceitos relevantes ao trabalho para melhor compreensão do leitor.
       A secção 3 apresentará trabalhos relacionados. Em seguida,
       na secção 4 é mostrado como o framework foi implementado e, por
-      último, a secção 5 mostra-se os resultados obtidos juntamente com
+      último, a secção 5 mostram-se os resultados obtidos juntamente com
       sugestões de trabalhos futuros.
   % ----------------------------------------------------------
   % Capitulo com exemplos de comandos inseridos de arquivo externo
@@ -569,7 +572,7 @@
 
       Nas próximas subseções será apresentado como foi o surgimento inicial
       do conceito de framework, quais os principais pontos positivos e
-      negativos de se usar uma ferramenta como essa e as princípios
+      negativos de se usar uma ferramenta como essa e os princípios
       seguidas por frameworks.
 
       \section{Origem dos Frameworks}
@@ -617,12 +620,15 @@
           essa classe para seu domínio de aplicação e implementa os métodos que
           necessita e adiciona os atributos que forem necessários, mantendo
           um código organizado e seguindo boas práticas de orientação a objetos.
+          A modelagem UML (\textit{Unified Modeling Language}) utilizada para esse
+          framework pode ser observada na próxima figura.
 
           \begin{figure}[htbp]
               \begin{center}
                   \includegraphics[width=1.0\textwidth]{img/frag.png}
               \end{center}
               \caption{\label{fig:passaro}Modelagem do framework FraG.}
+              \begin{center}(FONTE: Adaptado de SILVA, 1998)\end{center}
           \end{figure}
 
           Dessa forma, o desenvolvedor apenas precisou desenvolver algumas pequenas
@@ -630,15 +636,14 @@
           do software implementado pelo framework.
 
           A implementação de um framework consiste principalmente em identificar
-          qual domínio de problema ele deve dar suporte. FraG, fica evidente que
-          era um framework voltado a
-          desenvolvimento de jogos de tabuleiro. O processo de modelagem
-          requer que o desenvolvedor identifique as classes mais comuns de um domínio
-          problema, também conhecidos como "hot spots". Esse processo costuma ser
-          não trivial, pois o responsável pela modelagem do framework deve estudar
-          ao menos 3 aplicações que compartilham o mesmo domínio (JOHNSON, 1993),
-          porém sem se prender muito aos detalhes do problema específico que está
-          sendo resolvido.
+          qual domínio de problema ele deve dar suporte. No caso do FraG era um
+          framework voltado a desenvolvimento de jogos de tabuleiro. O processo
+          de modelagem requer que o desenvolvedor identifique as classes mais
+          comuns de um domínio problema, também conhecidos como "hot spots".
+          Esse processo costuma ser não trivial, pois o responsável pela modelagem
+          do framework deve estudar ao menos 3 aplicações que compartilham o
+          mesmo domínio (JOHNSON, 1993), porém sem se prender muito aos detalhes
+          do problema específico.
 
           Após identificadas as classes que semanticamente são mais utilizadas em um
           certo domínio, inicia-se o processo de modelagem que
@@ -725,13 +730,15 @@
           ao final da execução do método \textit{Template} o método \textit{Hook} é
           executado. Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
           para que ele possa inicialzar demais objetos que necessite para sua aplicação
-          relacionados ao framework.
+          relacionados ao framework. Na figura seguinte, é possível observar alguns
+          métodos, dentro do framework FraG, que são classificados como template ou hook.
 
           \begin{figure}[htbp]
               \begin{center}
                   \includegraphics[width=1.0\textwidth]{img/templateHook.png}
               \end{center}
               \caption{\label{fig:passaro}Modelagem dos métodos Template e Hook}
+              \begin{center}(FONTE: Adaptado de SILVA, 1998)\end{center}
           \end{figure}
 
           Outro fato que leva a relação de herança ser tão explorada no mundo de frameworks,
@@ -844,7 +851,8 @@
       um novo erro. O programador deve, então, proseguir nesse processo até que o
       teste retorne somente mensagens de sucesso.
 
-      Esse processo é também conhecido como TDD. O diagrama seguinte ilustra bem esse
+      Esse processo é também conhecido como desenvolvimento orientado a testes, cuja
+      a sigla em inglês é TDD. O diagrama seguinte ilustra bem esse
       processo e tamanhobém é conhecido como \textit{red, green and refactor}, já que o
       programdor começa inicialmente na fase de erros (\textit{red}), faz somente o
       necessário para que o módulo passe no teste (\textit{green}) e melhora no final
@@ -855,6 +863,7 @@
               \includegraphics[width=0.4\textwidth]{img/rgf.png}
           \end{center}
           \caption{\label{fig:passaro}Diagrama que representa o padrão RGF}
+          \begin{center}(FONTE: Adaptado de FOWLER, 2014)\end{center}
       \end{figure}
 
       Ainda no contexto de desenvolvimento de testes, é importante que os desenvolvedores
@@ -935,8 +944,8 @@
           seriam os métodos e os possíveis valores de retorno, ou execções, dependendo dos
           valores passados para o método. O objetivo do teste, vendo a modelagem por essa
           ótica, seria  verificar se a máquina chegou num estado de transição, ou não.
-          Nesse sentido, podemos ver um autômato representando o teste para a validação de
-          um CPF no módulo representado anteriormente.
+          Nesse sentido, é possível ver o autômato representando o teste para a validação de
+          um CPF, do módulo representado anteriormente, na Figura 6.
 
           \begin{figure}[!htb]
               \begin{center}
@@ -945,7 +954,7 @@
               \caption{\label{fig:passaro}Diagrama que representa o teste do módulo de CPF na ótica de AFD}
           \end{figure}
 
-          Olhando para o autômato descrito na Figura 6, o desenvolvedor se quisesse garantir
+          Olhando para o autômato descrito, o desenvolvedor se quisesse garantir
           o máximo de qualidade possível, teria que testar todos os caminhos possíveis
           partindo do estado inicial. Nesse exemplo, a tarefa de testar o módulo é perfeitamente
           realizável, uma vez que existem poucas transições. Porém, pensando em casos mais
@@ -963,15 +972,15 @@
           que o programador tenha em mente essas possibilidades também.
 
           Já no que se refere à parte de implementação, a implementação do padrão de projeto
-          \textit{factory} (FOWLER, 2003) costuma ser muito comum, já que é uma solução necessária e elegante
-          para os testes. Esse padrão se faz essencial para manter um código mais limpo, visto
-          que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
+          \textit{factory} (FOWLER, 2003) costuma ser muito comum, já que é uma solução necessária e
+          elegante para os testes. Esse padrão se faz essencial para manter um código mais limpo,
+          visto que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
           atributos diferentes. Dessa forma, ele pode usar uma biblioteca que implemente a
           o padrão para os objetos necessários para o teste e para cada cenário ele pede
           objetos diferentes para a fábrica. Isso ajuda a manter um código mais legível, visto
           que se esse padrão não fosse utilizado, para cada teste o programador teria que sempre
           estar instanciando um objeto da mesma classe e configurando os valores manualmente,
-          o que não é nada DRY.
+          o que, por sua vez, não segue o príncipio básico do DRY (\textit{Don't repeat youself}).
 
       \section{Níveis de teste}
           Dentro do universo de teste de software, pode-se classificar os testes pelos seus
@@ -1001,6 +1010,7 @@
                       \includegraphics[width=0.55\textwidth]{img/pyramid.jpg}
                   \end{center}
                   \caption{\label{fig:passaro}Pirâmide que correlaciona quantidade de cada nível de teste}
+                  \begin{center}(FONTE: Adaptado de BAGMAR, 2012)\end{center}
               \end{figure}
 
           \subsection{Teste de integração}
@@ -1030,10 +1040,10 @@
               se a coleta de requisitos foi feito da forma correta.
 
           \subsection{Teste de regressão}
-              O teste de regressão é um caso. Esse nível de teste busca executar toda a base de
+              O teste de regressão é um nível de teste que busca executar toda a base de
               testes para um sistema que foi recém refatorado ou que teve uma nova versão lançada.
               O nome vem do fato de que caso o sistema que foi atualizado estava sendo aprovado
-              nos testes e passou a ter erros, é dito, então, que o sistema regrediu.
+              nos testes e passou a ter erros, é dito, então, que o sistema regrediu (WAZLAWICK, 2012).
 
       \section{Técnicas de teste}
           As técnicas de teste dizem respeito a forma como os casos de teste serão implementados.
@@ -1056,7 +1066,8 @@
                   \begin{center}
                       \includegraphics[width=0.7\textwidth]{img/blackbox.png}
                   \end{center}
-              \caption{\label{fig:passaro}Visão da técnica da caixa preta.}
+              \caption{\label{fig:passaro}Visão da técnica da caixa preta}
+              \begin{center}(FONTE: Adaptado de KHAN, 2012)\end{center}
               \end{figure}
 
               A filosofia por trás dessa técnica, encontra-se na ideia de que basta o programador
@@ -1097,43 +1108,45 @@
               Usualmente, nesse tipo de técnica, costuma-se buscar valores limites de para verificar
               se o módulo está se comportando como deveria, uma vez que os defeitos de um software
               costumam ficar em suas frestas (WAZLAWICK, 2012). Considerando que o método recebe somente
-              valores inteiros, o algoritmo possui uma grande falha no que se refere as frestas. Ele, apesar de
-              calcular corretamente os valores para qualquer inteiro não negativo, se eventualmente o método
-              for executado usando como parâmetro um inteiro negativo, então o módulo ficará computando até o
-              processo ser morto, eventualmente.
+              valores inteiros, o algoritmo possui uma grande falha no que se refere as frestas. Ele,
+              apesar de calcular corretamente os valores para qualquer inteiro não negativo, se
+              eventualmente o método for executado usando como parâmetro um inteiro negativo, então o
+              módulo ficará computando até o processo ser morto, eventualmente.
 
               Aplicando o princípio dos conjuntos de equivalência para um possível arquivo de teste
               para este módulo, o desenvolvedor poderia criar testes usando os seguintes valores como
               parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
               lançar uma exceção e o teste, ao receber a exceção, deveria afirmar que tudo ocorreu como
               esperado. Nesse caso, para arrumar o módulo implementado, ao em vez de usar o
-              operador de diferença, basta utilizar o operado de >. Para os demais valores, basta criar os
-              casos de teste utilizando a técnica da caixa preta como foi descrita anteriormente.
+              operador de diferença, basta utilizar o operado de >. Para os demais valores, basta criar
+              os casos de teste utilizando a técnica da caixa preta como foi descrita anteriormente.
 
           \subsection{Técnica da caixa branca}
-              A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada a da
-              caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado no componente.
-              Esse tipo de teste visa eliminiar trechos que nunca são alcançados dentro de um método ou que
-              sejam reduntantes. Quando esta técnica é aplicada todas as possibilidades de fluxo um método
-              devem ser testados (i.e. \textit{while, for, if, else, try, catch, finally}).
+              A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada
+              a da caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado no
+              componente. Esse tipo de teste visa eliminiar trechos que nunca são alcançados dentro de
+              um método ou que sejam reduntantes. Quando esta técnica é aplicada todas as possibilidades
+              de fluxo um método devem ser testados (i.e. \textit{while, for, if, else, try, catch,
+              finally}).
 
-              Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca otimizá-lo,
-              em termos de processamento. Isso decorre do fato de que, podem haver estruturas de controle de
-              fluxo que estão sendo declaradas, mas nunca são alcançadas. Ou seja, o módulo está funcionando
-              corretamente, justamente por tais estruturas não estarem sendo executas. Dessa forma, a finalidade
-              do teste é diminuir as linhas de código e deixar ele com um desempenho ainda maior.
+              Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca
+              otimizá-lo, em termos de processamento. Isso decorre do fato de que, podem haver
+              estruturas de controle de fluxo que estão sendo declaradas, mas nunca são alcançadas.
+              Ou seja, o módulo está funcionando corretamente, justamente por tais estruturas não
+              estarem sendo executas. Dessa forma, a finalidade do teste é diminuir as linhas de código
+              e deixar ele com um desempenho ainda maior.
 
-              Nessa subsecção, cabe um comentário para complementar o que foi apresentado quanto a questão de
-              modelagem de testes baseado em autômatos. Conforme Wazlawick (2012 em p. 400) é apresentada uma
-              forma de modelar testes, baseados nessa técnica, muito interessante. A ideia consiste em modelar
-              um autômato finito em que que cada nodo representa uma linha ou um conjunto de linhas sequenciais
-              que contenham no máximo uma estrutura de controle e as arestas representam o atendimento ou
-              não da condição imposta pela estrutura. A modelagem com esse tipo autômato para o método
-              de cálculo de fatorial pode ser visto na Figura 10.
+              Nessa subsecção, cabe um comentário para complementar o que foi apresentado quanto a
+              questão de modelagem de testes baseado em autômatos. Conforme Wazlawick (2012 em p. 400) é
+              apresentada uma forma de modelar testes, baseados nessa técnica, muito interessante. A
+              ideia consiste em modelar um autômato finito em que que cada nodo representa uma linha ou
+              um conjunto de linhas sequenciais que contenham no máximo uma estrutura de controle e as
+              arestas representam o atendimento ou não da condição imposta pela estrutura. A modelagem
+              com esse tipo autômato para o método de cálculo de fatorial pode ser visto na Figura 10.
 
-              Através do diagrama, é percebido que, então, o princípio do teste é passar por todas as arestas do
-              automâto e caso alguma aresta em nenhuma hipótese seja utilizada é porque a estrutura jamais
-              é alcançada ou possui uma condição impossível de ser atendida.
+              Através do diagrama, é percebido que, então, o princípio do teste é passar por todas as
+              arestas do automâto e caso alguma aresta em nenhuma hipótese seja utilizada é porque a
+              estrutura jamais é alcançada ou possui uma condição impossível de ser atendida.
 
               \begin{figure}[htbp]
                   \begin{center}
@@ -1171,29 +1184,30 @@
   % ---
 
       O desenvolvimento de aplicações mobile, sempre foi uma área que existiu desde o início dos
-      primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos. Nas primeiras
-      gerações de celulares com interface gráficas e com capacidade de processamento mais robusta,
-      uma séries de aplicativos era disponibilizada ao usuário como: agenda, calendário, email,
-      jogos e até mesmo acesso a internet. Porém, por mais variadas que as aplicações fossem,
-      o usuário não podia instalar aplicativos de terceiros, pelo menos não de uma maneira que fosse simples para um usuário mais leigo. Geralmente o processo envolvia baixar conteúdo de
-      desenvolvedores no computador e fazer o deploy manualmente.
+      primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos, como visto no
+      gráfico seguinte. Nas primeiras gerações de celulares com interface gráficas e com capacidade
+      de processamento mais robusta, uma séries de aplicativos era disponibilizada ao usuário como:
+      agenda, calendário, email, jogos e até mesmo acesso a internet. Porém, por mais variadas que as
+      aplicações fossem, o usuário não podia instalar aplicativos de terceiros, pelo menos não de uma
+      maneira que fosse simples para um usuário mais leigo. Geralmente o processo envolvia baixar
+      conteúdo de desenvolvedores no computador e fazer o deploy manualmente.
 
-      Outro problema que existia, até então, é que o mercado de celulares possuia uma vasta gama
-      de sistemas operacionais disponíveis. Usualmente cada companhia desenvolvia seu próprio
-      sistema operacional para suas respectivas plataformas, o que eventualmente era um problema
-      para os desenvolvedores, visto que sempre que quisessem que algum celular
-      acompanhasse seus aplicativos precisavam recompilar o código para a nova plataforma
-      e fazer possíveis refatorações nas chamadas de sistema, caso o sistema operacional não
-      desse suporte a uma dada chamada a qual estivesse sendo utilizada no código original.
+      \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.65\textwidth]{img/numberApps.png}
+            \end{center}
+        \caption{\label{fig:passaro}Número de aplicações disponível na Google Play ao passar dos anos}
+        \begin{center}(FONTE: Statista, 2018)\end{center}
+      \end{figure}
 
       Com o passar dos anos, a indústria de dispositivos mobile passou por um processo muito
       semelhante ao que houve no mundo de computadores desktop, tanto no quisito hardware quanto
       software. Os componentes eletrônicos para essas plataformas foram ficando cada vez mais
-      poderosos e baratos ao longo dos anos. Já no que se refere aos sistemas operacionais, as
-      empresas viram que não era viável ter que sempre refatorar um aplicativo para lançar em
-      uma nova plataforma. Dessa forma, surgiram sistemas operacionais que hoje, praticamente,
-      dominam totalmente o mercado de dispositivos móveis. São esses: Android, iOS e Microsoft
-      Phone, produzidos respectivamente pela Google, Apple e Microsoft.
+      poderosos e baratos ao longo dos anos (HALPERN, 2016). Já no que se refere aos sistemas
+      operacionais, o mercado, aos poucos, foi convergindo para um número menor de sistemas. Dessa
+      forma, surgiram sistemas operacionais que hoje, praticamente, dominam totalmente o mercado de
+      dispositivos móveis, como pode ser observado na Figura 12. São esses: Android, iOS e Microsoft Phone, produzidos respectivamente pela
+      Google, Apple e Microsoft.
 
       Com um mercado renovado, os desenvolvedores passaram a ter uma maior liberdade para poder
       desenvolver suas aplicações. Porém, o que fez com que esse mercado ficasse tão em voga
@@ -1215,6 +1229,14 @@
       orientação a objetos, sempre será necessário replicar a aplicação para outra linguagem,
       seja através de um transpilador ou de trabalho puramente manual. Por tal razão, o foco
       desse trabalho focará exclusivamente na plataforma Android.
+
+      \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.7\textwidth]{img/osPercentage.jpg}
+            \end{center}
+        \caption{\label{fig:passaro}Porcentagem de sistema operacional por dispositivo móvel}
+        \begin{center}(FONTE: IDC, 2017)\end{center}
+      \end{figure}
 
       Nesse sentido, nas próximas secções será apresentado uma breve abordagem técnica do
       Android, seguida de uma explicação, em mais alto nível, de como funciona uma aplicação nesse
@@ -1250,8 +1272,8 @@
                 \includegraphics[width=1.0\textwidth]{img/cpusPercentage.png}
             \end{center}
         \caption{\label{fig:passaro}Porcentagem de ISA's que atualmente estão executando Android.}
+        \begin{center}(FONTE: Unity - Mobile, 2018)\end{center}
         \end{figure}
-
 
         No que se refere a execução de processos dentro do o sistema operacional utiliza
         o Dalvik, uma máquina virtual de processos, que recompila o Java bytecode para rodar nativamente. Na versão 4.4, o Android introduziu o ambiente \textit{Android Runtime}
@@ -1377,6 +1399,38 @@
   \noindent
   FOWLER, M. \textit{Test Pyramid}. [S.I.:s.n.], 2012 Disponível em:
   \url{https://martinfowler.com/bliki/TestPyramid.html}. Acesso em 4 de Maio de 2018.
+
+  \noindent
+  FOWLER, M. \textit{Workflows of Refactoring}. [S.I.:s.n.], 2014 Disponível em:
+  \url{https://martinfowler.com/bliki/TestPyramid.html}. Acesso em 2 de Junho de 2018.
+
+  \noindent
+  BAGMAR, A. \textit{Behavior Driven Testing (BDT) in Agile}. [S.I.:s.n.], 2012 Disponível em:
+  \url{https://www.slideshare.net/abagmar/anand-bagmar-behavior-driven-testing-bdt-in-agile}. Acesso em 2 de Junho de 2018.
+
+  \noindent
+  KHAN, M. E., KHAN, F. \textit{A Comparative Study of White Box, Black Box and Grey Box Testing Techniques}. [S.I.:s.n.], 2012 Disponível em: \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.261.1758&rep=rep1&type=pdf}. Acesso em 2 de Junho de 2018.
+
+  \noindent
+  \textit{Number of available applications in the Google Play Store from December 2009 to March 2018}.
+  [S.I.:s.n.], 2018 Disponível em: \url{https://www.statista.com/statistics/266210/number-of-available-applications-in-the-google-play-store/}. Acesso em 2 de Junho de 2018.
+
+  \noindent
+  \textit{MOBILE (ANDROID) HARDWARE STATS 2017-03}. [S.I.:s.n.], 2018 Disponível em: \url{https://web.archive.org/web/20171113032047/https://hwstats.unity3d.com/mobile/cpu-android.html}. Acesso em 2 de Junho de 2018.
+
+  \noindent
+  HALPERN, M., ZHU, Y., REDDI, V. J. \textit{Mobile CPU’s Rise to Power: Quantifying the Impact of Generational Mobile CPU Design Trends on Performance, Energy, and User Satisfaction}.
+  [S.I.:s.n.], 2016 Disponível em: \url{http://matthewhalpern.com/publications/mobile-cpus-hpca-2016.pdf}. Acesso em 1 de Junho de 2018.
+
+  \noindent
+  \textit{Android (operating system)}. In: Wikipédia, a enciclopédia livre. Flórida: Wikimedia Foundation,
+  2018. Disponível em:
+  \url{https://en.wikipedia.org/wiki/Android_(operating_system)}. Accesso
+  em 2 de Junho 2018.
+
+  \noindent
+  \textit{Smartphone OS}. [S.I.:s.n.], 2018 Disponível em: \url{https://www.idc.com/promo/smartphone-market-share/os}.
+  Acesso em 2 de Junho de 2018.
 
 
   % ----------------------------------------------------------
