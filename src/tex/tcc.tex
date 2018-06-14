@@ -435,7 +435,9 @@
     \item[LTS] Long Term Support
     \item[ISA] Instruction Set Architecture
     \item[AOT] Ahead-Of-Time
-    \item[SDK] Android software development kit
+    \item[SDK] Software Development Kit
+    \item[XML] Extensible Markup Language
+    \item[API] Application Programming Interface
   \end{siglas}
   % ---
 
@@ -1210,8 +1212,8 @@
       poderosos e baratos ao longo dos anos (HALPERN, 2016). Já no que se refere aos sistemas
       operacionais, o mercado, aos poucos, foi convergindo para um número menor de sistemas. Dessa
       forma, surgiram sistemas operacionais que hoje, praticamente, dominam totalmente o mercado de
-      dispositivos móveis, como pode ser observado na Figura 12. São esses: Android, iOS e Microsoft Phone, produzidos respectivamente pela
-      Google, Apple e Microsoft.
+      dispositivos móveis, como pode ser observado na Figura 12. São esses: Android, iOS e
+      Microsoft Phone, produzidos respectivamente pela Google, Apple e Microsoft.
 
       Com um mercado renovado, os desenvolvedores passaram a ter uma maior liberdade para poder
       desenvolver suas aplicações. Porém, o que fez com que esse mercado ficasse tão em voga
@@ -1243,10 +1245,8 @@
       \end{figure}
 
       Nesse sentido, nas próximas secções será apresentado uma breve abordagem técnica do
-      Android, seguida de uma explicação, em mais alto nível, de como funciona uma aplicação nesse
-      tipo de plataforma. Por último será apresentado, usando um caso real, de como funciona realmente
-      uma aplicação dentro Android, apresentando uma modelagem clássica de MVC e como cada um
-      desses componentes é descrito, via código, na aplicação.
+      Android, seguido de uma secção que tratará do desenvolvimento de aplicações nessa
+      mesma plataforma, trazendo os principais aspectos e conceitos
 
       \section{Especificações técnicas do Android}
         O Android foi uma plataforma que teve seu primeiron lançamento, oficial, em 2008. Na época,
@@ -1261,12 +1261,12 @@
         em versões LTS (Long Term Support), muitas modificações tiveram que ser feitas para atender
         aos requisitos da Google. Uma das principais mudanças foi que a Google teve que desenvolver
         uma biblioteca alternativa a GNU C, visto que os processadores que iriam executar o sistema
-        eram CPU's com baixa frequência, apesar de usar a mesma licença da GNU. A biblioteca ficou conhecida como \textit{Bionic}.
+        eram CPU's com baixa frequências. A biblioteca ficou conhecida como \textit{Bionic}.
 
         As principais arquiteturas suportadas atualmente pelo Android são a ARM, x86 e MIPS. Como
         pode ser visto no gráfico seguinte, a arquitetura ARM é a dominante, visto que é uma ISA
         (Instruction Set Architecture) que preza pela eficiência energética. Já quanto ao x86 e
-        o MIPS foram arquiteturas que foram ganhar suporte somente mais tarde, visto essas eram
+        o MIPS foram arquiteturas que foram ganhar suporte somente mais tarde, visto que essas eram
         as arquiteturas utilizadas nos computadores dos desenvolvedores que emulavam as aplicações
         Android. Mais recentemetne, as versões 64 bits dessas mesmas ISA estão, gradativamente,
         ganhando suporte da plataforma.
@@ -1279,8 +1279,9 @@
         \begin{center}(FONTE: Unity - Mobile, 2018)\end{center}
         \end{figure}
 
-        No que se refere a execução de processos dentro do o sistema operacional utiliza
-        o Dalvik, uma máquina virtual de processos, que recompila o Java bytecode para rodar nativamente. Na versão 4.4, o Android introduziu o ambiente \textit{Android Runtime}
+        No que se refere a execução de processos dentro do o sistema operacional, a plataforma
+        utiliza o Dalvik, uma máquina virtual de processos, que recompila o Java bytecode para
+        rodar nativamente. Na versão 4.4, o Android introduziu o ambiente \textit{Android Runtime}
         que usava a técnica de compilação AOT (\textit{ahead-of-time}). A ideia consistia
         basicamente em recompilar o bytecode inteiro pra código de máquina nativo.
 
@@ -1291,7 +1292,7 @@
         a mais tempo sem serem utilizaods.
 
         Já quanto as aplicações que são desenvolvidas para o Android, estas utilizam como suporte
-        o SDK (\textit{Android software development kit}). O SDK possui ferramentas como: debugger,
+        o SDK (\textit{Software Development Kit}). O SDK possui ferramentas como: debugger,
         bibliotecas (API's), emulador baseado no QEMU, documentação. O SDK possui suporte nativo
         a linguagem Java que pode ser combinada com C/C++ e, mais recentemente, a Google anunciou
         que a linguagem Kotlin também passou a ser suportada pelo SDK. Outra \textit{feature}
@@ -1299,8 +1300,96 @@
         em versões mais antigas do Android, afim de que possam analisar o desempenho de suas
         aplicações em plataformas mais antigas.
 
-      \section{Desenvolvimento de aplicações mobile}
-      \section{Desenvolvimento de aplicações mobile, usando um caso real}
+      \section{Desenvolvimento de aplicações mobile Android}
+        O desenvolvimento de aplicações mobile para a plataforma Android usualmente se dá através
+        da ferramenta oficial da Google, o Android Studio. Para iniciar um novo projeto, o
+        desenvolvedor deve escolher, entre outros aspectos, qual o alvo de dispositivos que a
+        aplicação visa (i.e. tablets, celulares, TV's ou \textit{SmartWatches}), se a aplicação
+        terá suporte a C++ e qual a versão da API do Android será utilizada no projeto. Essa é
+        uma decisão muito importante para o projeto, visto que que caso o desenvolvedor escolha
+        uma versão muito recente, poucos dispositivos poderão ter acesso ao aplicativo que está
+        sendo desenvolvido. Por outro lado, caso o programador opte por escolher por uma versão
+        muito antiga, pensando em atender 100\% do mercado ele ficar sem muitas facilidades e
+        atualizações que ele teria em versões mais atuais. Para facilitar o processo, o próprio
+        Android Studio fornece uma porcentagem, aproximada, de quantos dispositivos serão contemplados
+        ao escolher uma dada versão da API.
+
+        Na sequência, o programador pode escolher com qual modelo de tela inicial o usuário será
+        recebido, ou simplesmente nenhuma, podendo alterar a decisão mais tarde. Após feito essa
+        configuração inicial o projeto está criado. Ao finalizar, a criação de um projeto novo,
+        o próprio Android Studio já irá criar, automaticamente, uma estrutura de diretórios padrão,
+        sendo os principais diretórios: \textit{java} e o \textit{res}. Na pasta \textit{java},
+        fica todo o código fonte da aplicação que será executado. Já dentro do diretório
+        \textit{res} é onde fica os arquivos \textit{XML} de configuração de interface e outros
+        arquivos importantes como o de internacionalização de strings.
+
+        A Google adotou como padrão que sempre que o desenvolvedor quiser criar uma nova interface
+        para aplicação, ele deve criar o que é chamado de \textbf{activity}. Uma \textit{activity},
+        nada mais é do que um template de tela como foi mostrado para o usuário quando ele inicou o
+        projeto. Ao escolher uma atividade, o Android Studio irá gerar o código XML e Java padrão
+        para o template escolhido. O arquivo XML serve unica e exclusivamente para definir como cada
+        componente será disposto na tela, incluindo propriedades como textos, cor, layout. Sempre
+        que o usuário quiser desenvolver a interface da atividade ele pode alterar diretamente
+        o código fonte do arquivo XML ou ele pode utilizar um módulo \textit{built-in} da própria
+        IDE que permite a edição de interface, graficamente, como pode ser visto na Figura 14.
+
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.7\textwidth]{img/interfaceEditing.png}
+            \end{center}
+        \caption{\label{fig:passaro}Edição de uma atividade do Android.}
+        \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+        \end{figure}
+
+        Já o arquivo Java da atividade criada serve como uma controladora para a interface. Esse
+        arquivo Java conterá uma classe que herda, indiretamente, da classe \textit{Activity}. O
+        objetivo dessa classe é unicamente ser a controladora da ativdade que está sendo
+        desenvolvida, ou seja, atualizar a interface e invocar métodos de outros objetos que tratem
+        do modelo. Cada \textit{activity} tem sua própria controlora e não deve gerenciar mais nenhuma
+        outra interface, além da que foi designada.Outro ponto importante, é que alguns métodos
+        herdados da classe \textit{Activity} tratam de ventos importantes como: atividade inicializada,
+        resumida, suspensa, etc. Esses métodos são importantes, pois, por exemplo, caso o usuário
+        venha a suspender o aplicativo que esteja executando para utilizar outro, o desenvolvedor
+        pode utilizar o método \textit{onPause} para salvar dados importantes que o usuário tenha
+        inserido até aquele momento.
+
+        A aplicação desenvolvida também pode se comunicar com algum servidor ou ser uma aplicação
+        que funciona apenas com dados locais. No primeiro caso, a aplicação funciona como um sistema
+        web comum que segue o modelo de implementação cliente servidor. Sempre que for necessário
+        utilizar dados do servidor para executar alguma ação, a aplicação fará uma requisição para
+        o servidor através do protocolo HTTP para poder ter acesso as endpoints das APIS
+        necessárias. Esse processo requer uma troca de dados estruturados. Ultimamente, muitas das
+        API's que vem sendo implementadas tem utilizado apenas dados em formato JSON, mas já houve
+        épocas em que o formato padrão era XML.
+
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.7\textwidth]{img/clientServer.png}
+            \end{center}
+        \caption{\label{fig:passaro} Modelo Cliente servidor}
+        \begin{center}(FONTE: KUROSE, J., KEITH, R. - Mobile, 2013)\end{center}
+        \end{figure}
+
+        Já no que se refere a dados locais, o Android utiliza, como ferramenta nativa, o banco de
+        dados relacional \textit{SQLite}. Esse banco foi escolhido visto que o propósito dele é
+        unicamente ser um banco para sistemas embarcados e que utiliza apenas um único nodo
+        computacional para fazer o acesso e atualização dos dados.
+
+        Outro aspecto importante no desenvolvimento das aplicações para Android, é que o
+        desenvolvedor pode fazer testar o software sem precisar baixar em um aparelho
+        físico. O Android Studio possui uma ferramenta nativa chamada Android Virtual
+        Device (AVD), que permite emular os mais diversos aparelhos disponíveis no
+        mercado, indepdente da marca ou segmente (i.e. tablets, celulares, TV's,
+        smartwatches). Com essa plataforma, o desenvolvedor pode verificar como o seu
+        software se comporta nos mais variados tamanhos de telas, bem como diferente
+        tipos de configurações de hardware. Isso permite ao desenvolvedor garantir
+        uma boa responsividade sem precisar pagar por novos aparelhos. Mesmo assim,
+        é importante que quem esteja testando a aplicação faz os testes finais em
+        dispositivos físicos para ver se a aplicação está se comportando da mesma
+        forma como nos testes em ambiente de emulação, uma vez que os emuladores
+        também estão abertos a falhas.
+
+
 
   % ----------------------------------------------------------
   % Resultados
@@ -1436,6 +1525,8 @@
   \textit{Smartphone OS}. [S.I.:s.n.], 2018 Disponível em: \url{https://www.idc.com/promo/smartphone-market-share/os}.
   Acesso em 2 de Junho de 2018.
 
+  \noindent
+  KUROSE, J., KEITH, R.\textit{Computer Networking A Top-Down Approach}. [S.I.:s.n.], 2013 Disponível em: \url{http://www.bau.edu.jo/UserPortal/UserProfile/PostsAttach/10617_1870_1.pdf}. Acesso em 14 de Junho de 2018.
 
   % ----------------------------------------------------------
   % Glossário
