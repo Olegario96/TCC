@@ -375,7 +375,8 @@
     sentido, a proposta desse trabalho é desenvolver um framework orientado
     a objetos capaz de apoiar tal atividade no contexto dos dispositvos móveis
     que possuem o sistema operacional Android. A finalidade do framework é diminuir
-    o esforço e tempo investidos durante a fase de elaboração testes automatizados.
+    o esforço e tempo investidos durante a fase de desenvolvimento testes automatizados,
+    com enfase na elaboração desses.
 
    \vspace{\onelineskip}
 
@@ -623,7 +624,7 @@
           necessita e adiciona os atributos que forem necessários, mantendo
           um código organizado e seguindo boas práticas de orientação a objetos.
           A modelagem UML (\textit{Unified Modeling Language}) utilizada para esse
-          framework pode ser observada na próxima figura.
+          framework pode ser observada na Figura 1.
 
           \begin{figure}[htbp]
               \begin{center}
@@ -660,11 +661,12 @@
       \section{Aspectos postivos e negativos}
           Quando um framework é utilizado em um projeto de software, é importante estar
           atento ao que se ganha e ao que se perde em termos de implementação. Quando
-          um projeto é feito "from scratch", ou seja, todas as classes são
-          produzidas do zero pelo próprio time de desenvolvimento, os programadores tem
-          total liberdade para implementar as classes como julgarem melhor. Contudo, o
-          problema disso, obviamente, é que nada é reusado, a aplicação fica muito
-          suscetível a defeitos e demanda muito esforço.
+          um projeto é feito "from scratch", ou seja, todas as classes são produzidas do
+          zero pelo próprio time de desenvolvimento, os programadores tem total liberdade
+          para implementar as classes como julgarem melhor. Um exemplo de modelagem desse
+          tipo de implementação pode ser melhor observado na Figura 2. Contudo, o problema
+          disso, obviamente, é que nada é reusado, a aplicação fica muito suscetível a
+          defeitos e demanda muito esforço.
 
           \begin{figure}[htbp]
               \begin{center}
@@ -732,8 +734,8 @@
           ao final da execução do método \textit{Template} o método \textit{Hook} é
           executado. Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
           para que ele possa inicialzar demais objetos que necessite para sua aplicação
-          relacionados ao framework. Na figura seguinte, é possível observar alguns
-          métodos, dentro do framework FraG, que são classificados como template ou hook.
+          relacionados ao framework. Na Figura 3, é possível observar alguns métodos,
+          dentro do framework FraG, que são classificados como template ou hook.
 
           \begin{figure}[htbp]
               \begin{center}
@@ -812,7 +814,8 @@
 
       Pensando em um cenário mais prático, propõe-se um módulo simples em que a única
       responsabilidade é verificar se um dado CPF é válido ou não, mesmo que possua uma
-      máscara. Abaixo, podem-se observar as assinaturas de método do mesmo na linguagem
+      máscara. Abaixo, podem-se observar, na Figura 4, as assinaturas de método do
+      mesmo na linguagem
       \textit{Python}.
 
       \begin{figure}[htpb]
@@ -855,11 +858,11 @@
       teste retorne somente mensagens de sucesso.
 
       Esse processo é também conhecido como desenvolvimento orientado a testes, cuja
-      a sigla em inglês é TDD. O diagrama seguinte ilustra bem esse
-      processo e tamanhobém é conhecido como \textit{red, green and refactor}, já que o
-      programdor começa inicialmente na fase de erros (\textit{red}), faz somente o
-      necessário para que o módulo passe no teste (\textit{green}) e melhora no final
-      a qualidade do código a medida do necessário (\textit{refactor}) (BECK, 2004).
+      a sigla em inglês é TDD. A Figura 5 seguinte ilustra bem esse processo e que
+      também é conhecido como \textit{red, green and refactor}, já que o programdor
+      começa inicialmente na fase de erros (\textit{red}), faz somente o necessário
+      para que o módulo passe no teste (\textit{green}) e melhora no final a qualidade
+      do código a medida do necessário (\textit{refactor}) (BECK, 2004).
 
       \begin{figure}[htbp]
           \begin{center}
@@ -990,32 +993,38 @@
           Dentro do universo de teste de software, pode-se classificar os testes pelos seus
           níveis ou fases. A classificação decorre do fato de que a medida que a aplicação
           vai crescendo os testes também precisam ter uma complexidade maior pois o número
-          de possibilidades vai aumentando e precisam sempre as mais prováveis açoes do
-          usuário. Classicamente (WAZLAWICK, 2012), os testes, quando dividos dessa forma,
-          podem pertencer alguma dessas classes: unidade, integração, sistema, aceitação e
-          o de regressão. Nas próximas subsecções seram apresentados previamente cada uma
-          dessas classificações.
+          de combinações de entradas possíveis do usuário vai aumentando. Classicamente,
+          (WAZLAWICK, 2012), os testes, quando dividos dessa forma, podem pertencer alguma
+          dessas classes: unidade, integração, sistema, aceitação e o de regressão. O
+          conceito de níveis deriva daquilo que é conhecido por \textit{Pirâmide de testes},
+          ilustrada na Figura 7. A pirâmide de testes correlaciona a quandidade de cada nível
+          de teste junto com seus custos e tempo de execução. Na base da pirâmide, portanto,
+          identifica-se os testes com maior expressividade, em número, e que exigem pouco
+          esforço para serem programados e que executam mais rapidamente, enquanto que no topo
+          é justamente o inverso. Nas próximas subsecções serão apresentados brevemente cada
+          uma dessas classificações de níveis.
+
+          \begin{figure}[!htb]
+              \begin{center}
+                  \includegraphics[width=0.55\textwidth]{img/pyramid.jpg}
+              \end{center}
+              \caption{\label{fig:passaro}Pirâmide que correlaciona quantidade de cada nível de teste}
+              \begin{center}(FONTE: Adaptado de BAGMAR, 2012)\end{center}
+          \end{figure}
 
           \subsection{Teste de unidade}
               O teste de unidade é o teste mais básico de um software. O intuito dele é basicamente
               testar a classe que está para ser implementada ou que recém foi programada. Boa
               parte dos testes de uma aplicação são classificados dessa forma, uma vez que são
               os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FOWLER, 2012).
-              Isso é também conhecido como \textit{pirâmide de testes}. Este nível de teste visa somente
-              fazer o teste de uma classe isolada. Caso a classe que está sendo testada iteraja
-              de alguma forma com outras classes, seja por atributos ou parâmetros de funções,
-              o programador, deve, então, usar objetos falsos, também conhecidos como \textit{mock},
-              para simular a classe que possui relação com a classe que está sendo testada.
-              Essa metodologia garante que caso qualquer defeito detectado pelo teste, o defeito
-              vem única e exclusivamente da classe que está sendo testada, e não de classes terceiras.
+              Este nível de teste visa somente fazer o teste de uma classe isolada. Caso a classe
+              que está sendo testada iteraja de alguma forma com outras classes, seja por atributos
+              ou parâmetros de funções, o programador, deve, então, usar objetos falsos, também
+              conhecidos como \textit{mock}, para simular a classe que possui relação com a classe
+              que está sendo testada. Essa metodologia garante que caso qualquer defeito detectado
+              pelo teste, o defeito vem única e exclusivamente da classe que está sendo testada,
+              e não de classes terceiras.
 
-              \begin{figure}[!htb]
-                  \begin{center}
-                      \includegraphics[width=0.55\textwidth]{img/pyramid.jpg}
-                  \end{center}
-                  \caption{\label{fig:passaro}Pirâmide que correlaciona quantidade de cada nível de teste}
-                  \begin{center}(FONTE: Adaptado de BAGMAR, 2012)\end{center}
-              \end{figure}
 
           \subsection{Teste de integração}
               Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois módulos
@@ -1065,6 +1074,7 @@
               classes de equivalência para maximizar os casos de teste coberto. As classes de equivalência
               nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis
               em que um subconjunto representa as entradas válidas e o outro as entradas válidas.
+              Uma abstração dessa técnica pode ser contemplada na Figura 8.
 
               \begin{figure}[htbp]
                   \begin{center}
@@ -1078,10 +1088,11 @@
               saber o que um determinado método deveria retornar para um certo parâmetro
               \textit{X}, ou qual atributo deveria ser atualizado. Para melhor exemplificar essa
               ideia, propõe-se mais adiante um módulo em escrito na linguagem Python capaz de fazer
-              cálculo da função fatorial. Mesmo que, por um acaso, o progamador não soubesse como a
-              função fatorial funcionasse ou se ainda ela fosse muito complexa envolvendo cálculos
-              matemáticos avançados, basta que ele saiba que fornecendo um valor \textit{X}, o método
-              deve retornar obrigatoriamente \textit{X*(X-1)*(X-2)*...*1} .
+              cálculo da função fatorial. O módulo pode ser observado na Figura 9. Mesmo que, por um
+              acaso, o progamador não soubesse como a função fatorial funcionasse ou se ainda ela
+              fosse muito complexa envolvendo cálculos matemáticos avançados, basta que ele saiba que
+              fornecendo um valor \textit{X}, o método deve retornar obrigatoriamente
+              \textit{X*(X-1)*(X-2)*...*1}.
 
               Dessa forma, ao criar um teste para esse método basta que o programador escreva que
               quando o algoritmo for executado com o valor 4, por exemplo, deve ser retornado
@@ -1129,10 +1140,10 @@
           \subsection{Técnica da caixa branca}
               A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada
               a da caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado no
-              componente. Esse tipo de teste visa eliminiar trechos que nunca são alcançados dentro de
-              um método ou que sejam reduntantes. Quando esta técnica é aplicada todas as possibilidades
-              de fluxo um método devem ser testados (i.e. \textit{while, for, if, else, try, catch,
-              finally}).
+              componente. Esse tipo de teste visa, além de busca de erros, eliminiar trechos que nunca
+               são alcançados dentro de um método ou que sejam reduntantes. Quando esta técnica é
+               aplicada todas as possibilidades de fluxo um método devem ser testados
+               (i.e. \textit{while, for, if, else, try, catch, finally}).
 
               Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca
               otimizá-lo, em termos de processamento. Isso decorre do fato de que, podem haver
@@ -1143,10 +1154,10 @@
 
               Nessa subsecção, cabe um comentário para complementar o que foi apresentado quanto a
               questão de modelagem de testes baseado em autômatos. Conforme Wazlawick (2012 em p. 400) é
-              apresentada uma forma de modelar testes, baseados nessa técnica, muito interessante. A
-              ideia consiste em modelar um autômato finito em que que cada nodo representa uma linha ou
-              um conjunto de linhas sequenciais que contenham no máximo uma estrutura de controle e as
-              arestas representam o atendimento ou não da condição imposta pela estrutura. A modelagem
+              apresentada uma forma de modelar testes, baseados nessa técnica. A ideia consiste em
+              modelar um autômato finito em que que cada nodo representa uma linha ou um conjunto de
+              linhas sequenciais que contenham no máximo uma estrutura de controle e as arestas
+              representam o atendimento ou não da condição imposta pela estrutura. A modelagem
               com esse tipo autômato para o método de cálculo de fatorial pode ser visto na Figura 10.
 
               Através do diagrama, é percebido que, então, o princípio do teste é passar por todas as
@@ -1189,13 +1200,13 @@
   \chapter{Desenvolvimento Mobile}
   % ---
 
-      O desenvolvimento de aplicações mobile, sempre foi uma área que existiu desde o início dos
-      primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos, como visto no
-      gráfico seguinte. Nas primeiras gerações de celulares com interface gráficas e com capacidade
+      O desenvolvimento de aplicações mobile, foi uma área que existiu desde o início dos
+      primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos, como visto na
+      Figura 11. Nas primeiras gerações de celulares com interface gráficas e com capacidade
       de processamento mais robusta, uma séries de aplicativos era disponibilizada ao usuário como:
       agenda, calendário, email, jogos e até mesmo acesso a internet. Porém, por mais variadas que as
       aplicações fossem, o usuário não podia instalar aplicativos de terceiros, pelo menos não de uma
-      maneira que fosse simples para um usuário mais leigo. Geralmente o processo envolvia baixar
+      maneira que fosse simples para um usuário leigo. Geralmente o processo envolvia baixar
       conteúdo de desenvolvedores no computador e fazer o deploy manualmente.
 
       \begin{figure}[htbp]
@@ -1207,7 +1218,7 @@
       \end{figure}
 
       Com o passar dos anos, a indústria de dispositivos mobile passou por um processo muito
-      semelhante ao que houve no mundo de computadores desktop, tanto no quisito hardware quanto
+      semelhante ao que houve no mundo de computadores desktop, tanto no quesito hardware quanto
       software. Os componentes eletrônicos para essas plataformas foram ficando cada vez mais
       poderosos e baratos ao longo dos anos (HALPERN, 2016). Já no que se refere aos sistemas
       operacionais, o mercado, aos poucos, foi convergindo para um número menor de sistemas. Dessa
@@ -1249,7 +1260,7 @@
       mesma plataforma, trazendo os principais aspectos e conceitos
 
       \section{Especificações técnicas do Android}
-        O Android foi uma plataforma que teve seu primeiron lançamento, oficial, em 2008. Na época,
+        O Android foi uma plataforma que teve seu primeiro lançamento, oficial, em 2008. Na época,
         a divisão que desenvolveu o sistema já pertencia a Google. O objetivo inicial do projeto,
         era desenvolver um sistema operacional para celulares capaz de identificar a localização
         do usuário e suas principai preferências. No que se refere a termos de licença, o Android
@@ -1289,16 +1300,16 @@
         Quando o usuário interrompe o uso de um aplicativo, o SO apenas suspende a aplicação para
         que pare consumir recursos da CPU, mas continua mantendo os dados na memória. Porém, caso
         a memória comece a ficar escassa, então o sistema começa a matar os processos que estão
-        a mais tempo sem serem utilizaods.
+        há mais tempo sem serem utilizaods.
 
         Já quanto as aplicações que são desenvolvidas para o Android, estas utilizam como suporte
         o SDK (\textit{Software Development Kit}). O SDK possui ferramentas como: debugger,
         bibliotecas (API's), emulador baseado no QEMU, documentação. O SDK possui suporte nativo
-        a linguagem Java que pode ser combinada com C/C++ e, mais recentemente, a Google anunciou
-        que a linguagem Kotlin também passou a ser suportada pelo SDK. Outra \textit{feature}
-        interessante do SDK é que ele permite que os desenolvedores testem seus aplicativos
-        em versões mais antigas do Android, afim de que possam analisar o desempenho de suas
-        aplicações em plataformas mais antigas.
+        a linguagem Java que pode ser combinado com trechos de código escritos en C/C++ e,
+        mais recentemente, a Google anunciou que a linguagem Kotlin também passou a ser suportada
+        pelo SDK. Outra \textit{feature} interessante do SDK é que ele permite que os
+        desenolvedores testem seus aplicativos em versões mais antigas do Android, afim de
+        que possam analisar o desempenho de suas aplicações em plataformas mais antigas.
 
       \section{Desenvolvimento de aplicações mobile Android}
         O desenvolvimento de aplicações mobile para a plataforma Android usualmente se dá através
@@ -1309,14 +1320,14 @@
         uma decisão muito importante para o projeto, visto que que caso o desenvolvedor escolha
         uma versão muito recente, poucos dispositivos poderão ter acesso ao aplicativo que está
         sendo desenvolvido. Por outro lado, caso o programador opte por escolher por uma versão
-        muito antiga, pensando em atender 100\% do mercado ele ficar sem muitas facilidades e
+        muito antiga, pensando em atender 100\% do mercado, ele fica sem muitas facilidades e
         atualizações que ele teria em versões mais atuais. Para facilitar o processo, o próprio
         Android Studio fornece uma porcentagem, aproximada, de quantos dispositivos serão contemplados
         ao escolher uma dada versão da API.
 
         Na sequência, o programador pode escolher com qual modelo de tela inicial o usuário será
-        recebido, ou simplesmente nenhuma, podendo alterar a decisão mais tarde. Após feito essa
-        configuração inicial o projeto está criado. Ao finalizar, a criação de um projeto novo,
+        recebido, ou simplesmente nenhuma, podendo alterar a decisão mais tarde. Após feita essa
+        configuração inicial, o projeto está criado. Ao finalizar, a criação de um projeto novo,
         o próprio Android Studio já irá criar, automaticamente, uma estrutura de diretórios padrão,
         sendo os principais diretórios: \textit{java} e o \textit{res}. Na pasta \textit{java},
         fica todo o código fonte da aplicação que será executado. Já dentro do diretório
@@ -1327,7 +1338,7 @@
         para aplicação, ele deve criar o que é chamado de \textbf{activity}. Uma \textit{activity},
         nada mais é do que um template de tela como foi mostrado para o usuário quando ele inicou o
         projeto. Ao escolher uma atividade, o Android Studio irá gerar o código XML e Java padrão
-        para o template escolhido. O arquivo XML serve unica e exclusivamente para definir como cada
+        para o template escolhido. O arquivo XML serve exclusivamente para definir como cada
         componente será disposto na tela, incluindo propriedades como textos, cor, layout. Sempre
         que o usuário quiser desenvolver a interface da atividade ele pode alterar diretamente
         o código fonte do arquivo XML ou ele pode utilizar um módulo \textit{built-in} da própria
@@ -1345,9 +1356,9 @@
         arquivo Java conterá uma classe que herda, indiretamente, da classe \textit{Activity}. O
         objetivo dessa classe é unicamente ser a controladora da ativdade que está sendo
         desenvolvida, ou seja, atualizar a interface e invocar métodos de outros objetos que tratem
-        do modelo. Cada \textit{activity} tem sua própria controlora e não deve gerenciar mais nenhuma
-        outra interface, além da que foi designada.Outro ponto importante, é que alguns métodos
-        herdados da classe \textit{Activity} tratam de ventos importantes como: atividade inicializada,
+        do modelo. Cada \textit{activity} tem sua própria controloradora e não deve gerenciar mais
+        nenhuma outra interface, além da que foi designada. Outro ponto importante, é que alguns métodos
+        herdados da classe \textit{Activity} tratam de eventos importantes como: atividade inicializada,
         resumida, suspensa, etc. Esses métodos são importantes, pois, por exemplo, caso o usuário
         venha a suspender o aplicativo que esteja executando para utilizar outro, o desenvolvedor
         pode utilizar o método \textit{onPause} para salvar dados importantes que o usuário tenha
@@ -1376,7 +1387,7 @@
         computacional para fazer o acesso e atualização dos dados.
 
         Outro aspecto importante no desenvolvimento das aplicações para Android, é que o
-        desenvolvedor pode fazer testar o software sem precisar baixar em um aparelho
+        desenvolvedor pode testar o software sem precisar baixar em um aparelho
         físico. O Android Studio possui uma ferramenta nativa chamada Android Virtual
         Device (AVD), que permite emular os mais diversos aparelhos disponíveis no
         mercado, indepdente da marca ou segmente (i.e. tablets, celulares, TV's,
@@ -1384,56 +1395,142 @@
         software se comporta nos mais variados tamanhos de telas, bem como diferente
         tipos de configurações de hardware. Isso permite ao desenvolvedor garantir
         uma boa responsividade sem precisar pagar por novos aparelhos. Mesmo assim,
-        é importante que quem esteja testando a aplicação faz os testes finais em
+        é importante que quem esteja testando a aplicação faça os testes finais em
         dispositivos físicos para ver se a aplicação está se comportando da mesma
         forma como nos testes em ambiente de emulação, uma vez que os emuladores
         também estão abertos a falhas.
 
-
-
-  % ----------------------------------------------------------
-  % Resultados
-  % ----------------------------------------------------------
   \part{Trabalhos relacionados}
 
-  % ---
-  % primeiro capitulo de Resultados
-  % ---
-  \chapter{Trabalho 1}
+  \chapter{Trabalhos relacionados}
+    Nesse capítulo será apresentado trabalhos relacionados que envolvam tanto o desenvolvimento de frameworks
+    bem como ferramentas que ajudem na elaboração automática de testes automatizados. Os trabalhos aresentados
+    ajudam, além de validar a exsitência desse trabalho, a reusar ideias já existentes e aplicá-las em um
+    contexto específico, no caso aplicações atuais para a plataforma Android.
 
-  \chapter{Trabalho 2}
+    \section{A busca de generalidade, flexibilidade e extensibilidade noprocesso de desenvolvimento de frameworks orientados a objetos}
+    Nesse artigo é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
+    maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
+    discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
+    ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
+    importantíssimas , no que se refere a reuso de software. O trabalho comenta de um catálogo com
+    23 padrões a serem seguidos pelos mais variados tipos de projetos e qual modelagem os projetos devem
+    seguir. Já os metapadrões são mais independentes de domínio e visam a flexibilidade. Os templates são o
+    principal exemplo disso dentro do artigo. Uma vez que os padrões de projetos são voltados a domínios
+    específicos eles acabam sendo usados para o desenvolvimento de frameworks, porém os metapadrões não são
+    completamente descartados, podendo ser utilizados quando for necessário dar alguma flexibilidade no
+    algoritmo.
 
-  \chapter{Trabalho 3}
+    O estudo comenta, de maneira superficial, o caminho que desenvolvedor deve seguir para desenvolver um
+    framework, o qual seria: generalização, flexibilização, aplicação de metapadrões, aplicações de padrões
+    de projeto e aplicações de boas práticas dentro da orientação a objetos.
+    Na etapa de generalização, busca-se estudar as aplicações implementadas do domínio que será abordado
+    e observar suas características compartilhadas, visando principalmente elementos comuns de domínio. A
+    etapa de flexibilização seria identificar as pequenas variações de uma aplicação para outra. No caso do
+    framework do artigo, foi generalizado o \textit{controller} responsável por processar a ação do usuário.
+    Nos metapadrões, todos os jogos precisam ter tabuleiro e demais peças instanciadas. Para isso usou-se
+    templates e hooks. Já para os padrões de projeto, utilizou-se os padrões observador e observável e
+    \textit{abstract} e \textit{factory}. Também se utilizou o padrão \textit{decorator} no qual uma
+    classe é responsável por realizar ações sobre o objeto que está sendo "decorado". Sobre as práticas
+    de OO é comentado que a herança deve ser usada principalmente quando busca-se generalidade e concretizar classes abstratas.
 
-  \part{Implementação da solução}
+    A principal contribuição do artigo para o trabalho são os conceitos de framework em si, bem como
+    o passo a passo para desenvolver um framework.
 
-  \chapter{Modelagem UML}
+    \section{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}
+      Frameworks capazes de auxiliar os desenvolvedores na elaboração de testes automatizados para aplicações
+      mobile é um conceito que já foi aplicado no passado, como pode ser observado nesse artigo. Esse trabalho
+      possui como principal foco o desenvolvimento de destes automatizados baseado em casos de uso, usando
+      o reuso como principal forma de alcançar esse objetivo. No framework desenvolvido, ainda era necessário
+      que o programador implementasse manualmente os testes. Porém, a grande vantagem do uso desse framework
+      era que ele possuia grandes abstrações de hardware e se comunicava com o baixo nível através da API
+      da Motorola, uma espécie de \textit{syscall}. A grande vantagem, era que o porte (i.e. executar
+      os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
 
-  \chapter{Implementação}
+      O framework desenvolvido tinha duas classes abstrata: \textit{Step} e \textit{BaseTestCase}. A
+      classe possui \textit{BaseTestCase} possui uma coleção de \textit{Step}. A primeira classe,
+      possui um método para executar cada \textit{Step}. Dessa forma, quando o teste for executado
+      ele iterar sobre a coleção e utilizar o método \textit{execute} para cada instância da coleção.
+      Dessa forma, se existir um teste que teste a funcionalidade da câmera fotográfica, por exemplo, o
+      caso de teste não precisa ser modificado, mas apenas as instâncias de \textit{Step}. O reuso é
+      alcançado pelo TAF através de três mecanismos: herança, reuso de funções úteis e porte de casos
+      de teste automatizados já existentes.
 
-  \chapter{Testando o Framework}
+      Dos resultados obtidos do artigo, pode-se verificar que 10 modelos de celulares foram utilizados no
+      estudo. A medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
+      consideravelmente, alcançando uma média de 84\% de reaproveitamento de testes. Fica nítido, através
+      do estudo, também que o custo para automatizar testes é grande, visto que é o preço que se paga pelo
+      reuso. Entretanto, ao portar testes de um modelo de celular para outro o esforço necessário é 1/4 do
+      necessário se comparado ao esforço para escrever os testes, levando 1/3 do tempo. O artigo ainda
+      aborda um estudo ao se utilizar 60 casos de teste passíveis de serem automatizados numa família de 15
+      modelos de celulares. Neste cenário, inciou-se automatizando os testes mais simples. Enquanto certo
+      teste não ficava pronto, ele era executado totalmente de forma manual. Além disso, baseado em quanto
+      tempo levou-se para executar determinado teste manualmente, esse valor foi multiplicado pelo número de
+      vezes que ele seria executado ao longo do projeto, a fim de melhor ajustar a estimativa. Neste estudo,
+      o ganho de produtividade, no período de um ano, foi de três vezes, sendo que no terceiro mês de projeto,
+      a automatização de testes já começou a se pagar.
 
-  \part{Resultados e trabalhos futuros}
+      Nesse sentido a principal contribuição do artigo para esse trabalho é, além de validar a importância
+      do desenvolvimento de uma ferramenta similar para os dipositivos atuais, é reutilizar ideias similares,
+      em termos de modelagem, para o framework que será desenvolvido nesse trabalho.
 
-  \chapter{Resultados obtidos}
+    \section{Trabalho zica}
 
-  \chapter{Sugestões de trabalhos futuros}
+  \part{Conteúdo produzido e metas para TCC II}
 
-  \chapter{Conclusão}
+  \chapter{Conteúdo produzido}
+    Além do estudo teórico feito até o atual momento já se desenvolveu uma aplicação mobile para a plataforma
+    Android, Escamboapp. Essa aplicação se trata de um comércio eletrônico onde o usuário pode se cadastrar,
+    procurar produtos, publicar produtos para venda, avaliar produtos já comprados, alterar dados cadastrais.
+    Na Figura 16 é possível visualizar a tela inicial do aplicativo. O intuito dessa aplicação é ser o
+    software alvo do framework que será desenvolvido como forma de validar a ferramenta que será implementada.
+    Durante o desenvolvimento dessa aplicação, também foi criado uma bateria de testes com o objetivo, além
+    de garantir a qualidade do aplicativo, estudá-los e refletir sobre uma maneira de estudá-los.
+
+    Nesse ponto, destaca-se, por ser uma aplicação totalmente dependente de comunicação com servidor,
+    focou-se principalmente nos testes em que se comunicam com a API da aplicação. Os testes, além de
+    testarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
+    Nesse sentido, busca-se estudar esses testes e buscar uma forma de generalizá-los a ponto de serem
+    capazes de ser gerados automaticamente por uma ferramenta automatizada.
+
+    \begin{figure}[!htbp]
+      \begin{center}
+        \includegraphics[width=0.4\textwidth]{img/escamboapp.png}
+      \end{center}
+      \caption{\label{fig:passaro} Tela inicial do aplicativo desenvolvido para testar o framework}
+      \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+    \end{figure}
+
+  \chapter{Metas para TCC II}
+    Para a disciplina INE 5434 Trabalho de Conclusão de Curso II, possui como meta fazer a modelagem e
+    implementação do framework que irá auxiliar na elaboração automatizada de testes automaziados. Além
+    disso, será feito um estudo de resultados verificando o quanto o framework ajudou, em termos percentuais,
+    na implementação de testes automatizados. Por último, esse processo será relatado textualmente nesse
+    trabalho juntamente com a conclusão e sugestão de trabalhos futuros.
+
+  % \chapter{Testando o Framework}
+
+  % \part{Resultados e trabalhos futuros}
+
+  % \chapter{Resultados obtidos}
+
+  % \chapter{Sugestões de trabalhos futuros}
+
+  % \chapter{Conclusão}
 
 
 
   % ---
   % Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
   % ---
-  \bookmarksetup{startatroot}%
+  % \bookmarksetup{startatroot}%
   % ---
 
   % ---
   % Conclusão
   % ---
 
-  \lipsum[31-33]
+  % \lipsum[31-33]
 
   % ----------------------------------------------------------
   % ELEMENTOS PÓS-TEXTUAIS
@@ -1528,6 +1625,13 @@
   \noindent
   KUROSE, J., KEITH, R.\textit{Computer Networking A Top-Down Approach}. [S.I.:s.n.], 2013 Disponível em: \url{http://www.bau.edu.jo/UserPortal/UserProfile/PostsAttach/10617_1870_1.pdf}. Acesso em 14 de Junho de 2018.
 
+  \noindent
+  KAWAKAMI, L., KNABBEN A., RECHIA, D., BASTOS, D., PEREIRA, O., SILVA, R. P., SANTOS, L. \textit{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}. IFIP 19th TESTCOM - 7th FATES. Tallinn, 2007
+
+  \noindent
+  SILVA, Ricardo P. e, PRICE, R. T. \textit{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}.
+  In: Proceedings of Workshop Iberoamericano de Engenharia de Requisitos e Ambientes de Software (IDEAS'98). Torres: apr. 1998. v.2, p.298-309.
+
   % ----------------------------------------------------------
   % Glossário
   % ----------------------------------------------------------
@@ -1543,24 +1647,24 @@
   % ---
   % Inicia os apêndices
   % ---
-  \begin{apendicesenv}
+  % \begin{apendicesenv}
 
   % Imprime uma página indicando o início dos apêndices
-  \partapendices
+  % \partapendices
 
   % ----------------------------------------------------------
-  \chapter{Quisque libero justo}
+  % \chapter{Quisque libero justo}
   % ----------------------------------------------------------
 
-  \lipsum[50]
+  % \lipsum[50]
 
   % ----------------------------------------------------------
-  \chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
-  ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+  % \chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+  % ac pretium ante justo a nulla curabitur tristique arcu eu metus}
   % ----------------------------------------------------------
-  \lipsum[55-57]
+  % \lipsum[55-57]
 
-  \end{apendicesenv}
+  % \end{apendicesenv}
   % ---
 
 
@@ -1571,30 +1675,30 @@
   % ---
   % Inicia os anexos
   % ---
-  \begin{anexosenv}
+  % \begin{anexosenv}
 
   % Imprime uma página indicando o início dos anexos
-  \partanexos
+  % \partanexos
 
   % ---
-  \chapter{Morbi ultrices rutrum lorem.}
+  % \chapter{Morbi ultrices rutrum lorem.}
   % ---
-  \lipsum[30]
+  % \lipsum[30]
 
   % ---
-  \chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
-  parturient montes nascetur ridiculus mus}
+  % \chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+  % parturient montes nascetur ridiculus mus}
   % ---
 
-  \lipsum[31]
+  % \lipsum[31]
 
   % ---
-  \chapter{Fusce facilisis lacinia dui}
+  % \chapter{Fusce facilisis lacinia dui}
   % ---
 
-  \lipsum[32]
+  % \lipsum[32]
 
-  \end{anexosenv}
+  % \end{anexosenv}
 
   %---------------------------------------------------------------------
   % INDICE REMISSIVO
