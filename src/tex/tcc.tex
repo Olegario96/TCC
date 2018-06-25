@@ -507,6 +507,28 @@
       suportar a produção de testes de maneira automática, a fim de que os
       programadores possam focar naquilo que realmente importa: suas aplicações.
 
+  \section{Método de pesquisa}
+
+    \subsection{Natureza: Aplicada} - Visando criar conhecimento a fim de minimizar
+    um problema existente. No caso desse trabalho, reduzir o tempo gasto na
+    implementação manual de testes automatizados para aplicações mobile da
+    plataforma Android, utilizando como meio implementação de um framework
+    em Java.
+
+    \subsection{Abordagem: Qualitativo} - As soluções já utilizadas em trabalhos
+    passados similares a esse já são uma fonte de dados para o problema que
+    está sendo abordado, não necessitando de um cálculos específicos para
+    capturar as informações necessárias.
+
+    \subsection{Objetivo: exploratório} - Almejando a compreensão do problema através
+    de trabalhos relacionados eliciados nesse trabalho, como estudando soluções
+    utilizadas para problemas similares ao que está sendo abordado.
+
+    \subsection{Procedimentos técnicos: Bibliográficos, Estudo de Caso} - O desenvolvimento
+    de um framework automatizado que auxilie na elaboração de testes automazidos no
+    contexto de aplicações para dispositvios \textit{mobile} já foi uma ideia previamente
+    explorada em estudos passados. Busca-se reaplicar mesma ideia para a plataforma
+    Android.
 
   \section{Objetivos geral}
       Analisar e desenvolver um framework orientado a objetos capaz de suportar a produção
@@ -1403,12 +1425,12 @@
   \part{Trabalhos relacionados}
 
   \chapter{Trabalhos relacionados}
-    Nesse capítulo será apresentado trabalhos relacionados que envolvam tanto o desenvolvimento de frameworks
-    bem como ferramentas que ajudem na elaboração automática de testes automatizados. Os trabalhos aresentados
+    Nesse capítulo são apresentados trabalhos relacionados que envolve tanto o desenvolvimento de frameworks,
+    como ferramentas que ajudem na elaboração automática de testes automatizados. Os trabalhos aresentados
     ajudam, além de validar a exsitência desse trabalho, a reusar ideias já existentes e aplicá-las em um
     contexto específico, no caso aplicações atuais para a plataforma Android.
 
-    \section{A busca de generalidade, flexibilidade e extensibilidade noprocesso de desenvolvimento de frameworks orientados a objetos}
+    \section{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}
     Nesse artigo é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
     maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
     discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
@@ -1444,17 +1466,18 @@
       o reuso como principal forma de alcançar esse objetivo. No framework desenvolvido, ainda era necessário
       que o programador implementasse manualmente os testes. Porém, a grande vantagem do uso desse framework
       era que ele possuia grandes abstrações de hardware e se comunicava com o baixo nível através da API
-      da Motorola, uma espécie de \textit{syscall}. A grande vantagem, era que o porte (i.e. executar
-      os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
+      disponibilizada pela empresa que fabricava o telefone, no caso a Motorola, uma espécie de
+      \textit{syscall}. A grande vantagem, era que o porte (i.e. executar os testes de um dispositivo em
+      outro) podia ser feito sem necessidade de alterar o teste.
 
-      O framework desenvolvido tinha duas classes abstrata: \textit{Step} e \textit{BaseTestCase}. A
+      O framework desenvolvido tinha duas classes abstratas: \textit{Step} e \textit{BaseTestCase}. A
       classe possui \textit{BaseTestCase} possui uma coleção de \textit{Step}. A primeira classe,
       possui um método para executar cada \textit{Step}. Dessa forma, quando o teste for executado
       ele iterar sobre a coleção e utilizar o método \textit{execute} para cada instância da coleção.
       Dessa forma, se existir um teste que teste a funcionalidade da câmera fotográfica, por exemplo, o
       caso de teste não precisa ser modificado, mas apenas as instâncias de \textit{Step}. O reuso é
-      alcançado pelo TAF através de três mecanismos: herança, reuso de funções úteis e porte de casos
-      de teste automatizados já existentes.
+      alcançado pelo TAF, nome dado ao framework, através de três mecanismos: herança, reuso de funções
+      úteis e porte de casos de teste automatizados já existentes.
 
       Dos resultados obtidos do artigo, pode-se verificar que 10 modelos de celulares foram utilizados no
       estudo. A medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
@@ -1474,9 +1497,27 @@
       do desenvolvimento de uma ferramenta similar para os dipositivos atuais, é reutilizar ideias similares,
       em termos de modelagem, para o framework que será desenvolvido nesse trabalho.
 
-    \section{Trabalho zica}
+    \section{Reuse of model-based tests in mobile apps}
+      Nesse trabalho, foi reusado uma ferramenta já existente dentro da plataforma Android o
+      \textit{Model-Based Testing}. Esse framework permite a geração automática de casos de teste utilizando
+      um modelo que descreve os eventos, tanto de hardaware quanto de software, que o aplicativo receberá
+      quando tiver executando e busca verificar como a aplicação se comporta nesses casos. Esse estudo
+      consistiu extender o MBT, nome do framework descrito anteriormente, para fazer o estudo de 4 aplicações
+      reais e colocá-las em teste sobre interrupções não previstas inicialmente.
 
-  \part{Conteúdo produzido e metas para TCC II}
+      A extensão do MBT, chamada de MBTS4MA, usou o conceito de evento sequenciais em grafos para monitorar
+      o comportamento da aplicação. Dessa forma, o engenheiro de teste desenhava na GUI o grafo com os
+      possíveis eventos que poderiam ocorrer enquanto a aplicação estivesse executando, podendo haver mais
+      de uma aresta de saída por nodo. Finalizado a descrição em grafo, o framework é capaz de gerar o teste
+      é capaz de descrever a situação especificada pelo desenvolvedor. A partir disso, o framework é capaz
+      de gerar o teste. Isso permite aos desenvolvedores testar mais combinações de possibilidades, como
+      comportamente do software em modelos \textit{mobile} não previstos inicialmente.
+
+      Das semelhanças apresentadas
+
+    \section{User Guided Automation for Testing Mobile Apps}
+
+  \part{Conteúdo produzido e Conclusão}
 
   \chapter{Conteúdo produzido}
     Além do estudo teórico feito até o atual momento já se desenvolveu uma aplicação mobile para a plataforma
@@ -1484,12 +1525,12 @@
     procurar produtos, publicar produtos para venda, avaliar produtos já comprados, alterar dados cadastrais.
     Na Figura 16 é possível visualizar a tela inicial do aplicativo. O intuito dessa aplicação é ser o
     software alvo do framework que será desenvolvido como forma de validar a ferramenta que será implementada.
-    Durante o desenvolvimento dessa aplicação, também foi criado uma bateria de testes com o objetivo, além
-    de garantir a qualidade do aplicativo, estudá-los e refletir sobre uma maneira de estudá-los.
+    Durante o desenvolvimento dessa aplicação, também foi criada uma bateria de testes com o objetivo, além
+    de garantir a qualidade do aplicativo, estudá-los e refletir sobre uma maneira de automatizá-los.
 
     Nesse ponto, destaca-se, por ser uma aplicação totalmente dependente de comunicação com servidor,
     focou-se principalmente nos testes em que se comunicam com a API da aplicação. Os testes, além de
-    testarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
+    avaliarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
     Nesse sentido, busca-se estudar esses testes e buscar uma forma de generalizá-los a ponto de serem
     capazes de ser gerados automaticamente por uma ferramenta automatizada.
 
@@ -1501,12 +1542,12 @@
       \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
     \end{figure}
 
-  \chapter{Metas para TCC II}
-    Para a disciplina INE 5434 Trabalho de Conclusão de Curso II, possui como meta fazer a modelagem e
-    implementação do framework que irá auxiliar na elaboração automatizada de testes automaziados. Além
-    disso, será feito um estudo de resultados verificando o quanto o framework ajudou, em termos percentuais,
-    na implementação de testes automatizados. Por último, esse processo será relatado textualmente nesse
-    trabalho juntamente com a conclusão e sugestão de trabalhos futuros.
+  \chapter{Conclusão}
+    Para a disciplina INE 5434 Trabalho de Conclusão de Curso II, a meta é fazer a modelagem e
+    implementação do framework que irá auxiliar na elaboração automatizada de testes. Além
+    disso, será feito um estudo de resultados verificando o quanto o framework ajudou
+    na implementação de testes automatizados. Por último, esse processo será relatado juntamente com a
+    conclusão e sugestão de trabalhos futuros.
 
   % \chapter{Testando o Framework}
 
