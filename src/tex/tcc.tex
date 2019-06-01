@@ -1441,8 +1441,7 @@
     classe é responsável por realizar ações sobre o objeto que está sendo "decorado". Sobre as práticas
     de OO é comentado que a herança deve ser usada principalmente quando busca-se generalidade e concretizar classes abstratas.
 
-    A principal contribuição do artigo para o trabalho são os conceitos de framework em si, bem como
-    o passo a passo para desenvolver um framework.
+    A principal contribuição do artigo para o trabalho são os conceitos de framework em si
 
     \section{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}
       Frameworks capazes de auxiliar os desenvolvedores na elaboração de testes automatizados para aplicações
@@ -1454,15 +1453,6 @@
       e se comunicava com o baixo nível através da API disponibilizada pela empresa que fabricava o
       telefone, no caso a Motorola, uma espécie de\textit{syscall}. A grande vantagem, era que o porte
       (i.e. executar os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
-
-      O framework desenvolvido tinha duas classes abstratas: \textit{Step} e \textit{BaseTestCase}. A
-      classe possui \textit{BaseTestCase} possui uma coleção de \textit{Step}. A primeira classe,
-      possui um método para executar cada \textit{Step}. Dessa forma, quando o teste for executado
-      ele iterar sobre a coleção e utilizar o método \textit{execute} para cada instância da coleção.
-      Dessa forma, se existir um teste que teste a funcionalidade da câmera fotográfica, por exemplo, o
-      caso de teste não precisa ser modificado, mas apenas as instâncias de \textit{Step}. O reuso é
-      alcançado pelo TAF, nome dado ao framework, através de três mecanismos: herança, reuso de funções
-      úteis e porte de casos de teste automatizados já existentes.
 
       Dos resultados obtidos do artigo, pode-se verificar que 10 modelos de celulares foram utilizados no
       estudo. A medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
@@ -1478,83 +1468,44 @@
       o ganho de produtividade, no período de um ano, foi de três vezes, sendo que no terceiro mês de projeto,
       a automatização de testes já começou a se pagar.
 
-      Nesse sentido a principal contribuição do artigo para esse trabalho é, além de validar a importância
-      do desenvolvimento de uma ferramenta similar para os dipositivos atuais, é reutilizar ideias similares,
-      em termos de modelagem, para o framework que será desenvolvido nesse trabalho.
+      Nesse sentido, a principal contribuição do artigo para esse trabalho é, além de validar a importância
+      do desenvolvimento de uma ferramenta similar para os dipositivos atuais, é utilizar o conceito de caso
+      de uso para gerar testes automaticamente. A atual API do Android já é muito consolidada e e fornece
+      abstrações o suficiente para que o programador não precise reescrever várias vezes a mesma aplicação
+      para cada modelo de celular.
 
-    \section{Reuse of model-based tests in mobile apps}
-      Nesse trabalho (FARTO, Guilherme de C., ENDO, Andre T., 2017), foi reusado uma ferramenta já existente
-      dentro da plataforma Android o \textit{Model-Based Testing}. Esse framework permite a geração
-      automática de casos de teste utilizando um modelo que descreve os eventos, tanto de hardaware
-      quanto de software, que o aplicativo receberá quando tiver executando e busca verificar como a
-      aplicação se comporta nesses casos. Esse estudo consistiu extender o MBT, nome do framework descrito
-      anteriormente, para fazer o estudo de 4 aplicações reais e colocá-las em teste sobre interrupções não
-      previstas inicialmente.
+    \section{DroidMate: A Robust and Extensible Test Generator for Android}
+      Esse artigo (MORAN, K. Et al., 2016), é apresentado o DroidMate: uma ferramenta
+      capaz de gerar testes baseado na interface de usuário combinado com testes
+      exploratórios. O artigo inicia comentando da principal dificuldade de se escrever
+      testes que é manter a base de testes sincronizada com a versão mais atual da aplicação.
+      Isso acontece, visto que qualquer refatoração ou implementação de nova feature no sistema,
+      ainda que seja mínima, necessita de uma revisão na base de testse. Dado esse cenário,
+      é apresentado uma ferramenta capaz de monitorar o bytecode executado dentro da aplicação
+      durante a utilização por um usuário. O framework implementado se propõe a criar
+      um log utilziando como base as ações do usuário como cliques e texto
+      digitado. Esse monitoramento é guardado em um arquivo do próprio framework. Após
+      uma condição ser atendida, geralmente um \textit{timeout}, todo a ação monitorada
+      é transformada em um teste para a aplicação.
 
-      A extensão do MBT, chamada de MBTS4MA, usou o conceito de evento sequenciais em grafos para monitorar
-      o comportamento da aplicação. Dessa forma, o engenheiro de teste desenhava na GUI o grafo com os
-      possíveis eventos que poderiam ocorrer enquanto a aplicação estivesse executando, podendo haver mais
-      de uma aresta de saída por nodo. Finalizado a descrição em grafo, o framework é capaz de gerar o teste
-      é capaz de descrever a situação especificada pelo desenvolvedor. A partir disso, o framework é capaz
-      de gerar o teste. Isso permite aos desenvolvedores testar mais combinações de possibilidades, como
-      comportamente do software em modelos \textit{mobile} não previstos inicialmente.
+      Para implementar esse teste gerado pela ferramenta, ele reusa o UiAutomator,
+      uma ferramenta oficial do próprio Android voltada para o uso de testes de
+      interface de usuário. O framework é capaz de gerar esse teste, já que durante
+      o monitoramento de bytecode ele consegue ter acesso a \textit{stacktrace} de
+      execução, chamada de funções e valores de parâmetros. Nesse sentido, ele
+      combina os valores monitoardos junto com métodos disponibilizados no UiAutomator
+      para criar os testes para o desenvolvedor.
 
-      Nos pontos em comum com o desenvolvimento feito nesse artigo se assemelha muito no que se refere a
-      geração automática de testes de testes automatizados a partir de uma especificação. Entretanto, o
-      framework que será desenvolvido nesse trabalho se limitará a um domínio específico de aplicações bem
-      como não terá suporte a interfaces gráficas robustas como é observado no artigo. Nesse sentido, uma
-      das principais contribuições do estudo apontado se dá no fato da geração automática de código em si
-      para testes.
+      Sendo assim, a contribuição desse artigo para o esse trabalho se dá no fato de usar
+      a interação do usuário com a aplicação, monitorada programaticamente, para gerar
+      os testes de forma automática. Porém, diferente do DroidMate, o framework que
+      será implementado buscar monitorar chamadas em mais alto nível, sem precisar fazer
+      a verificação de cógido a nível de bytecode.
 
-  \part{Conteúdo produzido e Conclusão}
+  \part{O framework}
 
-  \chapter{Conteúdo produzido}
-    Além do estudo teórico feito até o atual momento já se desenvolveu uma aplicação mobile para a plataforma
-    Android, Escamboapp. Essa aplicação se trata de um comércio eletrônico onde o usuário pode se cadastrar,
-    procurar produtos, publicar produtos para venda, avaliar produtos já comprados, alterar dados cadastrais.
-    Na Figura 16 é possível visualizar a tela inicial do aplicativo. O intuito dessa aplicação é ser o
-    software alvo do framework que será desenvolvido como forma de validar a ferramenta que será implementada.
-    Durante o desenvolvimento dessa aplicação, também foi criada uma bateria de testes com o objetivo, além
-    de garantir a qualidade do aplicativo, estudá-los e refletir sobre uma maneira de automatizá-los.
-
-    \begin{figure}[!htbp]
-      \begin{center}
-        \includegraphics[width=0.4\textwidth]{img/escamboapp.png}
-      \end{center}
-      \caption{\label{fig:passaro} Tela inicial do aplicativo desenvolvido para testar o framework}
-      \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
-    \end{figure}
-
-    Nesse ponto, destaca-se, por ser uma aplicação totalmente dependente de comunicação com servidor,
-    focou-se principalmente nos testes em que se comunicam com a API da aplicação. Os testes, além de
-    avaliarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
-    Nesse sentido, busca-se estudar esses testes e buscar uma forma de generalizá-los a ponto de serem
-    capazes de ser gerados automaticamente por uma ferramenta automatizada. Uma captura de tela com
-    alguns dos testes desenvolvidos pode ser observado na Figura 17.
-
-    \begin{figure}[!htbp]
-      \begin{center}
-        \includegraphics[width=0.6\textwidth]{img/testSwitch.png}
-      \end{center}
-      \caption{\label{fig:passaro} Switch de alguns testes desenvolvidos para API do aplicativo}
-      \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
-    \end{figure}
-
-  \chapter{Conclusão}
-    Os frameworks desempenham um papel fundamental no desenvolvimento de software moderno. Por
-    disponibilizarem software reusável entre projetos diferentes, possibilitam a diminuição no
-    esforço no desenvolvimento de uma nova aplicação. O framework alcança esse resultado tirando
-    vantagem principalmente da herança entre classes e de padrões de projeto. Já os testes de
-    software proporcionam o mínimo de qualidade nos módulos que estão desenvolvidos e podem
-    ser combinados através de suas técnicas e níveis. Porém é importante ressaltar, mais uma
-    vez, que nunca é possível dizer que um software está completamente livre de \textit{bugs},
-    a não ser que todas as combinações de entradas sejam testadas, o que na prática é impossível.
-
-    Para a disciplina INE 5434 Trabalho de Conclusão de Curso II, a meta é fazer a modelagem e
-    implementação do framework que irá auxiliar na elaboração automatizada de testes. Além
-    disso, será feito um estudo de resultados verificando o quanto o framework ajudou
-    na implementação de testes automatizados. Por último, esse processo será relatado juntamente com a
-    conclusão e sugestão de trabalhos futuros.
+  \part{Resultados obtidos}
+    TODO
 
   % \chapter{Testando o Framework}
 
