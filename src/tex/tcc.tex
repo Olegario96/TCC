@@ -1416,32 +1416,32 @@
     contexto específico, no caso aplicações atuais para a plataforma Android.
 
     \section{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}
-    Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
-    maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
-    discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
-    ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
-    importantíssimas , no que se refere a reuso de software. O trabalho comenta de um catálogo com
-    23 padrões a serem seguidos pelos mais variados tipos de projetos e qual modelagem os projetos devem
-    seguir. Já os metapadrões são mais independentes de domínio e visam a flexibilidade. Os templates são o
-    principal exemplo disso dentro do artigo. Uma vez que os padrões de projetos são voltados a domínios
-    específicos eles acabam sendo usados para o desenvolvimento de frameworks, porém os metapadrões não são
-    completamente descartados, podendo ser utilizados quando for necessário dar alguma flexibilidade no
-    algoritmo.
+      Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
+      maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
+      discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
+      ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
+      importantíssimas , no que se refere a reuso de software. O trabalho comenta de um catálogo com
+      23 padrões a serem seguidos pelos mais variados tipos de projetos e qual modelagem os projetos devem
+      seguir. Já os metapadrões são mais independentes de domínio e visam a flexibilidade. Os templates são o
+      principal exemplo disso dentro do artigo. Uma vez que os padrões de projetos são voltados a domínios
+      específicos eles acabam sendo usados para o desenvolvimento de frameworks, porém os metapadrões não são
+      completamente descartados, podendo ser utilizados quando for necessário dar alguma flexibilidade no
+      algoritmo.
 
-    O estudo comenta, de maneira superficial, o caminho que desenvolvedor deve seguir para desenvolver um
-    framework, o qual seria: generalização, flexibilização, aplicação de metapadrões, aplicações de padrões
-    de projeto e aplicações de boas práticas dentro da orientação a objetos.
-    Na etapa de generalização, busca-se estudar as aplicações implementadas do domínio que será abordado
-    e observar suas características compartilhadas, visando principalmente elementos comuns de domínio. A
-    etapa de flexibilização seria identificar as pequenas variações de uma aplicação para outra. No caso do
-    framework do artigo, foi generalizado o \textit{controller} responsável por processar a ação do usuário.
-    Nos metapadrões, todos os jogos precisam ter tabuleiro e demais peças instanciadas. Para isso usou-se
-    templates e hooks. Já para os padrões de projeto, utilizou-se os padrões observador e observável e
-    \textit{abstract} e \textit{factory}. Também se utilizou o padrão \textit{decorator} no qual uma
-    classe é responsável por realizar ações sobre o objeto que está sendo "decorado". Sobre as práticas
-    de OO é comentado que a herança deve ser usada principalmente quando busca-se generalidade e concretizar classes abstratas.
+      O estudo comenta, de maneira superficial, o caminho que desenvolvedor deve seguir para desenvolver um
+      framework, o qual seria: generalização, flexibilização, aplicação de metapadrões, aplicações de padrões
+      de projeto e aplicações de boas práticas dentro da orientação a objetos.
+      Na etapa de generalização, busca-se estudar as aplicações implementadas do domínio que será abordado
+      e observar suas características compartilhadas, visando principalmente elementos comuns de domínio. A
+      etapa de flexibilização seria identificar as pequenas variações de uma aplicação para outra. No caso do
+      framework do artigo, foi generalizado o \textit{controller} responsável por processar a ação do usuário.
+      Nos metapadrões, todos os jogos precisam ter tabuleiro e demais peças instanciadas. Para isso usou-se
+      templates e hooks. Já para os padrões de projeto, utilizou-se os padrões observador e observável e
+      \textit{abstract} e \textit{factory}. Também se utilizou o padrão \textit{decorator} no qual uma
+      classe é responsável por realizar ações sobre o objeto que está sendo "decorado". Sobre as práticas
+      de OO é comentado que a herança deve ser usada principalmente quando busca-se generalidade e concretizar classes abstratas.
 
-    A principal contribuição do artigo para o trabalho são os conceitos de framework em si
+      A principal contribuição do artigo para o trabalho são os conceitos de framework em si
 
     \section{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}
       Frameworks capazes de auxiliar os desenvolvedores na elaboração de testes automatizados para aplicações
@@ -1475,7 +1475,7 @@
       para cada modelo de celular.
 
     \section{DroidMate: A Robust and Extensible Test Generator for Android}
-      Esse artigo (MORAN, K. Et al., 2016), é apresentado o DroidMate: uma ferramenta
+      Esse artigo (JAMROZIK, K., ZELLER, A., 2016), é apresentado o DroidMate: uma ferramenta
       capaz de gerar testes baseado na interface de usuário combinado com testes
       exploratórios. O artigo inicia comentando da principal dificuldade de se escrever
       testes que é manter a base de testes sincronizada com a versão mais atual da aplicação.
@@ -1503,6 +1503,73 @@
       a verificação de cógido a nível de bytecode.
 
   \part{O framework}
+    \chapter{Concepção}
+      Dado os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
+      para gerar automaticamente testes para dispositivos mobile é perfeitamente possível. O
+      framework foi concebido sob a óptica de capturar as ações do usuário e gerar um teste
+      a nível de interface de usuário. Porém, diferente do DroidMate, ao em vez de configurar
+      um \textit{timeout}, será disponibilizado ao usuário configurar uma asserção para ser
+      executada no final do teste, para verificar se houve sucesso ou não durante a ação
+      do usuário.
+
+      Além disso, o framework foi idealizado com a ideia de que o desenvolvedor não precise
+      reescrever sua aplicação para se adequar a ferramenta. Nesse sentido, o framework
+      foi desenvolvido com a ideia de que o desenvolvedor necessite apenas herdar classes
+      do framework implementado e escreva algumas informações no arquivo de configuração.
+      É importante deixar claro, que mesmo herdando as classes do framework, a aplicação
+      desenvolvida não terá seu comportamento alterado de nenhuma maneira.
+
+      Atualmente, a API do Android possui diversas chamadas de método que permitem detectar
+      ações do usuário com a aplicação. Dentre todos os métodos disponíveis, destacam-se aqui
+      os dois principais que permitiram a implementação do framework:
+      \begin{description}
+        \item[$\bullet$] \textit{public boolean dispatchTouchEvent(MotionEvent me)}
+        \item[$\bullet$] \textit{public boolean dispatchKeyEvent(KeyEvent kEvent)}
+      \end{description}
+
+      Como os próprios nomes já sugerem, eles permitem detectar ações de clique do usuário
+      e texto digitado, respectivamente. Esses métodos são invocados pelo Android toda
+      vez que um evento de clique ou de digitação ocorre. Para o caso em que um clique
+      é detectado, o objeto passado como parâmetro, \textit{MotionEvent}, permite coletar
+      informações como posição em que o clique ocorreu (i.e. X e Y). Infelizmente essa classe
+      não traz informações para detectar se o clique foi do tipo \textit{click and hold}, mas
+      com uma lógica simples para verificar o tempo que levou para o clique iniciar e
+      finalizar, é perfeitametne possível coletar esse tipo de informação. Uma lógica similar
+      a essa é também utilizada para verificar se o clique foi do tipo \textit{scroll}. Para
+      esse tipo de detecção, além de calcular o tempo de clique, é comparado a posição inicial
+      com a posição final do clique.
+
+      Para os eventos de digitação do usuário, o objeto passado como parâmetro no método, permite
+      coletar qual foi a tecla digitada pelo usuário. Assim como o evento de clique, esse método é
+      invocado pelo sistema operacional toda vez que um evento de digitação ocorre. É importante
+      salientar que esses métodos são invocados duas vezes por evento: uma vez quando o evento é
+      iniciado e outra quando o evento é finalizado. Dessa forma, a deteção de ações como
+      \textit{scroll} e \textit{click and hold} é perfeitamente implementável do jeito como foi
+      explicado anteriormente.
+
+      Após o usuário finalizar as suas ações, o usuário deverá encerrar a apliação para indicar
+      que suas ações terminaram. Após isso, o framework gera o teste com todos os atos feitos pelo usuário
+      junto com a asserção definida previamente. Assim como o DroidMate, o framework utiliza
+      a biblioteca UiAutomator para poder simular as ações do usuário. Escolheu-se essa biblioteca,
+      pois além de ser a oficial da plataforma, ela é capaz de gerar cliques em posições X e Y.
+      Para a função de asserção, o usuário deverá seguir as funções disponibilizadas no framework
+      \textit{espresso}. Dessa forma, por utilizar esse framework internamente, a ferramenta
+      desenvolvida foi batizada de \textit{capuccino}.
+
+      Nesse sentido, o framework concebido acaba funcionando como uma espécie de proxy, em que as
+      ações capturadas do usuário são guardadas em estrutura de dados da própria biblioteca, e o
+      evento é então repassado oficialmente para aplicação, sem alterar nenhum valor ou comportamento
+      original. Essas chamadas de método da API do Android estão disponíveis em toda \textit{Activity}
+      e, como explicado no capítulo de desenvolvimento mobile, todo o desenvolvimento de uma aplicação
+      Android se baseia em \textit{Activities}. Por isso, a principal função do \textit{capuccino} é
+      reescrever esse métodos e solicitar ao desenvovledor que suas \textit{Activities} herdem daquela
+      sobrescrita pelo framework.
+
+    \chapter{Modelagem}
+      A seguir é apresentada a modelagem em UML do \textit{capuccino}:
+
+    \chapter{Implementação}
+
 
   \part{Resultados obtidos}
     TODO
@@ -1590,10 +1657,6 @@
   \url{https://martinfowler.com/bliki/TestPyramid.html}. Acesso em 4 de Maio de 2018.
 
   \noindent
-  FOWLER, M. \textit{Workflows of Refactoring}. [S.I.:s.n.], 2014 Disponível em:
-  \url{https://martinfowler.com/bliki/TestPyramid.html}. Acesso em 2 de Junho de 2018.
-
-  \noindent
   BAGMAR, A. \textit{Behavior Driven Testing (BDT) in Agile}. [S.I.:s.n.], 2012 Disponível em:
   \url{https://www.slideshare.net/abagmar/anand-bagmar-behavior-driven-testing-bdt-in-agile}. Acesso em 2 de Junho de 2018.
 
@@ -1632,7 +1695,11 @@
   In: Proceedings of Workshop Iberoamericano de Engenharia de Requisitos e Ambientes de Software (IDEAS'98). Torres: apr. 1998. v.2, p.298-309.
 
   \noindent
-  FARTO, Guilherme de C., ENDO, Andre T.\textit{Reuse of model-based tests in mobile apps}. [S.I.:s.n.], 2017 Disponível em: \url{https://dl.acm.org/citation.cfm?id=3131160}. Acesso em 25 de Junho de 2018.
+  JAMROZIK, K., ZELLER, A.  \textit{DroidMate: A Robust and Extensible Test Generator
+  for Android}. ACM International Conference on Mobile Software Engineering and Systems (MOBILESoft), 2016 Disponível em: \url{http://www.boxmate.org/files/DroidMate_MOBILESoft_2016.pdf}. Acesso em 1 de Junho de 2019.
+
+  \noindent
+
 
   % ----------------------------------------------------------
   % Glossário
