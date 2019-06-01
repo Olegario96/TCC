@@ -577,31 +577,31 @@
       O uso de bibliotecas é algo que geralmente traz melhorias significativas
       para o código que está sendo desenvolvido, visto que o programador
       está fazendo reuso de módulos que já foram usados no passado e,
-      consequentemente, estão menos suscetíveis a sofrer com defeitos. Além
+      consequentemente, estão menos suscetíveis a erros. Além
       disso, algumas bibliotecas estão constantemente recebendo atualizações
       a fim de fornercer novas facilidades ao programador, bem como minimizar
       o número de defeitos.
 
       Entrento, o conceito de framework em si, vai muito além do que uma
       simples coleção de funções que podem ser reusadas entre vários
-      projetos. O framework vai ser
-      responsável por orientar o programador de como ele deve desenvolver
-      o projeto, ou pelo menos uma parte dele. O framework geralmente
-      indica ao programdor aonde o código deve ser produzido e de que forma.
+      projetos. O framework é responsável por orientar o programador
+      a forma que ele deve desenvolver o projeto, ou pelo menos uma parte dele.
+      Ele geralmente indica ao programdor aonde o código deve ser
+      produzido e de que forma.
 
       Esse estilo de programação não só fornece uma estrutura mais sólida
       ao projeto, pois todos os programadores da equipe devem seguir o mesmo
-      padrão, como também segue a mesma filosofia das bibliotecas em que o
+      padrão, como também segue a mesma filosofia das bibliotecas, em que o
       foco principal é o reuso de código entre projetos que compartilham
-      o mesmo domínio de problema, ou que seja muito similar.
+      o mesmo domínio de problema.
 
       Nas próximas subseções será apresentado como foi o surgimento inicial
       do conceito de framework, quais os principais pontos positivos e
       negativos de se usar uma ferramenta como essa e os princípios
-      seguidas por frameworks.
+      seguidos por frameworks.
 
       \section{Origem dos Frameworks}
-          Sabe-se que nos primórdios a indústria de software tinha como principal
+          Sabe-se que em seus primórdios, a indústria de software tinha como principal
           foco de atuação quase que única e exclusivamente a resolução de problemas
           matemáticos. Com o passar dos anos, as linguagens de programação
           foram ficando mais robustas e o hardware também foi se desenvolvendo. Esse
@@ -624,22 +624,22 @@
           que o problema estaria resolvido.
 
           É claro que esse processo de reuso de diferentes partes de um software,
-          em termos de granularidade, foi aumento aos poucos através dos tempos.
-          Inicialmente começou-se com funções básicas como na linguagem C, por exemplo,
+          em termos de granularidade, foi crescendo aos poucos através dos tempos.
+          Inicialmente, começou-se com funções básicas como na linguagem C, por exemplo,
           foi avançando para estruturas mais complexas como classes até que chegou
           no que conhecemos por frameworks nos dias de hoje.
 
           Um framework é, então, nada mais que um conjunto bem estruturado de classes
-          relaciodas através de associações e heranças. Porém esse conjunto ele não
-          é totalmente finalizado, algumas partes ficam não terminadas, propositalmente,
-          para poder dar uma certa de liberdade de domínio de problema. Ou seja, nada
-          andiantaria o framework ser totalmetne implementado por ele próprio, pois
-          aí ele não daria uma certa flexibilidade para o usuário e o único problema
+          relaciodas através de associações e heranças. Porém esse conjunto não
+          é totalmente implementado, algumas partes ficam não terminadas, propositalmente,
+          para poder dar uma certa flexibilidade de domínio de problema. Ou seja, nada
+          andiantaria o framework ser totalmetne implementado, pois
+          aí ele não daria nenhum grau de liberdade para o usuário e o único problema
           que ele resolveria seria o que ele mesmo implementa.
 
           No framework FraG, um framework voltado a suportar o desenvolvimento de
-          programas de jogos de tabuleiro (SILVA, 1998), podemos ver um exemplo disso. Existe
-          a classe Board, que representa o tabuleiro de um jogo. Porém, um
+          programas de jogos de tabuleiro (SILVA, 1998), podemos ver um exemplo disso.
+          Existe a classe Board, que representa o tabuleiro de um jogo. Porém, um
           tabuleiro pode variar muito de jogo para jogo. Dessa
           forma deixam-se alguns métodos abstratos e o usuário apenas estende
           essa classe para seu domínio de aplicação e implementa os métodos que
@@ -663,16 +663,16 @@
           A implementação de um framework consiste principalmente em identificar
           qual domínio de problema ele deve dar suporte. No caso do FraG era um
           framework voltado a desenvolvimento de jogos de tabuleiro. O processo
-          de modelagem requer que o desenvolvedor identifique as classes mais
-          comuns de um domínio problema, também conhecidos como "hot spots".
-          Esse processo costuma ser não trivial, pois o responsável pela modelagem
-          do framework deve estudar ao menos 3 aplicações que compartilham o
+          de modelagem para um framework requer que o desenvolvedor identifique
+          as classes mais comuns de um domínio problema, também conhecidos como
+          "hot spots". Esse processo não costuma ser trivial, pois o responsável
+          pela modelagem do framework deve estudar ao menos 3 aplicações que compartilham o
           mesmo domínio (JOHNSON, 1993), porém sem se prender muito aos detalhes
           do problema específico.
 
           Após identificadas as classes que semanticamente são mais utilizadas em um
           certo domínio, inicia-se o processo de modelagem
-          que deve-se definir quais classes deverão ser implementadas e quais serão
+          que deve definir quais classes deverão ser implementadas e quais serão
           redifinidas pelo desenvolvedor. A partir daí, consegue-se obter resultados
           de quão eficiente o framework desenvolvido é. Para analisar esse dado,
           basta verificar em um projeto que utiliza o framework a porcentagem
@@ -682,10 +682,10 @@
 
       \section{Aspectos postivos e negativos}
           Quando um framework é utilizado em um projeto de software, é importante estar
-          atento ao que se ganha e ao que se perde em termos de implementação. Quando
+          atento aos principais benefícios e problemas em termos de implementação. Quando
           um projeto é feito "from scratch", ou seja, todas as classes são produzidas do
           zero pelo próprio time de desenvolvimento, os programadores tem total liberdade
-          para implementar as classes como julgarem melhor. Um exemplo de modelagem desse
+          para implementar a arquitetura como julgarem melhor. Um exemplo de modelagem desse
           tipo de implementação pode ser melhor observado na Figura 2. Contudo, o problema
           disso, obviamente, é que nada é reusado, a aplicação fica muito suscetível a
           defeitos e demanda muito esforço.
@@ -703,18 +703,18 @@
           Os ganhos nesse processo é que os desenvolvedores têm seus esforços
           minimizados, uma vez que boa parte das classes já estão totalmente implementadas.
           Outro aspecto positivo ao se utilizar um framework é que a granularidade do
-          reuso é muito maior do que se comparada a um projeto em que não se use frameworks.
+          reuso é muito maior do que se comparada a um projeto que não usa frameworks.
           Em outras palavras, ao utilizar-se um framework dentro de uma aplicação o reuso
           costuma atingir facilmente dezenas de classes.
 
           Quanto aos aspectos negativos, o mais fácil de ser observado é que os
           desenvolvedores da aplicação ficam presos à arquitetura e ao controle
-          de fluxo de dados impostos pelo framework. Isso decorre do fato de que, como a
+          de fluxo de dados impostos pelo framework. Isso ocorre devido ao fato de que, como a
           maioria das classes do domínio do problema já estão sendo implementadas pelo
-          framework, a arquitetura, juntamente com o fluxo de controle, já são, por
-          definição pré-estabelecidas.
+          framework, tanto a arquitetura como o fluxo de controle já são, por
+          definição, pré-estabelecidos.
 
-          Outro ponto negativo é que os programadores precisam ter um bom conhecimento
+          Outro grande ponto negativo é que os programadores precisam ter um bom conhecimento
           de como funciona o framework para poder utilizá-lo corretamente. É necessário
           ter conhecimento de como o framework é implementado para saber quais classes
           já foram programadas e acabar não duplicando uma funcionalidade já existente.
@@ -753,9 +753,9 @@
           Entretanto, como existem objetos que podem variar de aplicação para aplicação
           ao final da execução do método \textit{Template} o método \textit{Hook} é
           executado. Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
-          para que ele possa inicialzar demais objetos que necessite para sua aplicação
-          relacionados ao framework. Na Figura 3, é possível observar alguns métodos,
-          dentro do framework FraG, que são classificados como template ou hook.
+          para que ele possa inicialzar demais objetos que necessite para sua aplicação.
+          Na Figura 3, é possível observar alguns métodos, dentro do framework FraG, que
+          são classificados como template ou hook.
 
           \begin{figure}[htbp]
               \begin{center}
