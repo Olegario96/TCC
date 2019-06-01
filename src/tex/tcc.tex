@@ -303,8 +303,8 @@
      da Universidade Federal de Santa Catarina.
 
      \assinatura{Dr. Prof. \textbf{\imprimirorientador} \\ Orientador}
-     \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 1}
-     \assinatura{Dr. Prof. \textbf{Professor} \\ Convidado 2}
+     \assinatura{Dr. Profa. \textbf{Patricia Vilain} \\ Banca}
+     \assinatura{Mestre \textbf{Roberto Silvino da Cunha} \\ Banca}
      %\assinatura{\textbf{Professor} \\ Convidado 3}
      %\assinatura{\textbf{Professor} \\ Convidado 4}
 
@@ -326,7 +326,9 @@
      \vspace*{\fill}
      \centering
      \noindent
-     \textit{ Este trabalho é dedicado a todos aqueles que jamais desistem dos seus sonhos.} \vspace*{\fill}
+     \textit{ Este trabalho é dedicado a
+     todos que não cansam de testar seus
+     limites.} \vspace*{\fill}
   \end{dedicatoria}
   % ---
 
@@ -374,8 +376,8 @@
     atividades que demandem mais inteligência do que trabalho manual. Nesse
     sentido, a proposta desse trabalho é desenvolver um framework orientado
     a objetos capaz de apoiar tal atividade no contexto dos dispositvos móveis
-    que possuem o sistema operacional Android. A finalidade do framework é diminuir
-    o esforço e tempo investidos durante a fase de desenvolvimento testes automatizados,
+    que possuam o sistema operacional Android. A finalidade do framework é diminuir
+    o esforço e tempo investidos durante a fase de desenvolvimento de testes automatizados,
     com enfase na elaboração desses.
 
    \vspace{\onelineskip}
@@ -389,8 +391,8 @@
   \begin{resumo}[Abstract]
    \begin{otherlanguage*}{english}
      In the software engineering scope, through the development process of
-     applications, the stages of development and tests, usually, are the
-     ones that require more effort. Therefore, a tool capable to generate
+     applications, the stages of development and tests are the
+     ones that require more effort, usually. Therefore, a tool capable to generate
      automated tests for certain applications, at the context of mobile
      phones, can be seen as an accelerator during the process of
      tests allowing the developers to focus on tasks that demands
@@ -427,7 +429,6 @@
   % inserir lista de abreviaturas e siglas
   % ---
   \begin{siglas}
-    \item[FraG] *A CONFIRMAR*
     \item[XP] Extreming Programming
     \item[UML] Unified Modeling Language
     \item[TDD] Test Development Driven
@@ -476,8 +477,8 @@
 
   Nos dias atuais, os testes são tão importantes que eles são incorporados
   por praticamente todas as metodologias ágeis, as quais, por sua vez,
-  são as mais adotadas no mercado atualmetne (JEREMIAH, 2017). A relevância dessa fase
-  no proesso de desenvolvimento é tão grande que dependo da metodologia
+  são as mais adotadas no mercado atualmente (JEREMIAH, 2017). A relevância dessa fase
+  no processo de desenvolvimento é tão grande que dependo da metodologia
   adotada, o programador deve primeiro programar o teste e depois o módulo
   o qual lhe foi designado.
 
@@ -487,14 +488,13 @@
   costuma ser uma atividade que demanda mais trabalho manual do que inteligência.
   Nesse cenário, a proposta desse trabalho é desenvolver uma ferramenta para
   geração de testes automatizados para determinadas aplicações mobile, a fim de
-  que os desenvolvedores possam se focar em outras tarefas enquanto
-  que o Framework se encarrega de gerar os testes por conta própria.
+  que os desenvolvedores possam se focar em outras tarefas, enquanto
+  que o Framework se encarrega de gerar os testes.
 
   Sendo assim, nas próximas partes desse trabalho é, primeiro, apresentado de maneira
   mais precisa o tema framework orientado a objetos. Em seguida, é feito um estudo de
-  técnicas de testes de software e quais as ferramentas disponíveis atualmente
-  no mercado. Na sequência será abordado alguns aspectos no que se refere a
-  desenvolvimento de aplicações mobile dentro da plataforma Android.Por último, a
+  técnicas de testes de software. Na sequência será abordado alguns aspectos no que se refere a
+  desenvolvimento de aplicações mobile dentro da plataforma Android. Por último, a
   proposta de desenvolvimento do framework e uma apresentação de suas capacidades.
 
   \section{Justificativa}
@@ -512,12 +512,12 @@
     \subsection{Natureza: Aplicada} - Visando criar conhecimento a fim de minimizar
     um problema existente. No caso desse trabalho, reduzir o tempo gasto na
     implementação manual de testes automatizados para aplicações mobile da
-    plataforma Android, utilizando como meio implementação de um framework
+    plataforma Android, utilizando como meio implementação um framework
     em Java.
 
     \subsection{Abordagem: Qualitativo} - As soluções já utilizadas em trabalhos
-    passados similares a esse já são uma fonte de dados para o problema que
-    está sendo abordado, não necessitando de um cálculos específicos para
+    passados similares a esse já é uma fonte de dados para o problema que
+    está sendo abordado, não necessitando de cálculos específicos para
     capturar as informações necessárias.
 
     \subsection{Objetivo: exploratório} - Almejando a compreensão do problema através
@@ -527,7 +527,7 @@
     \subsection{Procedimentos técnicos: Bibliográficos, Estudo de Caso} - O desenvolvimento
     de um framework automatizado que auxilie na elaboração de testes automazidos no
     contexto de aplicações para dispositvios \textit{mobile} já foi uma ideia previamente
-    explorada em estudos passados. Busca-se reaplicar mesma ideia para a plataforma
+    explorada em estudos passados. Busca-se replicar a mesma ideia para a plataforma
     Android.
 
   \section{Objetivos geral}
@@ -574,13 +574,13 @@
       geralmente resume-se, basicamente, a executar um comando de inclusão
       de arquivo e as funções previamente implementadas já podem ser usadas.
 
-      O uso de bibliotecas é algo que geralmente traz melhoras significativas
+      O uso de bibliotecas é algo que geralmente traz melhorias significativas
       para o código que está sendo desenvolvido, visto que o programador
-      está fazendo reuso de um módulos que já foram usados no passado e,
-      consequentemente, está menos a suscetível a sofrer com defeitos. Além
+      está fazendo reuso de módulos que já foram usados no passado e,
+      consequentemente, estão menos suscetíveis a sofrer com defeitos. Além
       disso, algumas bibliotecas estão constantemente recebendo atualizações
       a fim de fornercer novas facilidades ao programador, bem como minimizar
-      o número de defeitos presente.
+      o número de defeitos.
 
       Entrento, o conceito de framework em si, vai muito além do que uma
       simples coleção de funções que podem ser reusadas entre vários
@@ -640,7 +640,7 @@
           No framework FraG, um framework voltado a suportar o desenvolvimento de
           programas de jogos de tabuleiro (SILVA, 1998), podemos ver um exemplo disso. Existe
           a classe Board, que representa o tabuleiro de um jogo. Porém, um
-          tabuleiro, como sabemos, pode variar muito de jogo para jogo. Dessa
+          tabuleiro pode variar muito de jogo para jogo. Dessa
           forma deixam-se alguns métodos abstratos e o usuário apenas estende
           essa classe para seu domínio de aplicação e implementa os métodos que
           necessita e adiciona os atributos que forem necessários, mantendo
@@ -671,11 +671,11 @@
           do problema específico.
 
           Após identificadas as classes que semanticamente são mais utilizadas em um
-          certo domínio, inicia-se o processo de modelagem que
+          certo domínio, inicia-se o processo de modelagem
           que deve-se definir quais classes deverão ser implementadas e quais serão
           redifinidas pelo desenvolvedor. A partir daí, consegue-se obter resultados
-          de quão eficiente o framework desenvolvido é. Para analisar esse dado
-          basta verificar em um projeto que utiliza o framework verificar a porcentagem
+          de quão eficiente o framework desenvolvido é. Para analisar esse dado,
+          basta verificar em um projeto que utiliza o framework a porcentagem
           de classes implementadas do zero e quais foram reaproveitadas do framework.
           Isso é claro desconsiderando classes como de interface com o usuário, por
           exemplo, visto que usualmente são totalmente dependendes do domínio da aplicação.
@@ -705,15 +705,13 @@
           Outro aspecto positivo ao se utilizar um framework é que a granularidade do
           reuso é muito maior do que se comparada a um projeto em que não se use frameworks.
           Em outras palavras, ao utilizar-se um framework dentro de uma aplicação o reuso
-          costuma atingir facilmente dezenas de classes. Entretanto, se o mesmo projeto
-          fosse implementado pelo time de desenvolvimento, a partir da busca de classes
-          reusáveis provavelmente o número de classes reusadas seria bem menor.
+          costuma atingir facilmente dezenas de classes.
 
           Quanto aos aspectos negativos, o mais fácil de ser observado é que os
           desenvolvedores da aplicação ficam presos à arquitetura e ao controle
           de fluxo de dados impostos pelo framework. Isso decorre do fato de que, como a
           maioria das classes do domínio do problema já estão sendo implementadas pelo
-          framework, a arquitetura, juntamente com o fluxo de controle, já sao, por
+          framework, a arquitetura, juntamente com o fluxo de controle, já são, por
           definição pré-estabelecidas.
 
           Outro ponto negativo é que os programadores precisam ter um bom conhecimento
@@ -768,7 +766,7 @@
           \end{figure}
 
           Outro fato que leva a relação de herança ser tão explorada no mundo de frameworks,
-          é o que se chama de princípio de Hollwood (\textit{"Don't call us, we'll call you"}).
+          é o que se chama de princípio de Hollywood (\textit{"Don't call us, we'll call you"}).
           Esse princípio decorre do fato de que quando o desenvolvedor estiver usando a
           ferramenta ele não deve instanciar objetos do framework e chamar métodos. Pelo
           contrário, ele deve criar novas classes que herdem de outras já definidas pelo
@@ -779,8 +777,8 @@
           vem o lema: \textit{"Don't call us, we'll call you"}.
 
           Já o fato de existir tantas relações de associações no framework, vem
-          do fato de que os \textit{Design Patterns} são amplamente neste universo de
-          soluções. \textit{Design Patterns} são modelagem para problemas extremamente
+          do fato de que os \textit{Design Patterns} são amplamente explorados neste universo de
+          soluções. \textit{Design Patterns} são modelagens extremamente
           elegantes e que solucionam problemas que já estão muito bem conhecidos na
           modelagem de software. Na modelagem do FraG, podemos perceber em que há
           casos em que está sendo usado até 3 \textit{Design Patterns} em paralelo:
@@ -796,9 +794,7 @@
           estudas e terem seus módulos semelhantes identificados e implementados
           de forma genérica na nova ferramenta. Feita essa parte, basta que
           os desenvolvedores escolham precisamente quais classes devem ser reescritas
-          em cada projeto, e terão boa parte da implementação já realizada e testada
-          com uma quantidade linhas de código infinitamente menor comparado se
-          tivessem que realizar o mesmo projeto sem o auxílio do framework
+          em cada projeto, e terão boa parte da implementação já realizada e testada.
 
   % ---
   \chapter{Testes}
@@ -919,7 +915,7 @@
       o email.
 
       Nos dias atuais, o mercado é repleto de ferramentas e frameworks capazes de
-      auxiliar os desenvolvedor durante a implementação de testes, fornecendo
+      auxiliar os desenvolvedores durante a implementação de testes, fornecendo
       objetos falsos, também conhecidos como \textit{mocks}, funções de asserção,
       execução de testes em ordem aleatória. Como o intuito de trabalho é desenvolver
       um framework que seja capaz de automatizar a produção de testes, esse capítulo
@@ -955,7 +951,7 @@
           seria que o módulo lançasse alguma exeção do tipo \textit{InvalidFormat} e o
           teste detectasse que essa exeção foi lançada. Ao perceber que houve uma exceção
           o teste deve informar, novamente, tudo ocorreu como esperado. Do contrário, ele
-          deve trazer um relatório escrito dizendo que estava sendo esperado uame exceção,
+          deve trazer um relatório escrito dizendo que estava sendo esperado uma exceção,
           porém ela não ocorreu.
 
           Na modelagem de testes é importante também que durante a implementação exista
@@ -971,7 +967,7 @@
           autômato finito}. Os estados representam o objeto em si e as transições
           seriam os métodos e os possíveis valores de retorno, ou execções, dependendo dos
           valores passados para o método. O objetivo do teste, vendo a modelagem por essa
-          ótica, seria  verificar se a máquina chegou num estado de transição, ou não.
+          ótica, seria  verificar se a máquina chegou num estado de aceitação, ou não.
           Nesse sentido, é possível ver o autômato representando o teste para a validação de
           um CPF, do módulo representado anteriormente, na Figura 6.
 
@@ -1050,7 +1046,7 @@
 
           \subsection{Teste de integração}
               Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois módulos
-              que trabalham em conjunto. Nesse nível deve-se testar todas os módulos que possuêm
+              que trabalham em conjunto. Nesse nível deve-se testar todos os módulos que possuêm
               alguma relação do tipo: associação, composição ou agregação. Ao invés de usar objetos
               falsos, como era feito no nível anterior, usam-se objetos verdadeiros e testam-se os
               métodos pelos quais estes objetos trocam mensagens. Em casos em que um dos módulos
@@ -1065,7 +1061,7 @@
               geralmente usa como base algum caso de uso descrito no processo de engenharia de
               requisitos e também busca achar eventuais defeitos na interface com o usuário. Esse
               teste atualmente pode ser facilmente automatizado, mas como a interface é um componente
-              que usulamente está sendo alterado algumas empresas ainda preferem realizá-lo de maneira
+              que usulamente está sendo alterada, algumas empresas ainda preferem realizá-lo de maneira
               manual e automatizar somente quando a interface já está bem estabelecida.
 
           \subsection{Teste de aceitação}
@@ -1094,8 +1090,8 @@
               entradas sejam testadas, melhor o teste é. Como já foi dito anteriormente, é
               impossível testar todas as entradas possíveis. Nesse caso, o programador pode utilizar
               classes de equivalência para maximizar os casos de teste coberto. As classes de equivalência
-              nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis
-              em que um subconjunto representa as entradas válidas e o outro as entradas válidas.
+              nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis,
+              em que um subconjunto representa as entradas válidas e o outro as entradas inválidas.
               Uma abstração dessa técnica pode ser contemplada na Figura 8.
 
               \begin{figure}[htbp]
@@ -1109,7 +1105,7 @@
               A filosofia por trás dessa técnica, encontra-se na ideia de que basta o programador
               saber o que um determinado método deveria retornar para um certo parâmetro
               \textit{X}, ou qual atributo deveria ser atualizado. Para melhor exemplificar essa
-              ideia, propõe-se mais adiante um módulo em escrito na linguagem Python capaz de fazer
+              ideia, propõe-se mais adiante um módulo escrito na linguagem Python capaz de fazer
               cálculo da função fatorial. O módulo pode ser observado na Figura 9. Mesmo que, por um
               acaso, o progamador não soubesse como a função fatorial funcionasse ou se ainda ela
               fosse muito complexa envolvendo cálculos matemáticos avançados, basta que ele saiba que
@@ -1143,7 +1139,7 @@
                   \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
               \end{figure}
 
-              Usualmente, nesse tipo de técnica, costuma-se buscar valores limites de para verificar
+              Usualmente, nesse tipo de técnica, costuma-se buscar valores limites para verificar
               se o módulo está se comportando como deveria, uma vez que os defeitos de um software
               costumam ficar em suas frestas (WAZLAWICK, 2012). Considerando que o método recebe somente
               valores inteiros, o algoritmo possui uma grande falha no que se refere as frestas. Ele,
@@ -1153,10 +1149,10 @@
 
               Aplicando o princípio dos conjuntos de equivalência para um possível arquivo de teste
               para este módulo, o desenvolvedor poderia criar testes usando os seguintes valores como
-              parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
+          parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
               lançar uma exceção e o teste, ao receber a exceção, deveria afirmar que tudo ocorreu como
               esperado. Nesse caso, para arrumar o módulo implementado, ao em vez de usar o
-              operador de diferença, basta utilizar o operado de >. Para os demais valores, basta criar
+              operador de diferença, basta utilizar o operador de >. Para os demais valores, basta criar
               os casos de teste utilizando a técnica da caixa preta como foi descrita anteriormente.
 
           \subsection{Técnica da caixa branca}
@@ -1212,7 +1208,7 @@
               independentemente do valor fornecido como parâmetro, estaria sempre retornando o valor
               24. Isso poderia ocorrer caso o desenvolvedor estivesse com pouco tempo disponível para
               implementar a função fatorial e tivesse que priorizar outras implementações. Dessa forma,
-              um teste com a caixa cinza seria a melhro técnica a ser aplicada para detectar essa falha,
+              um teste com a caixa cinza seria a melhor técnica a ser aplicada para detectar essa falha,
               já que a técnica da caixa preta, caso estivesse sendo utilizada única e exclusivamente com
               o valor 4 jamais detectaria que o módulo possui um problema. Com a caixa branca combinada
               (i.e. a caixa cinza em si), o teste apontaria que apesar de o valor retornado ser o esperado,
@@ -1431,7 +1427,7 @@
     contexto específico, no caso aplicações atuais para a plataforma Android.
 
     \section{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}
-    Nesse artigo é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
+    Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
     maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
     discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
     ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
@@ -1461,14 +1457,14 @@
 
     \section{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}
       Frameworks capazes de auxiliar os desenvolvedores na elaboração de testes automatizados para aplicações
-      mobile é um conceito que já foi aplicado no passado, como pode ser observado nesse artigo. Esse trabalho
-      possui como principal foco o desenvolvimento de destes automatizados baseado em casos de uso, usando
-      o reuso como principal forma de alcançar esse objetivo. No framework desenvolvido, ainda era necessário
-      que o programador implementasse manualmente os testes. Porém, a grande vantagem do uso desse framework
-      era que ele possuia grandes abstrações de hardware e se comunicava com o baixo nível através da API
-      disponibilizada pela empresa que fabricava o telefone, no caso a Motorola, uma espécie de
-      \textit{syscall}. A grande vantagem, era que o porte (i.e. executar os testes de um dispositivo em
-      outro) podia ser feito sem necessidade de alterar o teste.
+      mobile é um conceito que já foi aplicado no passado, como pode ser observado nesse artigo. Esse
+      trabalho (SILVA, R. P., SANTOS, L. Et al., 2007) possui como principal foco o desenvolvimento de destes
+      automatizados baseado em casos de uso, usando o reuso como principal forma de alcançar esse objetivo.
+      No framework desenvolvido, ainda era necessário que o programador implementasse manualmente os testes.
+      Porém, a grande vantagem do uso desse framework era que ele possuia grandes abstrações de hardware
+      e se comunicava com o baixo nível através da API disponibilizada pela empresa que fabricava o
+      telefone, no caso a Motorola, uma espécie de\textit{syscall}. A grande vantagem, era que o porte
+      (i.e. executar os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
 
       O framework desenvolvido tinha duas classes abstratas: \textit{Step} e \textit{BaseTestCase}. A
       classe possui \textit{BaseTestCase} possui uma coleção de \textit{Step}. A primeira classe,
@@ -1498,12 +1494,13 @@
       em termos de modelagem, para o framework que será desenvolvido nesse trabalho.
 
     \section{Reuse of model-based tests in mobile apps}
-      Nesse trabalho, foi reusado uma ferramenta já existente dentro da plataforma Android o
-      \textit{Model-Based Testing}. Esse framework permite a geração automática de casos de teste utilizando
-      um modelo que descreve os eventos, tanto de hardaware quanto de software, que o aplicativo receberá
-      quando tiver executando e busca verificar como a aplicação se comporta nesses casos. Esse estudo
-      consistiu extender o MBT, nome do framework descrito anteriormente, para fazer o estudo de 4 aplicações
-      reais e colocá-las em teste sobre interrupções não previstas inicialmente.
+      Nesse trabalho (FARTO, Guilherme de C., ENDO, Andre T., 2017), foi reusado uma ferramenta já existente
+      dentro da plataforma Android o \textit{Model-Based Testing}. Esse framework permite a geração
+      automática de casos de teste utilizando um modelo que descreve os eventos, tanto de hardaware
+      quanto de software, que o aplicativo receberá quando tiver executando e busca verificar como a
+      aplicação se comporta nesses casos. Esse estudo consistiu extender o MBT, nome do framework descrito
+      anteriormente, para fazer o estudo de 4 aplicações reais e colocá-las em teste sobre interrupções não
+      previstas inicialmente.
 
       A extensão do MBT, chamada de MBTS4MA, usou o conceito de evento sequenciais em grafos para monitorar
       o comportamento da aplicação. Dessa forma, o engenheiro de teste desenhava na GUI o grafo com os
@@ -1513,9 +1510,12 @@
       de gerar o teste. Isso permite aos desenvolvedores testar mais combinações de possibilidades, como
       comportamente do software em modelos \textit{mobile} não previstos inicialmente.
 
-      Das semelhanças apresentadas
-
-    \section{User Guided Automation for Testing Mobile Apps}
+      Nos pontos em comum com o desenvolvimento feito nesse artigo se assemelha muito no que se refere a
+      geração automática de testes de testes automatizados a partir de uma especificação. Entretanto, o
+      framework que será desenvolvido nesse trabalho se limitará a um domínio específico de aplicações bem
+      como não terá suporte a interfaces gráficas robustas como é observado no artigo. Nesse sentido, uma
+      das principais contribuições do estudo apontado se dá no fato da geração automática de código em si
+      para testes.
 
   \part{Conteúdo produzido e Conclusão}
 
@@ -1528,12 +1528,6 @@
     Durante o desenvolvimento dessa aplicação, também foi criada uma bateria de testes com o objetivo, além
     de garantir a qualidade do aplicativo, estudá-los e refletir sobre uma maneira de automatizá-los.
 
-    Nesse ponto, destaca-se, por ser uma aplicação totalmente dependente de comunicação com servidor,
-    focou-se principalmente nos testes em que se comunicam com a API da aplicação. Os testes, além de
-    avaliarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
-    Nesse sentido, busca-se estudar esses testes e buscar uma forma de generalizá-los a ponto de serem
-    capazes de ser gerados automaticamente por uma ferramenta automatizada.
-
     \begin{figure}[!htbp]
       \begin{center}
         \includegraphics[width=0.4\textwidth]{img/escamboapp.png}
@@ -1542,7 +1536,31 @@
       \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
     \end{figure}
 
+    Nesse ponto, destaca-se, por ser uma aplicação totalmente dependente de comunicação com servidor,
+    focou-se principalmente nos testes em que se comunicam com a API da aplicação. Os testes, além de
+    avaliarem as rotas da aplicação, testavam se o resultado retornado pelo \textit{backend} era o esperado.
+    Nesse sentido, busca-se estudar esses testes e buscar uma forma de generalizá-los a ponto de serem
+    capazes de ser gerados automaticamente por uma ferramenta automatizada. Uma captura de tela com
+    alguns dos testes desenvolvidos pode ser observado na Figura 17.
+
+    \begin{figure}[!htbp]
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{img/testSwitch.png}
+      \end{center}
+      \caption{\label{fig:passaro} Switch de alguns testes desenvolvidos para API do aplicativo}
+      \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+    \end{figure}
+
   \chapter{Conclusão}
+    Os frameworks desempenham um papel fundamental no desenvolvimento de software moderno. Por
+    disponibilizarem software reusável entre projetos diferentes, possibilitam a diminuição no
+    esforço no desenvolvimento de uma nova aplicação. O framework alcança esse resultado tirando
+    vantagem principalmente da herança entre classes e de padrões de projeto. Já os testes de
+    software proporcionam o mínimo de qualidade nos módulos que estão desenvolvidos e podem
+    ser combinados através de suas técnicas e níveis. Porém é importante ressaltar, mais uma
+    vez, que nunca é possível dizer que um software está completamente livre de \textit{bugs},
+    a não ser que todas as combinações de entradas sejam testadas, o que na prática é impossível.
+
     Para a disciplina INE 5434 Trabalho de Conclusão de Curso II, a meta é fazer a modelagem e
     implementação do framework que irá auxiliar na elaboração automatizada de testes. Além
     disso, será feito um estudo de resultados verificando o quanto o framework ajudou
@@ -1644,7 +1662,7 @@
 
   \noindent
   \textit{Number of available applications in the Google Play Store from December 2009 to March 2018}.
-  [S.I.:s.n.], 2018 Disponível em: \url{https://www.statista.com/statistics/266210/number-of-available-applications-in-the-google-play-store/}. Acesso em 2 de Junho de 2018.
+  [S.I.:s.n.], 2018 Disponível em: \url{https://www.statista.com/statistics/266210/number-of-available-applications-in-the -google-play-store/}. Acesso em 2 de Junho de 2018.
 
   \noindent
   \textit{MOBILE (ANDROID) HARDWARE STATS 2017-03}. [S.I.:s.n.], 2018 Disponível em: \url{https://web.archive.org/web/20171113032047/https://hwstats.unity3d.com/mobile/cpu-android.html}. Acesso em 2 de Junho de 2018.
@@ -1672,6 +1690,9 @@
   \noindent
   SILVA, Ricardo P. e, PRICE, R. T. \textit{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}.
   In: Proceedings of Workshop Iberoamericano de Engenharia de Requisitos e Ambientes de Software (IDEAS'98). Torres: apr. 1998. v.2, p.298-309.
+
+  \noindent
+  FARTO, Guilherme de C., ENDO, Andre T.\textit{Reuse of model-based tests in mobile apps}. [S.I.:s.n.], 2017 Disponível em: \url{https://dl.acm.org/citation.cfm?id=3131160}. Acesso em 25 de Junho de 2018.
 
   % ----------------------------------------------------------
   % Glossário
