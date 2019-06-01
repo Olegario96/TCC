@@ -1503,72 +1503,125 @@
       a verificação de cógido a nível de bytecode.
 
   \part{O framework}
-    \chapter{Concepção}
-      Dado os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
-      para gerar automaticamente testes para dispositivos mobile é perfeitamente possível. O
-      framework foi concebido sob a óptica de capturar as ações do usuário e gerar um teste
-      a nível de interface de usuário. Porém, diferente do DroidMate, ao em vez de configurar
-      um \textit{timeout}, será disponibilizado ao usuário configurar uma asserção para ser
-      executada no final do teste, para verificar se houve sucesso ou não durante a ação
-      do usuário.
+    \chapter{Análise e desenvolvimento do framework}
+      \section{Concepção}
+        Dado os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
+        para gerar automaticamente testes para dispositivos mobile é perfeitamente possível. O
+        framework foi concebido sob a óptica de capturar as ações do usuário e gerar um teste
+        a nível de interface de usuário. Porém, diferente do DroidMate, ao em vez de configurar
+        um \textit{timeout}, será disponibilizado ao usuário configurar uma asserção para ser
+        executada no final do teste, para verificar se houve sucesso ou não durante a ação
+        do usuário.
 
-      Além disso, o framework foi idealizado com a ideia de que o desenvolvedor não precise
-      reescrever sua aplicação para se adequar a ferramenta. Nesse sentido, o framework
-      foi desenvolvido com a ideia de que o desenvolvedor necessite apenas herdar classes
-      do framework implementado e escreva algumas informações no arquivo de configuração.
-      É importante deixar claro, que mesmo herdando as classes do framework, a aplicação
-      desenvolvida não terá seu comportamento alterado de nenhuma maneira.
+        Além disso, o framework foi idealizado com a ideia de que o desenvolvedor não precise
+        reescrever sua aplicação para se adequar a ferramenta. Nesse sentido, o framework
+        foi desenvolvido com a ideia de que o desenvolvedor necessite apenas herdar classes
+        do framework implementado e escreva algumas informações no arquivo de configuração.
+        É importante deixar claro, que mesmo herdando as classes do framework, a aplicação
+        desenvolvida não terá seu comportamento alterado de nenhuma maneira.
 
-      Atualmente, a API do Android possui diversas chamadas de método que permitem detectar
-      ações do usuário com a aplicação. Dentre todos os métodos disponíveis, destacam-se aqui
-      os dois principais que permitiram a implementação do framework:
-      \begin{description}
-        \item[$\bullet$] \textit{public boolean dispatchTouchEvent(MotionEvent me)}
-        \item[$\bullet$] \textit{public boolean dispatchKeyEvent(KeyEvent kEvent)}
-      \end{description}
+        Atualmente, a API do Android possui diversas chamadas de método que permitem detectar
+        ações do usuário com a aplicação. Dentre todos os métodos disponíveis, destacam-se aqui
+        os dois principais que permitiram a implementação do framework:
+        \begin{description}
+          \item[$\bullet$] \textit{public boolean dispatchTouchEvent(MotionEvent me)}
+          \item[$\bullet$] \textit{public boolean dispatchKeyEvent(KeyEvent kEvent)}
+        \end{description}
 
-      Como os próprios nomes já sugerem, eles permitem detectar ações de clique do usuário
-      e texto digitado, respectivamente. Esses métodos são invocados pelo Android toda
-      vez que um evento de clique ou de digitação ocorre. Para o caso em que um clique
-      é detectado, o objeto passado como parâmetro, \textit{MotionEvent}, permite coletar
-      informações como posição em que o clique ocorreu (i.e. X e Y). Infelizmente essa classe
-      não traz informações para detectar se o clique foi do tipo \textit{click and hold}, mas
-      com uma lógica simples para verificar o tempo que levou para o clique iniciar e
-      finalizar, é perfeitametne possível coletar esse tipo de informação. Uma lógica similar
-      a essa é também utilizada para verificar se o clique foi do tipo \textit{scroll}. Para
-      esse tipo de detecção, além de calcular o tempo de clique, é comparado a posição inicial
-      com a posição final do clique.
+        Como os próprios nomes já sugerem, eles permitem detectar ações de clique do usuário
+        e texto digitado, respectivamente. Esses métodos são invocados pelo Android toda
+        vez que um evento de clique ou de digitação ocorre. Para o caso em que um clique
+        é detectado, o objeto passado como parâmetro, \textit{MotionEvent}, permite coletar
+        informações como posição em que o clique ocorreu (i.e. X e Y). Infelizmente essa classe
+        não traz informações para detectar se o clique foi do tipo \textit{click and hold}, mas
+        com uma lógica simples para verificar o tempo que levou para o clique iniciar e
+        finalizar, é perfeitametne possível coletar esse tipo de informação. Uma lógica similar
+        a essa é também utilizada para verificar se o clique foi do tipo \textit{scroll}. Para
+        esse tipo de detecção, além de calcular o tempo de clique, é comparado a posição inicial
+        com a posição final do clique.
 
-      Para os eventos de digitação do usuário, o objeto passado como parâmetro no método, permite
-      coletar qual foi a tecla digitada pelo usuário. Assim como o evento de clique, esse método é
-      invocado pelo sistema operacional toda vez que um evento de digitação ocorre. É importante
-      salientar que esses métodos são invocados duas vezes por evento: uma vez quando o evento é
-      iniciado e outra quando o evento é finalizado. Dessa forma, a deteção de ações como
-      \textit{scroll} e \textit{click and hold} é perfeitamente implementável do jeito como foi
-      explicado anteriormente.
+        Para os eventos de digitação do usuário, o objeto passado como parâmetro no método, permite
+        coletar qual foi a tecla digitada pelo usuário. Assim como o evento de clique, esse método é
+        invocado pelo sistema operacional toda vez que um evento de digitação ocorre. É importante
+        salientar que esses métodos são invocados duas vezes por evento: uma vez quando o evento é
+        iniciado e outra quando o evento é finalizado. Dessa forma, a deteção de ações como
+        \textit{scroll} e \textit{click and hold} é perfeitamente implementável do jeito como foi
+        explicado anteriormente.
 
-      Após o usuário finalizar as suas ações, o usuário deverá encerrar a apliação para indicar
-      que suas ações terminaram. Após isso, o framework gera o teste com todos os atos feitos pelo usuário
-      junto com a asserção definida previamente. Assim como o DroidMate, o framework utiliza
-      a biblioteca UiAutomator para poder simular as ações do usuário. Escolheu-se essa biblioteca,
-      pois além de ser a oficial da plataforma, ela é capaz de gerar cliques em posições X e Y.
-      Para a função de asserção, o usuário deverá seguir as funções disponibilizadas no framework
-      \textit{espresso}. Dessa forma, por utilizar esse framework internamente, a ferramenta
-      desenvolvida foi batizada de \textit{capuccino}.
+        Após o usuário finalizar as suas ações, o usuário deverá encerrar a apliação para indicar
+        que suas ações terminaram. Após isso, o framework gera o teste com todos os atos feitos pelo usuário
+        junto com a asserção definida previamente. Assim como o DroidMate, o framework utiliza
+        a biblioteca UiAutomator para poder simular as ações do usuário. Escolheu-se essa biblioteca,
+        pois além de ser a oficial da plataforma, ela é capaz de gerar cliques em posições X e Y.
+        Para a função de asserção, o usuário deverá seguir as funções disponibilizadas no framework
+        \textit{espresso}. Dessa forma, por utilizar esse framework internamente, a ferramenta
+        desenvolvida foi batizada de \textit{capuccino}.
 
-      Nesse sentido, o framework concebido acaba funcionando como uma espécie de proxy, em que as
-      ações capturadas do usuário são guardadas em estrutura de dados da própria biblioteca, e o
-      evento é então repassado oficialmente para aplicação, sem alterar nenhum valor ou comportamento
-      original. Essas chamadas de método da API do Android estão disponíveis em toda \textit{Activity}
-      e, como explicado no capítulo de desenvolvimento mobile, todo o desenvolvimento de uma aplicação
-      Android se baseia em \textit{Activities}. Por isso, a principal função do \textit{capuccino} é
-      reescrever esse métodos e solicitar ao desenvovledor que suas \textit{Activities} herdem daquela
-      sobrescrita pelo framework.
+        Nesse sentido, o framework concebido acaba funcionando como uma espécie de proxy, em que as
+        ações capturadas do usuário são guardadas em estrutura de dados da própria biblioteca, e o
+        evento é então repassado oficialmente para aplicação, sem alterar nenhum valor ou comportamento
+        original. Essas chamadas de método da API do Android estão disponíveis em toda \textit{Activity}
+        e, como explicado no capítulo de desenvolvimento mobile, todo o desenvolvimento de uma aplicação
+        Android se baseia em \textit{Activities}. Por isso, a principal função do \textit{capuccino} é
+        reescrever esse métodos e solicitar ao desenvovledor que suas \textit{Activities} herdem daquela
+        sobrescrita pelo framework.
 
-    \chapter{Modelagem}
-      A seguir é apresentada a modelagem em UML do \textit{capuccino}:
+      \section{Modelagem}
+        A seguir é apresentada a modelagem em UML do \textit{capuccino}:
 
-    \chapter{Implementação}
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
+            \end{center}
+            \caption{\label{fig:passaro} Diagrama de classes UML do framework Capuccino}
+            \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+        \end{figure}
+
+        Como pode ser visualizado pelo diagrama, o \textit{capuccino} possui várias estrutura
+        de dados (i.e. classes) para poder armazernar informações durante o processo de captura
+        de ações do usuário. Mais detalhes sobre a implementação serão apresentados no próximo
+        capítulo. Nesse capítulo busca-se destacar como que o desenvolvedor pode integrar sua aplicação
+        com a ferramenta implementada. Para enteder isso, existem duas entidades chaves que são
+        utilizadas para fazer essa integração. São elas:
+
+        \begin{description}
+          \item[$\bullet$] \textit{CapuccinoBasicActivity}
+          \item[$\bullet$] \textit{LauncherAppActivity}
+        \end{description}
+
+        A classe \textit{LauncherAppActivity} é utilizada para inicar a aplicação do usuário. Além
+        disso ela também serve para criar e configurar as informações que serão utilizadas para criar
+        o teste automaticamente. Essa classe deve ser herdada pelo usuário e no arquivo \textit{AndroidManifest}
+        de seu projeto deve configurar para que essa \textit{Activity} seja configurada o ponto
+        de entrada da aplicação. Além de implementar essa herança, o usuário, dentro do método
+        \textit{onCreate} deve usar os métodos \textit{setters} a fim de informar alguns dados
+        para poder gerar o teste automaticamente de forma correta. Explicando breviamente cada um
+        desses dados e sua respectiva importância:
+
+        \begin{description}
+          \item[$\bullet$] \textit{packagePath}: indica o \textit{package} da aplicação do usuário.
+          \item[$\bullet$] \textit{activityPackagePath}: indica o \textit{package} onde a atividade a ser
+                                                         ser testada se encontra. Esse caminho deve ser relativo
+                                                         ao \textit{package} raiz.
+
+          \item[$\bullet$] \textit{activityClassName}: nome da classe da atividade que será testada.
+          \item[$\bullet$] \textit{testFileName}: nome do arquivo de teste que o desenvolvedor deseja que seja
+                                                  gerado.
+
+          \item[$\bullet$] \textit{expectedAssertion}:  asserção que o usuário quer que seja executada ao final do
+                                                        do teste usando a sintaxe do \textit{espresso}.
+        \end{description}
+
+        Já a classe \textit{CapuccinoBasicActiviy} deve ser herdada por todas as atividades do usuário,
+        ou pelo menos aquelas que serão testadas. Como dito anteriormente, o \textit{capuccino} funciona
+        como uma proxy em que ele capta as ações do usuário e repassa para aplicação original. Quando
+        o usuário herda suas atividades dessa classe é exatamente isso o que acontece. A
+        \textit{CapuccinoBasicActiviy} está associada com ao \textit{CapuccinoEventLogger} que é responsável
+        por manter os eventos ordenados por horário em que ocorreu em uma lista.
+
+
+      \section{Implementação}
+      \section{Limitações da ferramenta}
 
 
   \part{Resultados obtidos}
