@@ -695,6 +695,7 @@
                   \includegraphics[width=1.0\textwidth]{img/scratch.png}
               \end{center}
               \caption{\label{fig:passaro}Um exemplo de aplicação \textit{from scratch}}
+              \begin{center}(FONTE: Adaptado de SILVA, 1998)\end{center}
           \end{figure}
 
           Quando um framework é utilizado para suprir as necessidades um projeto, muitas
@@ -812,14 +813,14 @@
       Nessa parte do trabalho é de suma importância deixar esclarecido
       que um projeto que foi conduzido sem testes, pode atigingir um patamar
       satifatório de qualidade ao longo do processo, mas isso provavelmente terá um
-      custo alto, uma vez que a probilidade de se detectar uma grande quantidade
-      de defeitos é alto. Sendo assim, o time de desenvolvimento terá que gastar
-      mais tempo arrumando falhas que poderiam ter sido percebidas mais cedo.
-      Isso faz com que o tempo de projeto aumente bem como os custos. Dessa forma
-      é sempre importante que a parte de testes esteja prevista no planejamento
-      inicial de um projeto de software.
+      custo alto, em que o programador segue a filosofia do \textit{code and fix},
+      em que a medida que ele vai codificando, vai arrumando os erros que encontra.
+      Sendo assim, o time de desenvolvimento terá que gastar mais tempo arrumando
+      falhas que poderiam ter sido percebidas mais cedo. Isso faz com que o tempo
+      de projeto aumente bem como os custos. Dessa forma é sempre importante que
+      a parte de testes esteja prevista no planejamento inicial de um projeto de software.
 
-      É importante deixar claro, também, desde já, que o teste de software em momento
+      É importante deixar claro, desde já, que o teste de software em momento
       algum supõe que o módulo implementado esteja livre de defeitos. A única coisa que o
       teste garante para o desenvolvedor é que para as entradas especificadas o
       componente está se comportando como o programador desejava. O teste costuma
@@ -861,9 +862,9 @@
       tenha conhecimento do algoritmo de validação de CPF. Dessa forma, ele saberá quando
       um CPF é válido mesmo estando sem a máscara (i.e. formatação). Ou seja, quando
       o teste for implementado basta ele escrever que os CPFs que obedeçam o algoritmo
-      devam ser classificados como válidos, enquanto que os que não são validados pelo
-      algoritmo devem ser rejeitados. Com o teste desenvolvido, basta ele executá-lo e
-      obviamente o teste retornará mensagem de erro, isso porque o módulo ainda não
+      devam ser classificados como válidos, enquanto que os inválidos devem ser
+      rejeitados. Com o teste desenvolvido, basta o programador executá-lo e
+      obviamente o teste retornará uma mensagem de erro, isso porque o módulo ainda não
       foi implementado. Caso o teste retorne somente mensagens de sucesso é porque o
       teste possui algum equívoco.
 
@@ -911,8 +912,8 @@
       após o procedimento ter sido executado. Muitas vezes, o teste deve verificar
       se o sistema chegou no estado esperado. No mesmo exemplo, supõe-se que a nova
       classe pesquise no banco o usuário pelo CPF e mande um email para o mesmo. Para
-      ver se a pós-condição foi atendida, o sistema deve verificar se o usuário recebeu
-      o email.
+      ver se a pós-condição foi atendida, o sistema deve verificar se o servidor de
+      emails mandou um email para o usuário com aquele CPF.
 
       Nos dias atuais, o mercado é repleto de ferramentas e frameworks capazes de
       auxiliar os desenvolvedores durante a implementação de testes, fornecendo
@@ -939,7 +940,7 @@
           básicas, ele pode escrever testes que seguem o \textit{happy path} e aqueles
           que devem lançar algum tipo de exceção.
 
-          Para deixar mais claro, voltemos ao exemplo do módulo de validação de CPF
+          Para deixar mais claro, retorna-se ao exemplo do módulo de validação de CPF
           escrito em \textit{Python}. Como pode-se perceber pelo código fornecido na
           Figura 4, é facilmente perceptível que a linguagem é \textbf{fracamente tipada},
           ou seja, é deixado ao interpretador inferir a tipagem de cada variável. Para
@@ -948,11 +949,11 @@
           que segue o \textit{happy path} seria fornecer um CPF válido e o teste iria
           retornar dizendo que tudo ocorreu como esperado. Por outro lado, se em algum
           cenário de teste em que seja fornecida uma sequência de inteiros, o correto
-          seria que o módulo lançasse alguma exeção do tipo \textit{InvalidFormat} e o
+          seria que o módulo lançasse alguma exeção do tipo \textit{InvalidType} e o
           teste detectasse que essa exeção foi lançada. Ao perceber que houve uma exceção
           o teste deve informar, novamente, tudo ocorreu como esperado. Do contrário, ele
           deve trazer um relatório escrito dizendo que estava sendo esperado uma exceção,
-          porém ela não ocorreu.
+          porém a mesma não ocorreu.
 
           Na modelagem de testes é importante também que durante a implementação exista
           o teste de entradas aleatórias para simular uma possível simulação com o usuário.
@@ -997,11 +998,11 @@
           que o programador tenha em mente essas possibilidades também.
 
           Já no que se refere à parte de implementação, a implementação do padrão de projeto
-          \textit{factory} (FOWLER, 2003) costuma ser muito comum, já que é uma solução necessária e
-          elegante para os testes. Esse padrão se faz essencial para manter um código mais limpo,
+          \textit{factory} (FOWLER, 2003) costuma ser muito comum, visto que é uma solução elegante
+          para os testes. Esse padrão se faz essencial para manter um código mais limpo,
           visto que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
           atributos diferentes. Dessa forma, ele pode usar uma biblioteca que implemente a
-          o padrão para os objetos necessários para o teste e para cada cenário ele pede
+          o padrão para os objetos necessários para o teste e para cada cenário ele solicita
           objetos diferentes para a fábrica. Isso ajuda a manter um código mais legível, visto
           que se esse padrão não fosse utilizado, para cada teste o programador teria que sempre
           estar instanciando um objeto da mesma classe e configurando os valores manualmente,
@@ -1010,7 +1011,7 @@
       \section{Níveis de teste}
           Dentro do universo de teste de software, pode-se classificar os testes pelos seus
           níveis ou fases. A classificação decorre do fato de que a medida que a aplicação
-          vai crescendo os testes também precisam ter uma complexidade maior pois o número
+          vai crescendo os testes também precisam ter uma complexidade maior, pois o número
           de combinações de entradas possíveis do usuário vai aumentando. Classicamente,
           (WAZLAWICK, 2012), os testes, quando dividos dessa forma, podem pertencer alguma
           dessas classes: unidade, integração, sistema, aceitação e o de regressão. O
@@ -1037,29 +1038,27 @@
               os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FOWLER, 2012).
               Este nível de teste visa somente fazer o teste de uma classe isolada. Caso a classe
               que está sendo testada iteraja de alguma forma com outras classes, seja por atributos
-              ou parâmetros de funções, o programador, deve, então, usar objetos falsos, também
-              conhecidos como \textit{mock}, para simular a classe que possui relação com a classe
+              ou parâmetros de métodos, o programador, deve, então, usar objetos falsos, também
+              conhecidos como \textit{mocks}, para simular a classe que possui relação com a classe
               que está sendo testada. Essa metodologia garante que caso qualquer defeito detectado
-              pelo teste, o defeito vem única e exclusivamente da classe que está sendo testada,
+              pelo teste, o defeito vem unica e exclusivamente da classe que está sendo testada,
               e não de classes terceiras.
 
-
           \subsection{Teste de integração}
-              Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois módulos
-              que trabalham em conjunto. Nesse nível deve-se testar todos os módulos que possuêm
+              Como o nome já sugere, o objetivo desse teste é garantir a qualidade de dois ou mais
+              módulos que trabalham em conjunto. Nesse nível deve-se testar todos os módulos que possuêm
               alguma relação do tipo: associação, composição ou agregação. Ao invés de usar objetos
               falsos, como era feito no nível anterior, usam-se objetos verdadeiros e testam-se os
               métodos pelos quais estes objetos trocam mensagens. Em casos em que um dos módulos
               estava funcionando no teste de unidade e passou a não funcionar no teste de integração,
               é porque muito provalmente o módulo que foi integrado está com algum problema. Este tipo
-              de teste não deve cobrir integrações com interfaces ou integração com sisteamas de
-              terceiros, APIs por exemplo.
+              de teste não deve cobrir integrações com com sistemas de terceiros, APIs por exemplo.
 
           \subsection{Teste de sistema}
               O teste de sistema é o teste em que os desenvolvedores utilizam o sistema no modo de
               produção fingindo ser um usuário comum e simulando suas respectivas ações. Esse teste,
               geralmente usa como base algum caso de uso descrito no processo de engenharia de
-              requisitos e também busca achar eventuais defeitos na interface com o usuário. Esse
+              requisitos e também busca achar eventuais defeitos na interface de usuário. Esse
               teste atualmente pode ser facilmente automatizado, mas como a interface é um componente
               que usulamente está sendo alterada, algumas empresas ainda preferem realizá-lo de maneira
               manual e automatizar somente quando a interface já está bem estabelecida.
@@ -1077,7 +1076,7 @@
               nos testes e passou a ter erros, é dito, então, que o sistema regrediu (WAZLAWICK, 2012).
 
       \section{Técnicas de teste}
-          As técnicas de teste dizem respeito a forma como os casos de teste serão implementados.
+          As técnicas de teste indicam a forma como os casos de teste serão implementados.
           Todas elas possuem em comum encontrar falhas no artefato desenvolvido. As principais
           técnicas que podem ser aplicadas são: caixa-branca, caixa-preta e caixa-cinza. Os próximos
           tópicos detalharão cada uma dessas técnicas.
@@ -1104,9 +1103,9 @@
 
               A filosofia por trás dessa técnica, encontra-se na ideia de que basta o programador
               saber o que um determinado método deveria retornar para um certo parâmetro
-              \textit{X}, ou qual atributo deveria ser atualizado. Para melhor exemplificar essa
-              ideia, propõe-se mais adiante um módulo escrito na linguagem Python capaz de fazer
-              cálculo da função fatorial. O módulo pode ser observado na Figura 9. Mesmo que, por um
+              \textit{X}. Para melhor exemplificar essa ideia, propõe-se mais adiante um módulo
+              escrito na linguagem \textit{Python} capaz de fazer cálculo da função fatorial.
+              O módulo pode ser observado na Figura 9. Mesmo que, por um
               acaso, o progamador não soubesse como a função fatorial funcionasse ou se ainda ela
               fosse muito complexa envolvendo cálculos matemáticos avançados, basta que ele saiba que
               fornecendo um valor \textit{X}, o método deve retornar obrigatoriamente
@@ -1145,11 +1144,11 @@
               valores inteiros, o algoritmo possui uma grande falha no que se refere as frestas. Ele,
               apesar de calcular corretamente os valores para qualquer inteiro não negativo, se
               eventualmente o método for executado usando como parâmetro um inteiro negativo, então o
-              módulo ficará computando até o processo ser morto, eventualmente.
+              módulo ficará computando eternamente.
 
               Aplicando o princípio dos conjuntos de equivalência para um possível arquivo de teste
               para este módulo, o desenvolvedor poderia criar testes usando os seguintes valores como
-          parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
+              parâmetro: -2, -1, 0, 1 e 2. Para os valores negativos, o programa, necessariamente deveria
               lançar uma exceção e o teste, ao receber a exceção, deveria afirmar que tudo ocorreu como
               esperado. Nesse caso, para arrumar o módulo implementado, ao em vez de usar o
               operador de diferença, basta utilizar o operador de >. Para os demais valores, basta criar
@@ -1159,9 +1158,9 @@
               A técnica da caixa branca, por sua vez, é uma técnica muito mais robusta que se comparada
               a da caixa preta. A ideia consiste em testar qual fluxo o código está sendo executado no
               componente. Esse tipo de teste visa, além de busca de erros, eliminiar trechos que nunca
-               são alcançados dentro de um método ou que sejam reduntantes. Quando esta técnica é
-               aplicada todas as possibilidades de fluxo um método devem ser testados
-               (i.e. \textit{while, for, if, else, try, catch, finally}).
+              são alcançados dentro de um método ou que sejam reduntantes. Quando esta técnica é
+              aplicada todas as possibilidades de fluxo de um método devem ser testados
+              (i.e. \textit{while, for, if, else, try, catch, finally}).
 
               Esse tipo de teste não necessariamente procura erros dentro de um módulo, mas busca
               otimizá-lo, em termos de processamento. Isso decorre do fato de que, podem haver
@@ -1203,16 +1202,6 @@
               um cenário que o desenvolvedor fornece como parâmetro o valor 4 ele deveria obrigatoriamente
               retornar o valor 24. Mas, mais do que isso, a estrutura de controle \textit{while} deveria
               ser executada 4 vezes e depois retornar o valor esperado.
-
-              Porém, em um cenário hipotético, o método poderia estar implementado de tal forma que,
-              independentemente do valor fornecido como parâmetro, estaria sempre retornando o valor
-              24. Isso poderia ocorrer caso o desenvolvedor estivesse com pouco tempo disponível para
-              implementar a função fatorial e tivesse que priorizar outras implementações. Dessa forma,
-              um teste com a caixa cinza seria a melhor técnica a ser aplicada para detectar essa falha,
-              já que a técnica da caixa preta, caso estivesse sendo utilizada única e exclusivamente com
-              o valor 4 jamais detectaria que o módulo possui um problema. Com a caixa branca combinada
-              (i.e. a caixa cinza em si), o teste apontaria que apesar de o valor retornado ser o esperado,
-              o método while não foi exeuctado o número de veazes esperado.
 
   % ---
   \chapter{Desenvolvimento Mobile}
