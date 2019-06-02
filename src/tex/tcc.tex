@@ -1407,6 +1407,45 @@
         forma como nos testes em ambiente de emulação, uma vez que os emuladores
         também estão abertos a falhas.
 
+      \section{Ciclo de vida de uma aplicação Android}
+        Uma aplicação Android, passa por diversos estados, desde sua execução até sua finalização.
+        Os estados e as respsectivas transições de uma aplicação podem ser vistos na Figura 16. Os
+        métodos representados no diagrama, como estados, são métodos implementados em toda classe
+        do tipo \textit{Activity}. Nesse métodos, o Android utiliza váriaveis internas para poder
+        controlar o estado e recursos que a aplicação está utilizando. Entretanto, quando um
+        desenvolvedor está criando sua aplicação ele pode sobrescrever esses métodos para melhorar
+        o comportamento de sua aplicação.
+
+        \begin{figure}[htbp]
+            \begin{center}
+                \includegraphics[width=0.7\textwidth]{img/activityLifecycle.png}
+            \end{center}
+        \caption{\label{fig:passaro} Ciclo de vida de uma aplicação}
+        \begin{center}(FONTE: Android, 2019)\end{center}
+        \end{figure}
+
+        Propõe-se o seguinte cenário: um usuário está utilizando uma determinada aplicação
+        e está preenchendo um formulário. Se o usuário trocar de aplicação enquanto o formulário é
+        preenchido, os dados, se não forem salvos pelo usuário, serão perdidos na troca de contexto
+        entre as aplicações. Nesse sentido, caso o desenvolvedor queira garantir que o usuário não
+        irá perder seus dados, basto que ele sobrescrever o método \textit{onPause()} e persistir
+        os dados em algum local, seja no aparelho ou em um servidor web.
+
+        Sendo assim, quando o usuário retornar a aplicação, o método \textit{onResume()} será invocado
+        pelo Android, e o desenvolvedor pode então preencher os campos com os dados que o usuário
+        já havia informado previamente. Esse tipo de implementação garante uma melhor experiência para
+        o usuário e permite ao desenvolvedor entender qual estado que sua aplicação se encontra em cada
+        momento.
+
+        É importante ressaltar que quem faz a execução e chamda desses métodos é o próprio Sistema
+        Operacional e nunca o programador. Como explicado na secção anterior, caso o aplicativo
+        fique muito tempo sem ser utilizado pelo usuário, ou seja permaneça por muito tempo no
+        estado \textit{onStop()} e a memória comece a ficar escassa, o Android irá então finalizar
+        a aplicação para liberar recursos para outros processos que estão necessitando. Por
+        isso, qualquer dado que o desenvolvedor julgue como importante, deve ser salvo, na pior das
+        hipóteses, quando este método for invocado.
+
+
   \part{Trabalhos relacionados}
 
   \chapter{Trabalhos relacionados}
@@ -1566,73 +1605,73 @@
         reescrever esse métodos e solicitar ao desenvovledor que suas \textit{Activities} herdem daquela
         sobrescrita pelo framework.
 
-      \section{Modelagem e Implementação}
-        \begin{figure}[htbp]
-            \begin{center}
-                \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
-            \end{center}
-            \caption{\label{fig:passaro} Diagrama de classes UML do framework Capuccino}
-            \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
-        \end{figure}
+        \section{Modelagem e Implementação}
+          \begin{figure}[htbp]
+              \begin{center}
+                  \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
+              \end{center}
+              \caption{\label{fig:passaro} Diagrama de classes UML do framework Capuccino}
+              \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+          \end{figure}
 
-        Na Figura 16 é possível visualizar a modelagem UML do \textit{capuccino}. Como pode ser
-        visto no diagrama, o \textit{capuccino} possui várias estrutura de dados (i.e. classes)
-        para poder armazernar informações durante o processo de captura de ações do usuário.
-        Para entender como o framework funciona, existem duas entidades chaves para compreender
-        seu correto funcionamento. São elas:
+          Na Figura 17 é possível visualizar a modelagem UML do \textit{capuccino}. Como pode ser
+          visto no diagrama, o \textit{capuccino} possui várias estrutura de dados (i.e. classes)
+          para poder armazernar informações durante o processo de captura de ações do usuário.
+          Para entender como o framework funciona, existem duas entidades chaves para compreender
+          seu correto funcionamento. São elas:
 
-        \begin{description}
-          \item[$\bullet$] \textit{CapuccinoBasicActivity}
-          \item[$\bullet$] \textit{LauncherAppActivity}
-        \end{description}
+          \begin{description}
+            \item[$\bullet$] \textit{CapuccinoBasicActivity}
+            \item[$\bullet$] \textit{LauncherAppActivity}
+          \end{description}
 
-        A classe \textit{LauncherAppActivity} é utilizada para inicar a aplicação do usuário. Além
-        disso ela também serve para criar e configurar as informações que serão utilizadas para criar
-        o teste automaticamente. Essa classe deve ser herdada pelo usuário e no arquivo \textit{AndroidManifest}
-        de seu projeto deve configurar para que essa \textit{Activity} seja o ponto
-        de entrada da aplicação. Além de implementar essa herança, o usuário deve sobrescrever o
-        método \textit{onCreate} usando os métodos \textit{setters} disponíveis a fim de informar os dados
-        para poder gerar o teste automaticamente de forma correta. Explicando breviamente cada um
-        desses dados e respectiva importância:
+          A classe \textit{LauncherAppActivity} é utilizada para inicar a aplicação do usuário. Além
+          disso ela também serve para criar e configurar as informações que serão utilizadas para criar
+          o teste automaticamente. Essa classe deve ser herdada pelo usuário e no arquivo \textit{AndroidManifest}
+          de seu projeto deve configurar para que essa \textit{Activity} seja o ponto
+          de entrada da aplicação. Além de implementar essa herança, o usuário deve sobrescrever o
+          método \textit{onCreate} usando os métodos \textit{setters} disponíveis a fim de informar os dados
+          para poder gerar o teste automaticamente de forma correta. Explicando breviamente cada um
+          desses dados e respectiva importância:
 
-        \begin{description}
-          \item[$\bullet$] \textit{packagePath}: indica o \textit{package} da aplicação do usuário.
-          \item[$\bullet$] \textit{activityPackagePath}: indica o \textit{package} onde a atividade a
-                                                         ser testada se encontra.
+          \begin{description}
+            \item[$\bullet$] \textit{packagePath}: indica o \textit{package} da aplicação do usuário.
+            \item[$\bullet$] \textit{activityPackagePath}: indica o \textit{package} onde a atividade a
+                                                           ser testada se encontra.
 
-          \item[$\bullet$] \textit{activityClassName}: nome da classe da atividade que será testada.
-          \item[$\bullet$] \textit{testFileName}: nome do arquivo de teste que o desenvolvedor deseja que seja
-                                                  gerado.
+            \item[$\bullet$] \textit{activityClassName}: nome da classe da atividade que será testada.
+            \item[$\bullet$] \textit{testFileName}: nome do arquivo de teste que o desenvolvedor deseja que seja
+                                                    gerado.
 
-          \item[$\bullet$] \textit{expectedAssertion}:  asserção que o usuário quer que seja executada ao final do
-                                                        do teste.
-        \end{description}
+            \item[$\bullet$] \textit{expectedAssertion}:  asserção que o usuário quer que seja executada ao final do
+                                                          do teste.
+          \end{description}
 
-        Já a classe \textit{CapuccinoBasicActiviy} deve ser herdada por todas as atividades do usuário,
-        ou pelo menos aquelas que serão testadas. Como dito anteriormente, o \textit{capuccino} funciona
-        como uma proxy em que ele capta as ações do usuário e repassa para aplicação original. Quando
-        o usuário herda suas atividades dessa classe é exatamente isso o que acontece. A
-        \textit{CapuccinoBasicActiviy} está associada ao \textit{CapuccinoEventLogger} que é responsável
-        por manter os eventos ordenados por horário em que ocorreu, em uma lista.
+          Já a classe \textit{CapuccinoBasicActiviy} deve ser herdada por todas as atividades do usuário,
+          ou pelo menos aquelas que serão testadas. Como dito anteriormente, o \textit{capuccino} funciona
+          como uma proxy em que ele capta as ações do usuário e repassa para aplicação original. Quando
+          o usuário herda suas atividades dessa classe é exatamente isso o que acontece. A
+          \textit{CapuccinoBasicActiviy} está associada ao \textit{CapuccinoEventLogger} que é responsável
+          por manter os eventos ordenados por horário em que ocorreu, em uma lista.
 
-        A classe \textit{CapuccinoEvent} é responsável por abstrair qualquer ação do usuário. Ela é uma
-        classe, nativamente, abstrata. A partir dela, são herdadas classes concretas que servem para indicar
-        qual foi o tipo de ação que o usuário executou. Todos esses eventos possuem como atributo o horário
-        em que ocorreram, pois dessa forma é possível deixar os mesmos ordenados na lista de eventos do
-        \textit{CapuccinoEventLogger}. É importante também destacar aqui, que na classe \textit{CapuccinoOSEvent},
-        que serve para indicar ações do usuário que envolvam chamadas do Sistema Operacional, como voltar
-        para a tela inicial do \textit{smartphone} ou bloquear a tela, somente algumas dessas ações são
-        abstraídas.
+          A classe \textit{CapuccinoEvent} é responsável por abstrair qualquer ação do usuário. Ela é uma
+          classe, nativamente, abstrata. A partir dela, são herdadas classes concretas que servem para indicar
+          qual foi o tipo de ação que o usuário executou. Todos esses eventos possuem como atributo o horário
+          em que ocorreram, pois dessa forma é possível deixar os mesmos ordenados na lista de eventos do
+          \textit{CapuccinoEventLogger}. É importante também destacar aqui, que na classe \textit{CapuccinoOSEvent},
+          que serve para indicar ações do usuário que envolvam chamadas do Sistema Operacional, como voltar
+          para a tela inicial do \textit{smartphone} ou bloquear a tela, somente algumas dessas ações são
+          abstraídas.
 
-        Assim que o usuário finalizar suas ações e chegar na condição que desejava para criar o teste, ele
-        deve encerrar sua aplicação. A partir disso, o \textit{LauncherAppActivity}, imediatamente invocará
-        \textit{onDestroy} que está configurado para chamar a classe que escreve os testes antes de eliminiar
-        a aplicação. A classe \textit{CapuccinoTestWriter} irá escrever o arquivo de teste usando como auxiliar
-        a classe \textit{CapuccinoEventTranslator} que pega as estrutura de dados utilizadas pelo
-        \textit{capuccino} e traduz para os comandos equivalentes do \textit{UIAutomator}. É interessante
-        ressaltar que o arquivo escrito ficará salvo no sistema de arquivos do smartphone emulado e não
-        do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
-        de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
+          Assim que o usuário finalizar suas ações e chegar na condição que desejava para criar o teste, ele
+          deve encerrar sua aplicação. A partir disso, o \textit{LauncherAppActivity}, imediatamente invocará
+          \textit{onDestroy} que está configurado para chamar a classe que escreve os testes antes de eliminiar
+          a aplicação. A classe \textit{CapuccinoTestWriter} irá escrever o arquivo de teste usando como auxiliar
+          a classe \textit{CapuccinoEventTranslator} que pega as estrutura de dados utilizadas pelo
+          \textit{capuccino} e traduz para os comandos equivalentes do \textit{UIAutomator}. É interessante
+          ressaltar que o arquivo escrito ficará salvo no sistema de arquivos do smartphone emulado e não
+          do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
+          de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
 
       \section{Limitações da ferramenta}
         Apesar de a ferramenta ser projetada para detectar as ações do usuário, durante a implementação
