@@ -896,7 +896,7 @@
       cada um. Isso é importante, pois quem está desenvolvendo o módulo já sabe como
       o código funciona e fica mais difícil em perceber o local do defeito. Entretanto,
       quando alguém que não desenvolveu o componente começa a se familarizar mais com o código
-      ela vai, usualmente, ler cada linha do código e tentar enteder a semântica de cada
+      ela vai, usualmente, ler cada linha do código e tentar entender a semântica de cada
       uma delas. Dessa forma, ficará muito mais evidente para quem está de fora identificar
       o erro. Por isso, os cenários de teste devem ser sempre atualizados e refatorados
       (REID, 2016).
@@ -1475,7 +1475,7 @@
       para cada modelo de celular.
 
     \section{DroidMate: A Robust and Extensible Test Generator for Android}
-      Esse artigo (JAMROZIK, K., ZELLER, A., 2016), é apresentado o DroidMate: uma ferramenta
+      Nesse artigo (JAMROZIK, K., ZELLER, A., 2016) é apresentado o DroidMate: uma ferramenta
       capaz de gerar testes baseado na interface de usuário combinado com testes
       exploratórios. O artigo inicia comentando da principal dificuldade de se escrever
       testes que é manter a base de testes sincronizada com a versão mais atual da aplicação.
@@ -1488,12 +1488,12 @@
       uma condição ser atendida, geralmente um \textit{timeout}, todo a ação monitorada
       é transformada em um teste para a aplicação.
 
-      Para implementar esse teste gerado pela ferramenta, ele reusa o UiAutomator,
+      Para implementar esse teste gerado pela ferramenta, ele reusa o UIAutomator,
       uma ferramenta oficial do próprio Android voltada para o uso de testes de
       interface de usuário. O framework é capaz de gerar esse teste, já que durante
       o monitoramento de bytecode ele consegue ter acesso a \textit{stacktrace} de
       execução, chamada de funções e valores de parâmetros. Nesse sentido, ele
-      combina os valores monitoardos junto com métodos disponibilizados no UiAutomator
+      combina os valores monitoardos junto com métodos disponibilizados no UIAutomator
       para criar os testes para o desenvolvedor.
 
       Sendo assim, a contribuição desse artigo para o esse trabalho se dá no fato de usar
@@ -1522,7 +1522,7 @@
 
         Atualmente, a API do Android possui diversas chamadas de método que permitem detectar
         ações do usuário com a aplicação. Dentre todos os métodos disponíveis, destacam-se aqui
-        os dois principais que permitiram a implementação do framework:
+        os dois principais que permitiram a implementação do framework: \par
         \begin{description}
           \item[$\bullet$] \textit{public boolean dispatchTouchEvent(MotionEvent me)}
           \item[$\bullet$] \textit{public boolean dispatchKeyEvent(KeyEvent kEvent)}
@@ -1551,7 +1551,7 @@
         Após o usuário finalizar as suas ações, o usuário deverá encerrar a apliação para indicar
         que suas ações terminaram. Após isso, o framework gera o teste com todos os atos feitos pelo usuário
         junto com a asserção definida previamente. Assim como o DroidMate, o framework utiliza
-        a biblioteca UiAutomator para poder simular as ações do usuário. Escolheu-se essa biblioteca,
+        a biblioteca UIAutomator para poder simular as ações do usuário. Escolheu-se essa biblioteca,
         pois além de ser a oficial da plataforma, ela é capaz de gerar cliques em posições X e Y.
         Para a função de asserção, o usuário deverá seguir as funções disponibilizadas no framework
         \textit{espresso}. Dessa forma, por utilizar esse framework internamente, a ferramenta
@@ -1566,9 +1566,7 @@
         reescrever esse métodos e solicitar ao desenvovledor que suas \textit{Activities} herdem daquela
         sobrescrita pelo framework.
 
-      \section{Modelagem}
-        A seguir é apresentada a modelagem em UML do \textit{capuccino}:
-
+      \section{Modelagem e Implementação}
         \begin{figure}[htbp]
             \begin{center}
                 \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
@@ -1577,12 +1575,11 @@
             \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
         \end{figure}
 
-        Como pode ser visualizado pelo diagrama, o \textit{capuccino} possui várias estrutura
-        de dados (i.e. classes) para poder armazernar informações durante o processo de captura
-        de ações do usuário. Mais detalhes sobre a implementação serão apresentados no próximo
-        capítulo. Nesse capítulo busca-se destacar como que o desenvolvedor pode integrar sua aplicação
-        com a ferramenta implementada. Para enteder isso, existem duas entidades chaves que são
-        utilizadas para fazer essa integração. São elas:
+        Na Figura 16 é possível visualizar a modelagem UML do \textit{capuccino}. Como pode ser
+        visto no diagrama, o \textit{capuccino} possui várias estrutura de dados (i.e. classes)
+        para poder armazernar informações durante o processo de captura de ações do usuário.
+        Para entender como o framework funciona, existem duas entidades chaves para compreender
+        seu correto funcionamento. São elas:
 
         \begin{description}
           \item[$\bullet$] \textit{CapuccinoBasicActivity}
@@ -1592,36 +1589,82 @@
         A classe \textit{LauncherAppActivity} é utilizada para inicar a aplicação do usuário. Além
         disso ela também serve para criar e configurar as informações que serão utilizadas para criar
         o teste automaticamente. Essa classe deve ser herdada pelo usuário e no arquivo \textit{AndroidManifest}
-        de seu projeto deve configurar para que essa \textit{Activity} seja configurada o ponto
-        de entrada da aplicação. Além de implementar essa herança, o usuário, dentro do método
-        \textit{onCreate} deve usar os métodos \textit{setters} a fim de informar alguns dados
+        de seu projeto deve configurar para que essa \textit{Activity} seja o ponto
+        de entrada da aplicação. Além de implementar essa herança, o usuário deve sobrescrever o
+        método \textit{onCreate} usando os métodos \textit{setters} disponíveis a fim de informar os dados
         para poder gerar o teste automaticamente de forma correta. Explicando breviamente cada um
-        desses dados e sua respectiva importância:
+        desses dados e respectiva importância:
 
         \begin{description}
           \item[$\bullet$] \textit{packagePath}: indica o \textit{package} da aplicação do usuário.
-          \item[$\bullet$] \textit{activityPackagePath}: indica o \textit{package} onde a atividade a ser
-                                                         ser testada se encontra. Esse caminho deve ser relativo
-                                                         ao \textit{package} raiz.
+          \item[$\bullet$] \textit{activityPackagePath}: indica o \textit{package} onde a atividade a
+                                                         ser testada se encontra.
 
           \item[$\bullet$] \textit{activityClassName}: nome da classe da atividade que será testada.
           \item[$\bullet$] \textit{testFileName}: nome do arquivo de teste que o desenvolvedor deseja que seja
                                                   gerado.
 
           \item[$\bullet$] \textit{expectedAssertion}:  asserção que o usuário quer que seja executada ao final do
-                                                        do teste usando a sintaxe do \textit{espresso}.
+                                                        do teste.
         \end{description}
 
         Já a classe \textit{CapuccinoBasicActiviy} deve ser herdada por todas as atividades do usuário,
         ou pelo menos aquelas que serão testadas. Como dito anteriormente, o \textit{capuccino} funciona
         como uma proxy em que ele capta as ações do usuário e repassa para aplicação original. Quando
         o usuário herda suas atividades dessa classe é exatamente isso o que acontece. A
-        \textit{CapuccinoBasicActiviy} está associada com ao \textit{CapuccinoEventLogger} que é responsável
-        por manter os eventos ordenados por horário em que ocorreu em uma lista.
+        \textit{CapuccinoBasicActiviy} está associada ao \textit{CapuccinoEventLogger} que é responsável
+        por manter os eventos ordenados por horário em que ocorreu, em uma lista.
 
+        A classe \textit{CapuccinoEvent} é responsável por abstrair qualquer ação do usuário. Ela é uma
+        classe, nativamente, abstrata. A partir dela, são herdadas classes concretas que servem para indicar
+        qual foi o tipo de ação que o usuário executou. Todos esses eventos possuem como atributo o horário
+        em que ocorreram, pois dessa forma é possível deixar os mesmos ordenados na lista de eventos do
+        \textit{CapuccinoEventLogger}. É importante também destacar aqui, que na classe \textit{CapuccinoOSEvent},
+        que serve para indicar ações do usuário que envolvam chamadas do Sistema Operacional, como voltar
+        para a tela inicial do \textit{smartphone} ou bloquear a tela, somente algumas dessas ações são
+        abstraídas.
 
-      \section{Implementação}
+        Assim que o usuário finalizar suas ações e chegar na condição que desejava para criar o teste, ele
+        deve encerrar sua aplicação. A partir disso, o \textit{LauncherAppActivity}, imediatamente invocará
+        \textit{onDestroy} que está configurado para chamar a classe que escreve os testes antes de eliminiar
+        a aplicação. A classe \textit{CapuccinoTestWriter} irá escrever o arquivo de teste usando como auxiliar
+        a classe \textit{CapuccinoEventTranslator} que pega as estrutura de dados utilizadas pelo
+        \textit{capuccino} e traduz para os comandos equivalentes do \textit{UIAutomator}. É interessante
+        ressaltar que o arquivo escrito ficará salvo no sistema de arquivos do smartphone emulado e não
+        do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
+        de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
+
       \section{Limitações da ferramenta}
+        Apesar de a ferramenta ser projetada para detectar as ações do usuário, durante a implementação
+        do framework, houve alguns problemas técnicos que causaram algumas limitações no \textit{capuccino}.
+        A primeira a ser destacada é que quando o usuário digita algo errado, para cada
+        letra que ele precisa apagar é necessário que antes de ele apagar ele pressione a tecla \textit{enter}
+        para depois efetivamente apagar a letra. Isso é necessário, porque como é possível observar em vários
+        fóruns de discussões sobre a API do Android, o método utilizado para capturar a digitação do usuário
+        dentro do framework, possui alguns bugs especificamente com a ação de apagar caracteres. Sendo asssim,
+        é preciso que quem estiver gerando os testes se atente a esse fato.
+
+        Outra limitação da ferramenta desenvolvida, é que ela foi projetada para gerar um caso de teste por
+        arquivo. Isso significa dizer que se uma determinada tela tiver 5 testes, a ferramenta irá gerar 5
+        arquivos diferentes. Para a gerência de código e da própria base de testes, acaba sendo um problema considerável, visto que a longo prazo, a medida que o projeto vai crescendo, seria gerado um arquivo
+        para cada caso de teste, sendo que esses testes poderiam estar integrados em um único arquivo de teste
+        para a tela em questão.
+
+        Mais uma restrição do \textit{capuccino} são os eventos de rolagem (i.e. \textit{scroll}). Apesar de
+        a ferramenta conseguir dar suporte a esse tipo de ação, os aplicativos, por padrão, são configurados
+        para manterem a inércia do movimento quando percebem um movimento de \textit{scroll}. Infelizmente,
+        esse tipo de comportamento, não é suportado pelo \textit{UIAutomator}. Dessa forma, para que o framework
+        possa ser utilizado corretamente, o testador deve desativar a inércia em movimentos de rolagem em
+        sua aplicação, ou quando estiver usando a aplicação para gerar o teste, deve se certificar que quando
+        fizer um movimento de \textit{scroll}, o movimento não continue.
+
+        Por último, um problema da ferramenta é lidar com conexões. Dependendo do tipo da aplicação
+        e das requisições HTTP executadas, o teste gerado, quando executado, pode acusar erros, visto que ele
+        não está programado para aguardar a resposta da requisição. Uma solução paliativa, porém não definitiva
+        para esse problema, é permitir que quando o usuário for gerar o teste, ele configure no framework, uma
+        variável indicando que o teste que ele irá criar envolve conexões. Dessa forma, sempre que o framework
+        executar operações de clique, ele adiciona um delay na \textit{thread}, para simular o aguardo da
+        resposta.
 
 
   \part{Resultados obtidos}
@@ -1752,6 +1795,8 @@
   for Android}. ACM International Conference on Mobile Software Engineering and Systems (MOBILESoft), 2016 Disponível em: \url{http://www.boxmate.org/files/DroidMate_MOBILESoft_2016.pdf}. Acesso em 1 de Junho de 2019.
 
   \noindent
+  STACK OVERFLOW \textit{Android - cannot capture backspace/delete press in soft. keyboard}. [S.I.:s.n.], 2014 Disponível em:
+  \url{https://stackoverflow.com/questions/18581636/android-cannot-capture-backspace-delete-press-in-soft-keyboard}. Acesso em 2 de Junho de 2019.
 
 
   % ----------------------------------------------------------
