@@ -43,6 +43,8 @@
   \usepackage{graphicx}     % Inclusão de gráficos
   \usepackage{listings}     % Inclusão de código
   \usepackage{color}
+  \usepackage{tikz}
+  \usepackage[anticlockwise, figuresright]{rotating}
   \usepackage[section]{placeins}
 
   \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -79,7 +81,7 @@
   % ---
   \usepackage[brazilian,hyperpageref]{backref}   % Paginas com as citações na bibl
   \usepackage[alf]{abntex2cite} % Citações padrão ABNT
-
+  \usepackage{xurl}
   % ---
   % CONFIGURAÇÕES DE PACOTES
   % ---
@@ -108,7 +110,7 @@
   \titulo{Um framework para geração de testes automatizados para aplicações mobile}
   \autor{Gustavo Figueira Olegário}
   \local{Brasil}
-  \data{2017}
+  \data{2019}
   \orientador{Ricardo Pereira e Silva}
   \coorientador{}
   \instituicao{%
@@ -368,7 +370,7 @@
   % resumo em português
   \begin{resumo}
     No escopo da engenharia de software, durante o processo de desenvolvimento
-    de aplicações, sabe-se que as fases de desenvolvimento e testes são as que,
+    de software, sabe-se que as fases de desenvolvimento da aplicação e testes são as que,
     costumeiramente, demandam muito esforço. Desta forma, uma ferramenta capaz
     de gerar testes automatizados para certas aplicações, no mundo de
     dispositivos mobile, pode ser vista como uma forma de acelerar o processo de
@@ -378,7 +380,7 @@
     a objetos capaz de apoiar tal atividade no contexto dos dispositvos móveis
     que possuam o sistema operacional Android. A finalidade do framework é diminuir
     o esforço e tempo investidos durante a fase de desenvolvimento de testes automatizados,
-    com enfase na elaboração desses.
+    com ênfase na elaboração desses.
 
    \vspace{\onelineskip}
 
@@ -391,7 +393,7 @@
   \begin{resumo}[Abstract]
    \begin{otherlanguage*}{english}
      In the software engineering scope, through the development process of
-     applications, the stages of development and tests are the
+     software, the stages of application development and tests are the
      ones that require more effort, usually. Therefore, a tool capable to generate
      automated tests for certain applications, at the context of mobile
      phones, can be seen as an accelerator during the process of
@@ -478,17 +480,17 @@
   Nos dias atuais, os testes são tão importantes que eles são incorporados
   por praticamente todas as metodologias ágeis, as quais, por sua vez,
   são as mais adotadas no mercado atualmente (JEREMIAH, 2017). A relevância dessa fase
-  no processo de desenvolvimento é tão grande que dependo da metodologia
+  no processo de desenvolvimento é tão grande que, dependo da metodologia
   adotada, o programador deve primeiro programar o teste e depois o módulo
   o qual lhe foi designado.
 
   Entretanto, devido a essa notória importância que a fase de testes ganhou nos
   últimos tempos, ela também tem sido uma das partes que mais tem tomado tempo
-  em projetos(ERIKSSON, 2014) e que poderia ser facilmente automatizada em muitas partes já que
+  em projetos(ERIKSSON, 2014) e que poderia ser facilmente automatizada em muitas situações já que
   costuma ser uma atividade que demanda mais trabalho manual do que inteligência.
   Nesse cenário, a proposta desse trabalho é desenvolver uma ferramenta para
   geração de testes automatizados para determinadas aplicações mobile, a fim de
-  que os desenvolvedores possam se focar em outras tarefas, enquanto
+  que os desenvolvedores possam focar em outras tarefas, enquanto
   que o Framework se encarrega de gerar os testes.
 
   Sendo assim, nas próximas partes desse trabalho é, primeiro, apresentado de maneira
@@ -503,7 +505,7 @@
       projetos poderiam ter seu tempo reduzido ou incluir mais requisitos
       implementados por entrega, se os desenvolvedores pudessem investir mais
       tempo nisso ao invés de investirem esforços em desenvolvimento de testes.
-      Sendo assim, este trabalho se propõe em implementar um framework capaz de
+      Sendo assim, este trabalho se propôs a implementar um framework capaz de
       suportar a produção de testes de maneira automática, a fim de que os
       programadores possam focar naquilo que realmente importa: suas aplicações.
 
@@ -530,7 +532,7 @@
     explorada em estudos passados. Busca-se replicar a mesma ideia para a plataforma
     Android.
 
-  \section{Objetivos geral}
+  \section{Objetivo geral}
       Analisar e desenvolver um framework orientado a objetos capaz de suportar a produção
       de testes automatizados para aplicações específicas de dispositivos que possuam como
       sistema operacional o Android.
@@ -544,12 +546,12 @@
   \end{enumerate}
 
   \section{Estrutura do documento}
-      Esta secção inicial aborda a justificativa do trabalho, bem como seus
-      objetivos gerais e específicos. Na secção 2, são apresentados os
+      Este capítulo inicial aborda a justificativa do trabalho, bem como seus
+      objetivos geral e específicos. No capítulo 2, são apresentados os
       conceitos relevantes ao trabalho para melhor compreensão do leitor.
-      A secção 3 apresentará trabalhos relacionados. Em seguida,
-      na secção 4 é mostrado como o framework foi implementado e, por
-      último, a secção 5 mostram-se os resultados obtidos juntamente com
+      O capítulo 3 apresentará trabalhos relacionados. Em seguida,
+      no capítulo 4 é mostrado como o framework foi implementado e, por
+      último, o capítulo 5 mostram-se os resultados obtidos juntamente com
       sugestões de trabalhos futuros.
   % ----------------------------------------------------------
   % Capitulo com exemplos de comandos inseridos de arquivo externo
@@ -568,7 +570,7 @@
   \chapter{Frameworks}
 
       Como este trabalho se propõe a implementar um framework de geração
-      automática de testes é importante que este conceito esteja muito bem
+      automática de testes, é importante que este conceito esteja muito bem
       definido. No mundo da programação, os desenvolvedores estão
       acostumados a usar bibliotecas ou código de terceiros. Esse processo
       geralmente resume-se, basicamente, a executar um comando de inclusão
@@ -595,7 +597,7 @@
       foco principal é o reuso de código entre projetos que compartilham
       o mesmo domínio de problema.
 
-      Nas próximas subseções será apresentado como foi o surgimento inicial
+      Nas próximas seções será apresentado como foi o surgimento inicial
       do conceito de framework, quais os principais pontos positivos e
       negativos de se usar uma ferramenta como essa e os princípios
       seguidos por frameworks.
@@ -779,23 +781,23 @@
 
           Já o fato de existir tantas relações de associações no framework, vem
           do fato de que os \textit{Design Patterns} são amplamente explorados neste universo de
-          soluções. \textit{Design Patterns} são modelagens extremamente
+          soluções. \textit{Design Patterns} são modelagens
           elegantes e que solucionam problemas que já estão muito bem conhecidos na
           modelagem de software. Na modelagem do FraG, podemos perceber em que há
-          casos em que está sendo usado até 3 \textit{Design Patterns} em paralelo:
-          \textit{factory, composite, decorator}. Não cabe aqui nesse escopo explanar
+          casos em que está sendo usado simultaneamente 3 \textit{Design Patterns}, para tratar um único problema no projeto.
+          São eles: \textit{factory, composite, decorator}. Não cabe aqui nesse escopo explanar
           cada um desses \textit{Design Patterns}, muito menos todos os existentes,
           mas é importante deixar claro que cada framework, muito provavelmente, terá
-          padrões implementados conforme a necessidade.
+          padrões reusados conforme a necessidade.
 
-          Outro ponto muito forte, é que o framework deve ser capaz de dar suporte a
+          Outro ponto forte, é que o framework deve ser capaz de dar suporte a
           uma grande quantidade de aplicações com o mesmo domínio que ele. Como foi
           visto, esse processo na modelagem do framework vem do fato de várias
-          aplicações que compartilham o mesmo domínio terem sido exaustivamente
+          aplicações que compartilham o mesmo domínio terem sido
           estudas e terem seus módulos semelhantes identificados e implementados
           de forma genérica na nova ferramenta. Feita essa parte, basta que
           os desenvolvedores escolham precisamente quais classes devem ser reescritas
-          em cada projeto, e terão boa parte da implementação já realizada e testada.
+          em cada projeto, e terão boa parte da implementação já realizada.
 
   % ---
   \chapter{Testes}
@@ -817,14 +819,14 @@
       em que a medida que ele vai codificando, vai arrumando os erros que encontra.
       Sendo assim, o time de desenvolvimento terá que gastar mais tempo arrumando
       falhas que poderiam ter sido percebidas mais cedo. Isso faz com que o tempo
-      de projeto aumente bem como os custos. Dessa forma é sempre importante que
+      de projeto aumente bem como os custos. Dessa forma, é sempre importante que
       a parte de testes esteja prevista no planejamento inicial de um projeto de software.
 
       É importante deixar claro, desde já, que o teste de software em momento
       algum supõe que o módulo implementado esteja livre de defeitos. A única coisa que o
       teste garante para o desenvolvedor é que para as entradas especificadas o
       componente está se comportando como o programador desejava. O teste costuma
-      ser implementado pensando em como fazer com que o módulo dê problemas, mas
+      ser implementado pensando em como usuário poderia causar erro no módulo, mas
       também não esquecendo da \textit{happy path}, também conhecido como sequência
       de estados em que não há ações inválidas. O teste é, então, nada mais que um conjunto
       de código que coloca o módulo que está sendo testado em um determinado estado,
@@ -832,7 +834,7 @@
       reagindo.
 
       Pensando em um cenário mais prático, propõe-se um módulo simples em que a única
-      responsabilidade é verificar se um dado CPF é válido ou não, mesmo que possua uma
+      responsabilidade seja verificar se um dado CPF é válido ou não, mesmo que possua uma
       máscara. Abaixo, podem-se observar, na Figura 4, as assinaturas de método do
       mesmo na linguagem
       \textit{Python}.
@@ -870,7 +872,7 @@
 
       Com o teste produzido, o progamador dever seguir aquilo que é conhecido como
       \textit{baby steps}. O teste, uma vez escrito e executado, dirá qual o erro
-      que está acontecendo, seja função não implementada, método retornando valores
+      está acontecendo, seja função não implementada, método retornando valores
       incorretos, objeto nulo. Dessa forma, o desenvolvedor irá corrigir o erro e
       irá executar novamente. Provalvelmente na segunda iteração, o teste apontará
       um novo erro. O programador deve, então, proseguir nesse processo até que o
@@ -895,7 +897,7 @@
       e o time de qualidade estejam constantemente refatorando o código produzido por
       cada um. Isso é importante, pois quem está desenvolvendo o módulo já sabe como
       o código funciona e fica mais difícil em perceber o local do defeito. Entretanto,
-      quando alguém que não desenvolveu o componente começa a se familarizar mais com o código
+      quando alguém que não desenvolveu o componente começa a se familarizar mais com o código,
       ela vai, usualmente, ler cada linha do código e tentar entender a semântica de cada
       uma delas. Dessa forma, ficará muito mais evidente para quem está de fora identificar
       o erro. Por isso, os cenários de teste devem ser sempre atualizados e refatorados
@@ -1018,9 +1020,9 @@
           conceito de níveis deriva daquilo que é conhecido por \textit{Pirâmide de testes},
           ilustrada na Figura 7. A pirâmide de testes correlaciona a quandidade de cada nível
           de teste junto com seus custos e tempo de execução. Na base da pirâmide, portanto,
-          identifica-se os testes com maior expressividade, em número, e que exigem pouco
+          identificam-se os testes com maior expressividade, em número, e que exigem pouco
           esforço para serem programados e que executam mais rapidamente, enquanto que no topo
-          é justamente o inverso. Nas próximas subsecções serão apresentados brevemente cada
+          é justamente o inverso. Nas próximas seções serão apresentadas brevemente cada
           uma dessas classificações de níveis.
 
           \begin{figure}[!htb]
@@ -1037,11 +1039,11 @@
               parte dos testes de uma aplicação são classificados dessa forma, uma vez que são
               os mais baratos de serem desenvolvidos e os mais rápidos de serem executados (FOWLER, 2012).
               Este nível de teste visa somente fazer o teste de uma classe isolada. Caso a classe
-              que está sendo testada iteraja de alguma forma com outras classes, seja por atributos
+              que está sendo testada interaja de alguma forma com outras classes, seja por atributos
               ou parâmetros de métodos, o programador, deve, então, usar objetos falsos, também
               conhecidos como \textit{mocks}, para simular a classe que possui relação com a classe
               que está sendo testada. Essa metodologia garante que caso qualquer defeito detectado
-              pelo teste, o defeito vem unica e exclusivamente da classe que está sendo testada,
+              pelo teste, o defeito vem única e exclusivamente da classe que está sendo testada,
               e não de classes terceiras.
 
           \subsection{Teste de integração}
@@ -1067,7 +1069,7 @@
               O teste aceitação é o teste mais importante de todos, pois é nesse teste em que o
               usuário utiliza o sistema sem auxílio dos desenvolvedores. Ele é o mais importante,
               pois o cliente dirá se as funcionalidades requisitadas foram cumpridas e valida
-              se a coleta de requisitos foi feito da forma correta.
+              se a coleta de requisitos foi feita da forma correta.
 
           \subsection{Teste de regressão}
               O teste de regressão é um nível de teste que busca executar toda a base de
@@ -1087,7 +1089,7 @@
               para avaliar o resultado retornado, sem se preocupar com a execução interna do código.
               Essa técnica pode ser aplicada em qualquer nível de teste. Obviamente, quanto mais
               entradas sejam testadas, melhor o teste é. Como já foi dito anteriormente, é
-              impossível testar todas as entradas possíveis. Nesse caso, o programador pode utilizar
+              impossível testar todas as entradas possíveis, para a maior parte das situações práticas. Nesse caso, o programador pode utilizar
               classes de equivalência para maximizar os casos de teste coberto. As classes de equivalência
               nada mais são do que dois subconjuntos do universo do conjunto de entradas possíveis,
               em que um subconjunto representa as entradas válidas e o outro as entradas inválidas.
@@ -1203,6 +1205,14 @@
               retornar o valor 24. Mas, mais do que isso, a estrutura de controle \textit{while} deveria
               ser executada 4 vezes e depois retornar o valor esperado.
 
+            \subsection{Conclusão}
+              Considerando o conteúdo abordado nessa seção, é evidente que existem muitas formas de se testar um
+              software. Nesse sentido, a principal contribuição dos conceitos aqui apresentados, além do
+              teste de software em si, são os testes de aceitação. O framework desenvolvido ao longo
+              desse trabalho é capaz de capturar as ações executadas pelo usuário e a partir delas criar
+              um teste em nível de aceitação. Mais detalhes sobre a implementação do framework serão apresentados
+              mais adiante.
+
   % ---
   \chapter{Desenvolvimento Mobile}
   % ---
@@ -1211,9 +1221,9 @@
       primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos, como visto na
       Figura 11. Nas primeiras gerações de celulares com interface gráficas e com capacidade
       de processamento mais robusta, uma séries de aplicativos era disponibilizada ao usuário como:
-      agenda, calendário, email, jogos e até mesmo acesso a internet. Porém, por mais variadas que as
+      agenda, calendário, email, jogos e até mesmo acesso à internet. Porém, por mais variadas que as
       aplicações fossem, o usuário não podia instalar aplicativos de terceiros, pelo menos não de uma
-      maneira que fosse simples para um usuário leigo. Geralmente o processo envolvia baixar
+      maneira que fosse simples para um usuário leigo. Geralmente, o processo envolvia baixar
       conteúdo de desenvolvedores no computador e fazer o deploy manualmente.
 
       \begin{figure}[htbp]
@@ -1238,7 +1248,7 @@
       como está nos dias de hoje foi o fato de que as empresas responsáveis pelos sistemas
       operacionais disponibilzassem aos seus usuários uma loja virtual de aplicativos.
       Isso fez com que os usuários não ficassem mais limitados única e exclusivamente
-      às aplicações que viam de fábrica. Outro fator que fez com que o mercado criasse
+      às aplicações que vinham de fábrica. Outro fator que fez com que o mercado criasse
       essa grande necessidade por aplicações mobile foi a facilidade que muitas das
       empresas dão aos desenvolvedores em disponibilizar seus aplicativos nessas mesmas
       lojas, fosse de forma gratuita ou não.
@@ -1251,8 +1261,8 @@
       nativa o Swift. Por último, a Microsoft possui como linguagem padrão o Visual C++ e o C\#.
       Dessa forma, por mais que uma aplicação mobile seja bem projetada, do ponto de vista de
       orientação a objetos, sempre será necessário replicar a aplicação para outra linguagem,
-      seja através de um transpilador ou de trabalho puramente manual. Por tal razão, o foco
-      desse trabalho focará exclusivamente na plataforma Android.
+      seja através de um transpilador ou de trabalho puramente manual. Por tal razão, o
+      trabalho focará exclusivamente na plataforma Android.
 
       \begin{figure}[htbp]
             \begin{center}
@@ -1262,8 +1272,8 @@
         \begin{center}(FONTE: IDC, 2017)\end{center}
       \end{figure}
 
-      Nesse sentido, nas próximas secções será apresentado uma breve abordagem técnica do
-      Android, seguido de uma secção que tratará do desenvolvimento de aplicações nessa
+      Nesse sentido, nas próximas secções é apresentada uma breve descrição técnica do
+      Android, seguido de uma seção que tratará do desenvolvimento de aplicações nessa
       mesma plataforma, trazendo os principais aspectos e conceitos
 
       \section{Especificações técnicas do Android}
@@ -1309,13 +1319,13 @@
         a memória comece a ficar escassa, então o sistema começa a matar os processos que estão
         há mais tempo sem serem utilizaods.
 
-        Já quanto as aplicações que são desenvolvidas para o Android, estas utilizam como suporte
+        Já quanto às aplicações que são desenvolvidas para o Android, estas utilizam como suporte
         o Android SDK (\textit{Software Development Kit}). O SDK possui ferramentas como: debugger,
         bibliotecas (API's), emulador baseado no QEMU, documentação. O SDK possui suporte nativo
         a linguagem Java que pode ser combinado com trechos de código escritos en C/C++ e,
         mais recentemente, a Google anunciou que a linguagem Kotlin também passou a ser suportada
         pelo SDK. Outra \textit{feature} interessante do SDK é que ele permite que os
-        desenvolvedores testem seus aplicativos em versões mais antigas do Android, afim de
+        desenvolvedores testem seus aplicativos em versões mais antigas do Android, a fim de
         que possam analisar o desempenho de suas aplicações em plataformas mais antigas.
 
       \section{Desenvolvimento de aplicações mobile Android}
@@ -1338,7 +1348,7 @@
         o próprio Android Studio já irá criar, automaticamente, uma estrutura de diretórios padrão,
         sendo os principais diretórios: \textit{java} e o \textit{res}. Na pasta \textit{java},
         fica todo o código fonte da aplicação que será executado. Já dentro do diretório
-        \textit{res} é onde fica os arquivos \textit{XML} de configuração de interface e outros
+        \textit{res} é onde ficam os arquivos \textit{XML} de configuração de interface e outros
         arquivos importantes como o de internacionalização de strings.
 
         A Google adotou como padrão que sempre que o desenvolvedor quiser criar uma nova interface
@@ -1361,7 +1371,7 @@
 
         Já o arquivo Java da atividade criada serve como uma controladora para a interface. Esse
         arquivo Java conterá uma classe que herda, indiretamente, da classe \textit{Activity}. O
-        objetivo dessa classe é unicamente ser a controladora da ativdade que está sendo
+        objetivo dessa classe é unicamente ser a controladora da atividade que está sendo
         desenvolvida, ou seja, atualizar a interface e invocar métodos de outros objetos que tratem
         do modelo. Cada \textit{activity} tem sua própria controloradora e não deve gerenciar mais
         nenhuma outra interface, além da que foi designada. Outro ponto importante, é que alguns métodos
@@ -1377,7 +1387,7 @@
         utilizar dados do servidor para executar alguma ação, a aplicação fará uma requisição para
         o servidor através do protocolo HTTP para poder ter acesso as endpoints das APIS
         necessárias. Esse processo requer uma troca de dados estruturados. Ultimamente, muitas das
-        API's que vem sendo implementadas tem utilizado apenas dados em formato JSON, mas já houve
+        API's que vem sendo implementadas têm utilizado apenas dados em formato JSON, mas já houve
         épocas em que o formato padrão era XML.
 
         \begin{figure}[htbp]
@@ -1413,8 +1423,8 @@
         métodos representados no diagrama, como estados, são métodos implementados em toda classe
         do tipo \textit{Activity}. Nesse métodos, o Android utiliza váriaveis internas para poder
         controlar o estado e recursos que a aplicação está utilizando. Entretanto, quando um
-        desenvolvedor está criando sua aplicação ele pode sobrescrever esses métodos para melhorar
-        o comportamento de sua aplicação.
+        desenvolvedor está criando sua aplicação ele pode sobrescrever esses métodos para adaptar
+        para necessidades específicas.
 
         \begin{figure}[htbp]
             \begin{center}
@@ -1445,17 +1455,24 @@
         isso, qualquer dado que o desenvolvedor julgue como importante, deve ser salvo, na pior das
         hipóteses, quando este método for invocado.
 
+      \section{Conclusão}
+        Assim como qualquer outro software, as aplicações Android precisam ser testadas durante o
+        processo de desenvolvimento. O Android SDK oferece alguns recursos nativos para testar aplicações
+        como: framework para testes unitários, \textit{debugger}, funções de asserção. Dessa forma, é
+        importante compreender como as aplicações Android são desenvolvidas e quais ferramentas para teste
+        estão disponíveis para que, então, um framework capaz de gerar testes nativos para aplicação seja
+        possível de ser implementado.
 
   \part{Trabalhos relacionados}
 
   \chapter{Trabalhos relacionados}
-    Nesse capítulo são apresentados trabalhos relacionados que envolve tanto o desenvolvimento de frameworks,
-    como ferramentas que ajudem na elaboração automática de testes automatizados. Os trabalhos aresentados
-    ajudam, além de validar a exsitência desse trabalho, a reusar ideias já existentes e aplicá-las em um
-    contexto específico, no caso aplicações atuais para a plataforma Android.
+    Nesse capítulo são apresentados trabalhos relacionados que envolvem tanto o desenvolvimento de frameworks,
+    como ferramentas que ajudem na elaboração automática de testes automatizados. Os trabalhos apresentados
+    ajudaram, além de justificar a exsitência desse trabalho, a reusar ideias já existentes e aplicá-las em um
+    contexto específico, no caso aplicações para a plataforma Android.
 
     \section{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}
-      Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feito uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
+      Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feita uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
       maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
       discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
       ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
@@ -1485,7 +1502,7 @@
     \section{An Object-Oriented Framework for Improving Software Reuse on Automated Testing of Mobile Phones}
       Frameworks capazes de auxiliar os desenvolvedores na elaboração de testes automatizados para aplicações
       mobile é um conceito que já foi aplicado no passado, como pode ser observado nesse artigo. Esse
-      trabalho (SILVA, R. P., SANTOS, L. Et al., 2007) possui como principal foco o desenvolvimento de destes
+      trabalho (KAWAKAMI, L., KNABBEN A. Et al., 2007) possui como principal foco o desenvolvimento de destes
       automatizados baseado em casos de uso, usando o reuso como principal forma de alcançar esse objetivo.
       No framework desenvolvido, ainda era necessário que o programador implementasse manualmente os testes.
       Porém, a grande vantagem do uso desse framework era que ele possuia grandes abstrações de hardware
@@ -1494,7 +1511,7 @@
       (i.e. executar os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
 
       Dos resultados obtidos do artigo, pode-se verificar que 10 modelos de celulares foram utilizados no
-      estudo. A medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
+      estudo. À medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
       consideravelmente, alcançando uma média de 84\% de reaproveitamento de testes. Fica nítido, através
       do estudo, também que o custo para automatizar testes é grande, visto que é o preço que se paga pelo
       reuso. Entretanto, ao portar testes de um modelo de celular para outro o esforço necessário é 1/4 do
@@ -1509,20 +1526,20 @@
 
       Nesse sentido, a principal contribuição do artigo para esse trabalho é, além de validar a importância
       do desenvolvimento de uma ferramenta similar para os dipositivos atuais, é utilizar o conceito de caso
-      de uso para gerar testes automaticamente. A atual API do Android já é muito consolidada e e fornece
-      abstrações o suficiente para que o programador não precise reescrever várias vezes a mesma aplicação
+      de uso para gerar testes automaticamente. A atual API do Android já é muito consolidada e fornece
+      abstrações suficientes para que o programador não precise reescrever várias vezes a mesma aplicação
       para cada modelo de celular.
 
     \section{DroidMate: A Robust and Extensible Test Generator for Android}
       Nesse artigo (JAMROZIK, K., ZELLER, A., 2016) é apresentado o DroidMate: uma ferramenta
       capaz de gerar testes baseado na interface de usuário combinado com testes
-      exploratórios. O artigo inicia comentando da principal dificuldade de se escrever
-      testes que é manter a base de testes sincronizada com a versão mais atual da aplicação.
+      exploratórios. O artigo inicia comentando a principal dificuldade de se escrever
+      testes, que é manter a base de testes sincronizada com a versão mais atual da aplicação.
       Isso acontece, visto que qualquer refatoração ou implementação de nova feature no sistema,
-      ainda que seja mínima, necessita de uma revisão na base de testse. Dado esse cenário,
-      é apresentado uma ferramenta capaz de monitorar o bytecode executado dentro da aplicação
+      ainda que seja mínima, necessita de uma revisão na base de teste. Dado esse cenário,
+      é apresentada uma ferramenta capaz de monitorar o bytecode executado dentro da aplicação
       durante a utilização por um usuário. O framework implementado se propõe a criar
-      um log utilziando como base as ações do usuário como cliques e texto
+      um log utilizando como base as ações do usuário como cliques e texto
       digitado. Esse monitoramento é guardado em um arquivo do próprio framework. Após
       uma condição ser atendida, geralmente um \textit{timeout}, todo a ação monitorada
       é transformada em um teste para a aplicação.
@@ -1538,24 +1555,60 @@
       Sendo assim, a contribuição desse artigo para o esse trabalho se dá no fato de usar
       a interação do usuário com a aplicação, monitorada programaticamente, para gerar
       os testes de forma automática. Porém, diferente do DroidMate, o framework que
-      será implementado buscar monitorar chamadas em mais alto nível, sem precisar fazer
+      foi implementado buscar monitorar chamadas em mais alto nível, sem precisar fazer
       a verificação de cógido a nível de bytecode.
 
   \part{O framework}
     \chapter{Análise e desenvolvimento do framework}
+      \section{Visão geral do framework}
+        O \textit{capuccino}, nome do framework desenvolvido durante esse trabalho, é uma ferramenta
+        capaz de gerar testes de interface, ou seja em nível de usuário, baseado em execução da aplicação.
+        O framework utiliza a ideia de capturar ações do usuário enquanto ele utiliza a aplicação para construir
+        um caso de teste. À medida que o usuário utiliza o aplicativo, em um dispositivo emulado, as suas ações
+        de clique e preenchimento de formulários vão sendo capturadas. Ao longo desse processo, o \textit{capuccino}
+        vai mantendo esses eventos em uma lista ordenada por horário em que o evento ocorreu. Quando o usuário terminar
+        de executar todas as suas ações, ele deve encerrar a aplicação para indicar ao framework que nenhuma
+        interação será mais executada e que o teste já pode ser gerado.
+
+        Após o framework ser notificado de que a aplicação foi finalizada, ele irá gerar o arquivo de teste com todas
+        ações do usuário de forma programática. Para criar esse teste, o \textit{capuccino} utiliza algumas informações
+        que foram previamente fornecidas por quem está executando as ações como: qual deve ser a asserção executada
+        ao final do teste, nome do arquivo do teste, caminho do diretório raiz da aplicação. Com essas informações,
+        o teste é criado, utilizando bibliotecas oficiais do Android que simulam ações do usuário. Uma vez escrito,
+        o arquivo gerado pelo framework pode, então, ser exportado para o pacote de testes de aplicação e ser executado
+        normalmente.
+
+        Nesse sentido, o caso de teste gerado é responsável por inicializar a aplicação e implementar as ações do
+        usuário através de uma biblioteca que permite simular operações de usuário como: clique em uma posição da tela,
+        tecla digitada e movimento de rolagem. Ao final dessas ações, é executada, então, a asserção definida
+        previamente pelo usuário.
+
+        É importante deixar claro, que em nenhum momento o framework assume qual deve ser a asserção executada ao final
+        do teste. Isso se deve ao fato de que esse tipo de informação é totalmente dependente do domínio do problema,
+        ou seja aplicação que está sendo testada.
+
+        Outro ponto a ser ressaltado é que  para definir a asserção que será executada ao final do teste, a pessoa que
+        está a gerar o caso de teste, deverá seguir uma sintaxe específica de uma biblioteca do Android: o \textit{espresso}.
+        Dessa forma, antes de iniciar a produção do teste, o usuário deverá definir através de uma classe fornecida pelo
+        próprio framework, qual a asserção será executada ao final do teste, usando a sintaxe da biblioteca indicada.
+        Caso a asserção não seja definida, o caso de teste criado pela ferramenta ficará incompleto
+
+        Por último, é interessante reforçar a ideia de que o que o framework se propõe a automatizar é a geração de
+        de caso de testes e não a aplicação dos mesmos, ou seja execução.
+
       \section{Concepção}
-        Dado os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
-        para gerar automaticamente testes para dispositivos mobile é perfeitamente possível. O
-        framework foi concebido sob a óptica de capturar as ações do usuário e gerar um teste
-        a nível de interface de usuário. Porém, diferente do DroidMate, ao em vez de configurar
-        um \textit{timeout}, será disponibilizado ao usuário configurar uma asserção para ser
-        executada no final do teste, para verificar se houve sucesso ou não durante a ação
+        Considerando os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
+        capaz de gerar testes automaticamente para dispositivos mobile é perfeitamente possível. O
+        framework desenvolvido nesse trabalho foi concebido sob a óptica de capturar as ações do
+        usuário e gerar um teste no nível de interface de usuário. Porém, diferente do DroidMate, ao invés
+        de configurar um \textit{timeout}, é disponibilizado ao usuário configurar uma asserção
+        para ser executada no final do teste, para verificar se houve sucesso ou não durante a ação
         do usuário.
 
         Além disso, o framework foi idealizado com a ideia de que o desenvolvedor não precise
-        reescrever sua aplicação para se adequar a ferramenta. Nesse sentido, o framework
+        reescrever sua aplicação para se adequar à ferramenta. Nesse sentido, o framework
         foi desenvolvido com a ideia de que o desenvolvedor necessite apenas herdar classes
-        do framework implementado e escreva algumas informações no arquivo de configuração.
+        do framework implementado e escrever algumas informações no arquivo de configuração.
         É importante deixar claro, que mesmo herdando as classes do framework, a aplicação
         desenvolvida não terá seu comportamento alterado de nenhuma maneira.
 
@@ -1567,7 +1620,7 @@
           \item[$\bullet$] \textit{public boolean dispatchKeyEvent(KeyEvent kEvent)}
         \end{description}
 
-        Como os próprios nomes já sugerem, eles permitem detectar ações de clique do usuário
+        Como os nomes já sugerem, eles permitem detectar ações de clique do usuário
         e texto digitado, respectivamente. Esses métodos são invocados pelo Android toda
         vez que um evento de clique ou de digitação ocorre. Para o caso em que um clique
         é detectado, o objeto passado como parâmetro, \textit{MotionEvent}, permite coletar
@@ -1598,7 +1651,7 @@
 
         Nesse sentido, o framework concebido acaba funcionando como uma espécie de proxy, em que as
         ações capturadas do usuário são guardadas em estrutura de dados da própria biblioteca, e o
-        evento é então repassado oficialmente para aplicação, sem alterar nenhum valor ou comportamento
+        evento é então repassado para aplicação, sem alterar nenhum valor ou comportamento
         original. Essas chamadas de método da API do Android estão disponíveis em toda \textit{Activity}
         e, como explicado no capítulo de desenvolvimento mobile, todo o desenvolvimento de uma aplicação
         Android se baseia em \textit{Activities}. Por isso, a principal função do \textit{capuccino} é
@@ -1606,18 +1659,19 @@
         sobrescrita pelo framework.
 
         \section{Modelagem e Implementação}
-          \begin{figure}[htbp]
+          \begin{sidewaysfigure}
               \begin{center}
-                  \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
+                \includegraphics[width=1.0\textwidth]{img/capuccinoDiagram.png}
+                \caption{Diagrama de classes UML do framework Capuccino}
+                \label{fig:PropProf}
+                \begin{center}(FONTE: Android, 2019)\end{center}
               \end{center}
-              \caption{\label{fig:passaro} Diagrama de classes UML do framework Capuccino}
-              \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
-          \end{figure}
+          \end{sidewaysfigure}
 
           Na Figura 17 é possível visualizar a modelagem UML do \textit{capuccino}. Como pode ser
-          visto no diagrama, o \textit{capuccino} possui várias estrutura de dados (i.e. classes)
+          visto no diagrama, o \textit{capuccino} possui várias estruturas de dados (i.e. classes)
           para poder armazernar informações durante o processo de captura de ações do usuário.
-          Para entender como o framework funciona, existem duas entidades chaves para compreender
+          Para entender como o framework funciona, existem duas entidades-chave para compreender
           seu correto funcionamento. São elas:
 
           \begin{description}
@@ -1664,7 +1718,7 @@
           abstraídas.
 
           Assim que o usuário finalizar suas ações e chegar na condição que desejava para criar o teste, ele
-          deve encerrar sua aplicação. A partir disso, o \textit{LauncherAppActivity}, imediatamente invocará
+          deve encerrar sua aplicação. A partir disso, o \textit{LauncherAppActivity}, imediatamente, invocará
           \textit{onDestroy} que está configurado para chamar a classe que escreve os testes antes de eliminiar
           a aplicação. A classe \textit{CapuccinoTestWriter} irá escrever o arquivo de teste usando como auxiliar
           a classe \textit{CapuccinoEventTranslator} que pega as estrutura de dados utilizadas pelo
@@ -1672,6 +1726,18 @@
           ressaltar que o arquivo escrito ficará salvo no sistema de arquivos do smartphone emulado e não
           do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
           de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
+
+          Ao final desse processo, o usuário terá criado um único caso de teste descrito em um arquivo. Esse
+          teste, ao ser exportado para o diretório de testes de aplicação, pode ser executado normalmente. Durante
+          a execução do teste criado, o teste irá iniciar a aplicação no dispositivo previamente emulado e
+          irá executar as mesmas ações que o usuário executou, na mesma ordem de forma automática. Após performar
+          a última ação, a asserção definida pelo usuário será executada e seu retorno será exibida no \textit{Logger}
+          do Android Studio.
+
+          Para criar mais casos testes, basta o usuário redefinir os dados necessários na classe de configuração de teste,
+          reiniciar a aplicação e ir executando um caso de uso normalmente e encerrá-la, quando não houver mais ações
+          para executar. Novamente, o framework realiza os mesmos passos em que escreve as ações do usuário em
+          um arquivo de teste no sistema de arquivos do dispositivo emulado.
 
       \section{Limitações da ferramenta}
         Apesar de a ferramenta ser projetada para detectar as ações do usuário, durante a implementação
@@ -1707,7 +1773,84 @@
 
 
   \part{Resultados obtidos}
-    TODO
+    \chapter{Resultados obtidos}
+      Para testar a capacidade do framework em gerar os testes, desenvolveu-se uma aplicação simples que simula a
+      compra e venda de produtos. Nessa aplicação, é possível cadastrar usuários, produtos e fazer operações envolvendo
+      autenticação. O código desta aplicação está disponível junto com o framework desenvolvido em um repositório do
+      GitHub do autor. A tela de autenticação dessa aplicação pode ser visualizado na Figura 18.
+
+      \begin{figure}[htbp]
+        \begin{center}
+          \includegraphics[width=0.7\textwidth]{img/escamboLogin.png}
+            \end{center}
+          \caption{\label{fig:passaro} Tela de autenticação da aplicação de teste}
+        \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+      \end{figure}
+
+      Utilizando essa aplicação, foram criados testes para autenticar e cadastrar usuário. O código gerado pelo
+      capuccino para o caso de se autenticar está disponível na Figura 19. Como pode ser observado, esse código
+      se encontra no diretório de testes de aplicaçao. Porém, para que o teste ficasse disponível nesse pacote,
+      foi necessário mover o arquivo do sistema de arquivos do dispositivo emulado para o sistema de arquvidos do
+      dispositivo hospedeiro. Os testes criados pelo framework sempre ficam disponíveis no diretório
+      \textit{/data/user/0/nome.da.aplicacao/files}.
+
+      O teste em questão, é uma tentativa de autenticação em que o usuário não digita a senha. Nesse sentido a asserção
+      definida previamente pelo usuário, verifica se uma mensagem de erro relacionada a senha é exibida. Ao executar o
+      mesmo teste, um log acusando sucesso é exibida, como pode ser visto na Figura 20.
+
+      \begin{figure}[htbp]
+        \begin{center}
+          \includegraphics[width=1.0\textwidth]{img/capuccinoSucess.png}
+            \end{center}
+          \caption{\label{fig:passaro} Log indicando sucesso na execução do teste gerado pelo capuccino.}
+        \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+      \end{figure}
+
+      Somando todas as linhas de código geradas pelo framework para esses casos de teste foram 150 linhas de código
+      geradas em menos de uma hora. Infelizmente, não existe nenhuma métrica que seja capaz de correlacionar número de
+      linhas produzidas por unidade de tempo. Entretanto, é nítido que o framework traz produtividade para um projeto
+      por diversos fatores. O primeiro é que a pessoa que está testando a aplicação não precisa ser um programador ou
+      ser um testador com longos anos de carreira. Um usuário comum utilizando a aplicação em um ambiente previamente
+      configurado, seria perfeitamente possível de gerar os testes, o que acaba barateando os custos de um projeto.
+
+      A produtividade também cresce dentro do projeto, visto que os programadores, ou o time de QA, não necessitam mais
+      aprender a como implementar um teste de interface de usuário nesse tipo de projeto. Basta utilizar usar a
+      ferramenta e conhecer como o capuccino faz as asserções que o teste será criado. Isso poupa o tempo dos
+      desenvolvedores que seria gasto para aprender a como implementar testes de interface de usuário em dispositivos
+      Android.
+
+      Outro ganho considerável na produtividade é quando o código, da aplicação, passa por algum tipo de refatoração e
+      os testes de interface de usuário passam a não funcionar mais. Em vez do time de QA despender tempo revisando o
+      código de teste e tentando encontrar o erro, basta utilizar a aplicação normalmente, que um novo teste, adaptado
+      as novas refatorações será gerado.
+
+    \chapter{Conclusão}
+      Como sugestão de trabalhos futuros, indica-se o estudo, análise e correção de alguma das limitações que o
+      capuccino apresenta. Para resolver o problema de gerar um arquivo para cada caso de teste, uma possível solução
+      seria o framework analisar se já existe um arquivo gerado com o mesmo nome. Em caso positivo, em vez de ele
+      sobrescrever o arquivo com os dados atuais, ele pode gerenciar o código internamente para adicionar um novo caso
+      de teste.
+
+      Uma possível outra sugestão de trabalho seria verificar como o framework se comporta com aplicações como jogos
+      eletrônicos. Esse é um caso interessante de ser testado, visto que a interface desse tipo de aplicação costuma
+      ser muito dinâmica. Nesse sentido, seria possível ver um estudo de como capuccino reage com programas desse tipo
+      e refatorar o que fosse necessário para que ele se adaptasse e pudesse gerar os testes corretamente. Outra
+      possibilidade seria estudar alguma maneira de fazer com que o framework aguarde corretamente o retorno das
+      requisições feitas na rede. Sendo assim, seria possível desenvolver um módulo que monitorasse o consumo de rede
+      da aplicação e que indicasse para o framework quais ações envolvem operação com a rede ou não.
+
+      Revendo os objetivos apresentados no início do trabalho, tanto geral quanto específico, fica claro que o framework
+      implementado cumpre com o que foi proposto. Foi desenvolvido uma ferramenta capaz de produzier testes, em nível de
+      usuário, para dispositivos que utilizem como Sistema Operacional o Android. Além disso, o framework consegue
+      diminuir significativamente o esforço investido durante a produção de testes, visto que não é necessário mais
+      implementar testes a nível de código. Basta que o testador, ou um usuário real, utilizem a aplicação alvo usando
+      como guia algum caso de uso que ao final da execução terão disponível um teste em nível de usuário. Consequentemente,
+      acaba não sendo mais necessário que os membros da equipe de teste de um projeto aprendam a usar uma biblioteca de teste.
+
+      Isso significa dizer que para o projeto não é mais necessário que haja alguém que domine uma biblioteca específica
+      de testes em nível de usuário ou que o time necessite precise aprender uma nova tecnologia. Basta que os testadores
+      utilizem o software como um usário comum, o que implica dizer que o projeto tem redução de tempo e custos.
+
 
   % \chapter{Testando o Framework}
 
