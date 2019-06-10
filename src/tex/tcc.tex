@@ -1727,17 +1727,87 @@
           do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
           de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
 
-          Ao final desse processo, o usuário terá criado um único caso de teste descrito em um arquivo. Esse
-          teste, ao ser exportado para o diretório de testes de aplicação, pode ser executado normalmente. Durante
-          a execução do teste criado, o teste irá iniciar a aplicação no dispositivo previamente emulado e
-          irá executar as mesmas ações que o usuário executou, na mesma ordem de forma automática. Após performar
-          a última ação, a asserção definida pelo usuário será executada e seu retorno será exibida no \textit{Logger}
-          do Android Studio.
+          Ao final desse processo, o usuário terá criado um único caso de teste descrito em um arquivo com a asserção
+          que ele definiu previamente antes de inciar a aplicação. Esse teste, ao ser exportado para o diretório de
+          testes de aplicação, pode ser executado normalmente. Durante a execução do teste criado, o teste irá iniciar
+          a aplicação no dispositivo previamente emulado e irá executar as mesmas ações que o usuário executou, na mesma
+          ordem de forma automática. Após performar a última ação, a asserção definida pelo usuário será executada e seu
+          retorno será exibida no \textit{Logger} do Android Studio.
 
           Para criar mais casos testes, basta o usuário redefinir os dados necessários na classe de configuração de teste,
           reiniciar a aplicação e ir executando um caso de uso normalmente e encerrá-la, quando não houver mais ações
           para executar. Novamente, o framework realiza os mesmos passos em que escreve as ações do usuário em
           um arquivo de teste no sistema de arquivos do dispositivo emulado.
+
+      \section{Uso do framework}
+        Para melhor entendimento, do ponto de vista de um usuário, o intuito dessa seção é apresentar como um
+        desenvolvedor pode integrar sua aplicação ao \textit{capuccino}. Inicialmente, o projeto com código
+        do framework deve ser copiado para o diretório raiz da aplicação que está sendo desenvovlida. Isso pode ser
+        feito através de uma clonagem do repositório do projeto que está disponível no \textit{Github}. Feito esse
+        processo, o usuário deve então instalar as dependências do \textit{capuccino} através do \textit{gradle},
+        gerenciador de pacotes oficial do Android Studio.
+
+        Depois de instalar os pacotes necessários para o correto funcionamento do framework, o desenvolvedor deve
+        indicar no arquivo \textit{settings.gradle} que o diretório do \textit{capuccino} deve ser incluído durante
+        a geração do binário da aplicação. Dessa forma, quando a aplicação estiver sendo compilada, não haverá
+        erros de \textit{import}, nem de dependendências não encontradas.
+
+        Feito essa configuração inicial, o usuário da ferramenta deve, então, fazer com que cada uma de suas
+        classes que representem as \textit{activities} herdem da classe \textit{CapuccinoBasicActiviy}. Como visto
+        anteriormente no diagrama do framework, essa classe é a base para que a captura de ações do usuário seja possível.
+        Nesse sentido, é necessário que as classes de \textit{activities} do projeto devam herdar dessa classe, ou pelo
+        menos aquelas que o usuário quer que casos de teste sejam gerados.
+
+        Após essa modificação nas classes, deve ser criada uma nova classe, também para controlar uma \textit{Activity}.
+        Porém, essa nova classe não deverá herdar de \textit{CapuccinoBasicActiviy}, e sim de \textit{LauncherAppActivity}.
+        Essa classe, será responsável por inicializar a aplicação do usuário e onde será configurada algumas variáveis
+        como: qual deve ser a asserção executada ao final do teste, nome do arquivo do teste, caminho do diretório
+        raiz da aplicação. Um exemplo dessa classe pode ser visto na Figura 18:
+
+        \begin{figure}[htbp]
+          \begin{center}
+            \includegraphics[width=1.0\textwidth]{img/testActivity.png}
+              \end{center}
+            \caption{\label{fig:passaro} Exemplo da classe resopnsável por incializar e configurar o projeto do usuário.}
+          \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+        \end{figure}
+
+        É possível perceber que além dessa classe herdar de \textit{LauncherAppActivity}, no método \textit{onCreate},
+        uma série de variáveis são configuradas, através de métodos \textit{setters}. A semântica de cada uma dessas
+        variáveis já foi explicada anteriormente. É importante deixar claro que caso alguma dessas variáveis não seja
+        configurada no método \textit{onCreate}, uma exceção será lançada indicando que alguma variável não foi
+        corretamente configurada.
+
+        Após implementar essa classe, o usuário deve então configurar o projeto para que essa nova classe desenvolvida
+        seja o ponto de entrada do aplicativo. Para fazer essa configuração, basta atualizar o arquivo
+        \textit{AndroidManifest.xml}. O trecho do código que faz essa configuração pode ser visualizado na Figura 19:
+
+        \begin{figure}[htbp]
+          \begin{center}
+            \includegraphics[width=1.0\textwidth]{img/androidManifest.png}
+              \end{center}
+            \caption{\label{fig:passaro} Código para configurar novo ponto de entrada da aplicação.}
+          \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+        \end{figure}
+
+        Feita essa configuração, basta o usuário, então, inicializar a aplicação normalmente em um dispositivo emulado.
+        A aplicação será iniciada e quem estiver criando o teste não verá nenhum tipo de alteração
+        no comportamento original da aplicação. A partir desse momento, o usuário pode executar os casos de uso da
+        aplicação, a fim de gerar os testes. Durante a execução dos casos de uso, as ações executadas pelo usuário vão
+        sendo capturadas internamente pelo framework. Nesse sentido quando usuário terminar de executar algum caso de uso,
+        ele precisa encerrar a aplicação para indicar ao \textit{capuccino} que o caso de teste já pode ser gerado.
+
+        Assim que a aplicação for encerrada, o caso de teste será escrito no sistema de arquivos do dispositivo emulado.
+        Para ter acesso ao arquivo criado pelo framework o usuário deve acessar a aba \textit{Device File Explorer}.
+        No sistema de arquivos, deve-se seguir o seguinte caminho: \textit{/data/user/0/pacote.raiz.da.aplicacao/files}.
+        Nesse diretório é onde são guardados todos os arquivos de teste criado pelo framework. Ao abrir o arquivo de teste,
+        o usuário deve copiar o conteúdo para um arquivo equivalente no pacote de testes da aplicação.
+
+        Ao final desse processo, o usuário terá então disponível em seu pacote de testes, um arquivo com caso de teste
+        descrito e automatizado, em nível de usuário, responsável por testar o caso de uso que ele acabou de executar.
+        Para criar mais casos de teste, basta que o usuário continue seguindo esse processo até estar satisfeito com a
+        quantidade de casos de teste criados. Quando quiser executar os casos de teste, basta executar o pacote que
+        contém os testes da aplicação.
 
       \section{Limitações da ferramenta}
         Apesar de a ferramenta ser projetada para detectar as ações do usuário, durante a implementação
@@ -1771,13 +1841,12 @@
         executar operações de clique, ele adiciona um delay na \textit{thread}, para simular o aguardo da
         resposta.
 
-
   \part{Resultados obtidos}
-    \chapter{Resultados obtidos}
+    \chapter{Avaliação do framework}
       Para testar a capacidade do framework em gerar os testes, desenvolveu-se uma aplicação simples que simula a
       compra e venda de produtos. Nessa aplicação, é possível cadastrar usuários, produtos e fazer operações envolvendo
       autenticação. O código desta aplicação está disponível junto com o framework desenvolvido em um repositório do
-      GitHub do autor. A tela de autenticação dessa aplicação pode ser visualizado na Figura 18.
+      GitHub do autor. A tela de autenticação dessa aplicação pode ser visualizado na Figura 19.
 
       \begin{figure}[htbp]
         \begin{center}
@@ -1788,7 +1857,7 @@
       \end{figure}
 
       Utilizando essa aplicação, foram criados testes para autenticar e cadastrar usuário. O código gerado pelo
-      capuccino para o caso de se autenticar está disponível na Figura 19. Como pode ser observado, esse código
+      capuccino para o caso de se autenticar está disponível na Figura 20. Como pode ser observado, esse código
       se encontra no diretório de testes de aplicaçao. Porém, para que o teste ficasse disponível nesse pacote,
       foi necessário mover o arquivo do sistema de arquivos do dispositivo emulado para o sistema de arquvidos do
       dispositivo hospedeiro. Os testes criados pelo framework sempre ficam disponíveis no diretório
@@ -1796,7 +1865,7 @@
 
       O teste em questão, é uma tentativa de autenticação em que o usuário não digita a senha. Nesse sentido a asserção
       definida previamente pelo usuário, verifica se uma mensagem de erro relacionada a senha é exibida. Ao executar o
-      mesmo teste, um log acusando sucesso é exibida, como pode ser visto na Figura 20.
+      mesmo teste, um log acusando sucesso é exibida, como pode ser visto na Figura 21.
 
       \begin{figure}[htbp]
         \begin{center}
