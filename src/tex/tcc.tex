@@ -1563,38 +1563,39 @@
       \section{Visão geral do framework}
         O \textit{capuccino}, nome do framework desenvolvido durante esse trabalho, é uma ferramenta
         capaz de gerar testes de interface, ou seja em nível de usuário, baseado em execução da aplicação.
-        O framework utiliza a ideia de capturar ações do usuário enquanto ele utiliza a aplicação para construir
-        um caso de teste. À medida que o usuário utiliza o aplicativo, em um dispositivo emulado, as suas ações
-        de clique e preenchimento de formulários vão sendo capturadas. Ao longo desse processo, o \textit{capuccino}
-        vai mantendo esses eventos em uma lista ordenada por horário em que o evento ocorreu. Quando o usuário terminar
-        de executar todas as suas ações, ele deve encerrar a aplicação para indicar ao framework que nenhuma
-        interação será mais executada e que o teste já pode ser gerado.
+        O framework utiliza a ideia de capturar ações do usuário enquanto ele utiliza a aplicação para
+        construir um caso de teste. À medida que o usuário utiliza o aplicativo, em um dispositivo emulado,
+        as suas ações de clique e preenchimento de formulários vão sendo capturadas. Ao longo desse processo,
+        o \textit{capuccino} vai mantendo esses eventos em uma lista ordenada por horário em que o evento
+        ocorreu. Quando o usuário terminar de executar todas as suas ações, ele deve encerrar a aplicação
+        para indicar ao framework que nenhuma interação será mais executada e que o teste já pode ser gerado.
 
-        Após o framework ser notificado de que a aplicação foi finalizada, ele irá gerar o arquivo de teste com todas
-        ações do usuário de forma programática. Para criar esse teste, o \textit{capuccino} utiliza algumas informações
-        que foram previamente fornecidas por quem está executando as ações como: qual deve ser a asserção executada
-        ao final do teste, nome do arquivo do teste, caminho do diretório raiz da aplicação. Com essas informações,
-        o teste é criado, utilizando bibliotecas oficiais do Android que simulam ações do usuário. Uma vez escrito,
-        o arquivo gerado pelo framework pode, então, ser exportado para o pacote de testes de aplicação e ser executado
-        normalmente.
+        Após o framework ser notificado de que a aplicação foi finalizada, ele irá gerar o arquivo de teste com
+        todas ações do usuário de forma programática. Para criar esse teste, o \textit{capuccino} utiliza
+        algumas informações que foram previamente fornecidas por quem está executando as ações como: qual
+        deve ser a asserção executada ao final do teste, nome do arquivo do teste, caminho do diretório raiz
+        da aplicação. Com essas informações, o teste é criado, utilizando bibliotecas oficiais do Android
+        que simulam ações do usuário. Uma vez escrito, o arquivo gerado pelo framework pode, então, ser
+        exportado para o pacote de testes de aplicação e ser executado normalmente.
 
-        Nesse sentido, o caso de teste gerado é responsável por inicializar a aplicação e implementar as ações do
-        usuário através de uma biblioteca que permite simular operações de usuário como: clique em uma posição da tela,
-        tecla digitada e movimento de rolagem. Ao final dessas ações, é executada, então, a asserção definida
-        previamente pelo usuário.
+        Nesse sentido, o caso de teste gerado é responsável por inicializar a aplicação e implementar as
+        ações do usuário através de uma biblioteca que permite simular operações de usuário como: clique
+        em uma posição da tela, tecla digitada e movimento de rolagem. Ao final dessas ações, é executada,
+        então, a asserção definida previamente pelo usuário.
 
-        É importante deixar claro, que em nenhum momento o framework assume qual deve ser a asserção executada ao final
-        do teste. Isso se deve ao fato de que esse tipo de informação é totalmente dependente do domínio do problema,
-        ou seja aplicação que está sendo testada.
+        É importante deixar claro, que em nenhum momento o framework assume qual deve ser a asserção
+        executada ao final do teste. Isso se deve ao fato de que esse tipo de informação é totalmente
+        dependente do domínio do problema, ou seja aplicação que está sendo testada.
 
-        Outro ponto a ser ressaltado é que  para definir a asserção que será executada ao final do teste, a pessoa que
-        está a gerar o caso de teste, deverá seguir uma sintaxe específica de uma biblioteca do Android: o \textit{espresso}.
-        Dessa forma, antes de iniciar a produção do teste, o usuário deverá definir através de uma classe fornecida pelo
-        próprio framework, qual a asserção será executada ao final do teste, usando a sintaxe da biblioteca indicada.
-        Caso a asserção não seja definida, o caso de teste criado pela ferramenta ficará incompleto
+        Outro ponto a ser ressaltado é que para definir a asserção que será executada ao final do teste,
+        a pessoa que está a gerar o caso de teste deverá seguir uma sintaxe específica de uma biblioteca
+        do Android: o \textit{espresso}. Dessa forma, antes de iniciar a produção do teste, o usuário
+        deverá definir através de uma classe fornecida pelo próprio framework, qual a asserção será
+        executada ao final do teste, usando a sintaxe da biblioteca indicada. Caso a asserção não seja
+        definida, o caso de teste criado pela ferramenta ficará incompleto.
 
-        Por último, é interessante reforçar a ideia de que o que o framework se propõe a automatizar é a geração de
-        de caso de testes e não a aplicação dos mesmos, ou seja execução.
+        Por último, é interessante reforçar a ideia de que o que o framework se propõe a automatizar
+        é a geração de caso de testes e não a aplicação dos mesmos, ou seja execução.
 
       \section{Concepção}
         Considerando os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
@@ -1727,42 +1728,45 @@
           do computador do usuário. Nesse sentido, ao terminar de criar o teste ele deve abrir o sistema
           de arquivos do dispositivo emulado e deve ir até o diretório onde estão os arquivos da aplicação.
 
-          Ao final desse processo, o usuário terá criado um único caso de teste descrito em um arquivo com a asserção
-          que ele definiu previamente antes de inciar a aplicação. Esse teste, ao ser exportado para o diretório de
-          testes de aplicação, pode ser executado normalmente. Durante a execução do teste criado, o teste irá iniciar
-          a aplicação no dispositivo previamente emulado e irá executar as mesmas ações que o usuário executou, na mesma
-          ordem de forma automática. Após performar a última ação, a asserção definida pelo usuário será executada e seu
-          retorno será exibida no \textit{Logger} do Android Studio.
+          Ao final desse processo, o usuário terá criado um único caso de teste descrito em um arquivo com a
+          asserção que ele definiu previamente antes de inciar a aplicação. Esse teste, ao ser exportado
+          para o diretório de testes de aplicação, pode ser executado normalmente. Durante a execução do
+          teste criado, o teste irá iniciar a aplicação no dispositivo previamente emulado e irá executar
+          as mesmas ações que o usuário executou, na mesma ordem de forma automática. Após performar a última
+          ação, a asserção definida pelo usuário será executada e seu retorno será exibida no \textit{Logger}
+          do Android Studio.
 
-          Para criar mais casos testes, basta o usuário redefinir os dados necessários na classe de configuração de teste,
-          reiniciar a aplicação e ir executando um caso de uso normalmente e encerrá-la, quando não houver mais ações
-          para executar. Novamente, o framework realiza os mesmos passos em que escreve as ações do usuário em
-          um arquivo de teste no sistema de arquivos do dispositivo emulado.
+          Para criar mais casos testes, basta o usuário redefinir os dados necessários na classe de configuração
+          de teste, reiniciar a aplicação e ir executando um caso de uso normalmente e encerrá-la, quando não
+          houver mais ações para executar. Novamente, o framework realiza os mesmos passos em que escreve as
+          ações do usuário em um arquivo de teste no sistema de arquivos do dispositivo emulado.
 
       \section{Uso do framework}
         Para melhor entendimento, do ponto de vista de um usuário, o intuito dessa seção é apresentar como um
         desenvolvedor pode integrar sua aplicação ao \textit{capuccino}. Inicialmente, o projeto com código
-        do framework deve ser copiado para o diretório raiz da aplicação que está sendo desenvovlida. Isso pode ser
-        feito através de uma clonagem do repositório do projeto que está disponível no \textit{Github}. Feito esse
-        processo, o usuário deve então instalar as dependências do \textit{capuccino} através do \textit{gradle},
-        gerenciador de pacotes oficial do Android Studio.
+        do framework deve ser copiado para o diretório raiz da aplicação que está sendo desenvolvida. Isso pode
+        ser feito através de uma clonagem do repositório do projeto que está disponível no \textit{Github}.
+        Feito esse processo, o usuário deve então instalar as dependências do \textit{capuccino} através do
+        \textit{gradle}, gerenciador de pacotes oficial do Android Studio.
 
-        Depois de instalar os pacotes necessários para o correto funcionamento do framework, o desenvolvedor deve
-        indicar no arquivo \textit{settings.gradle} que o diretório do \textit{capuccino} deve ser incluído durante
-        a geração do binário da aplicação. Dessa forma, quando a aplicação estiver sendo compilada, não haverá
-        erros de \textit{import}, nem de dependendências não encontradas.
+        Depois de instalar os pacotes necessários para o correto funcionamento do framework, o desenvolvedor
+        deve indicar no arquivo \textit{settings.gradle} que o diretório do \textit{capuccino} deve ser
+        incluído durante a geração do binário da aplicação. Dessa forma, quando a aplicação estiver sendo
+        compilada, não haverá erros de \textit{import}, nem de dependendências não encontradas.
 
         Feito essa configuração inicial, o usuário da ferramenta deve, então, fazer com que cada uma de suas
-        classes que representem as \textit{activities} herdem da classe \textit{CapuccinoBasicActiviy}. Como visto
-        anteriormente no diagrama do framework, essa classe é a base para que a captura de ações do usuário seja possível.
-        Nesse sentido, é necessário que as classes de \textit{activities} do projeto devam herdar dessa classe, ou pelo
-        menos aquelas que o usuário quer que casos de teste sejam gerados.
+        classes que herdam da classe \textit{AppCompatActivity} passem a herdar da classe
+        \textit{CapuccinoBasicActiviy}. Como visto anteriormente no diagrama do framework, essa classe é
+        a base para que a captura de ações do usuário seja possível. Nesse sentido, é necessário que as
+        classes de \textit{activities} do projeto devam herdar dessa classe, ou pelo menos aquelas que o
+        usuário quer que casos de teste sejam gerados.
 
-        Após essa modificação nas classes, deve ser criada uma nova classe, também para controlar uma \textit{Activity}.
-        Porém, essa nova classe não deverá herdar de \textit{CapuccinoBasicActiviy}, e sim de \textit{LauncherAppActivity}.
-        Essa classe, será responsável por inicializar a aplicação do usuário e onde será configurada algumas variáveis
-        como: qual deve ser a asserção executada ao final do teste, nome do arquivo do teste, caminho do diretório
-        raiz da aplicação. Um exemplo dessa classe pode ser visto na Figura 18:
+        Após essa modificação nas classes, deve ser criada uma nova classe, também para controlar uma
+        \textit{Activity}. Porém, essa nova classe não deverá herdar de \textit{CapuccinoBasicActiviy},
+        e sim de \textit{LauncherAppActivity}. Essa classe, será responsável por inicializar a aplicação
+        do usuário e onde será configurada algumas variáveis como: qual deve ser a asserção executada ao
+        final do teste, nome do arquivo do teste, caminho do diretório raiz da aplicação. Um exemplo
+        dessa classe pode ser visto na Figura 18:
 
         \begin{figure}[htbp]
           \begin{center}
@@ -1772,17 +1776,19 @@
           \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
         \end{figure}
 
-        É possível perceber que além dessa classe herdar de \textit{LauncherAppActivity}, no método \textit{onCreate},
-        uma série de variáveis são configuradas, através de métodos \textit{setters}. A semântica de cada uma dessas
-        variáveis já foi explicada anteriormente. É importante deixar claro que caso alguma dessas variáveis não seja
-        configurada no método \textit{onCreate}, uma exceção será lançada indicando que alguma variável não foi
-        corretamente configurada. Resalta-se que a variável \textit{expectedAssertion} é a responsável por definir
-        a execução que será executada ao final do teste. Por isso, toda vez que o teste for gerado o usuário deverá
-        alterar, a medida do necessário, essa asserção para cada caso de teste.
+        É possível perceber que além dessa classe herdar de \textit{LauncherAppActivity}, no método
+        \textit{onCreate}, uma série de variáveis são configuradas, através de métodos \textit{setters}.
+        A semântica de cada uma dessas variáveis já foi explicada anteriormente. É importante deixar
+        claro que caso alguma dessas variáveis não seja configurada no método \textit{onCreate}, uma exceção
+        será lançada indicando que alguma variável não foi corretamente configurada. Resalta-se que a
+        variável \textit{expectedAssertion} é a responsável por definir a execução que será executada
+        ao final do teste. Por isso, toda vez que o teste for gerado o usuário deverá alterar, a medida
+        do necessário, essa asserção para cada caso de teste.
 
-        Após implementar essa classe, o usuário deve então configurar o projeto para que essa nova classe desenvolvida
-        seja o ponto de entrada do aplicativo. Para fazer essa configuração, basta atualizar o arquivo
-        \textit{AndroidManifest.xml}. O trecho do código que faz essa configuração pode ser visualizado na Figura 19:
+        Após implementar essa classe, o usuário deve então configurar o projeto para que essa nova classe
+        desenvolvida seja o ponto de entrada do aplicativo. Para fazer essa configuração, basta atualizar
+        o arquivo \textit{AndroidManifest.xml}. O trecho do código que faz essa configuração pode ser
+        visualizado na Figura 19:
 
         \begin{figure}[htbp]
           \begin{center}
@@ -1792,29 +1798,31 @@
           \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
         \end{figure}
 
-        Feita essa configuração, basta o usuário, então, inicializar a aplicação normalmente em um dispositivo emulado.
-        A aplicação será iniciada e quem estiver criando o teste não verá nenhum tipo de alteração
-        no comportamento original da aplicação. A partir desse momento, o usuário pode executar os casos de uso da
-        aplicação, a fim de gerar os testes. Durante a execução dos casos de uso, as ações executadas pelo usuário vão
-        sendo capturadas internamente pelo framework. Nesse sentido quando usuário terminar de executar algum caso de uso,
-        ele precisa encerrar a aplicação para indicar ao \textit{capuccino} que o caso de teste já pode ser gerado.
+        Feita essa configuração, basta o usuário, então, inicializar a aplicação normalmente em um dispositivo
+        emulado. A aplicação será iniciada e quem estiver criando o teste não verá nenhum tipo de alteração
+        no comportamento original da aplicação. A partir desse momento, o usuário pode executar os casos de
+        uso da aplicação, a fim de gerar os testes. Durante a execução dos casos de uso, as ações executadas
+        pelo usuário vão sendo capturadas internamente pelo framework. Nesse sentido quando usuário terminar
+        de executar algum caso de uso, ele precisa encerrar a aplicação para indicar ao \textit{capuccino}
+        que o caso de teste já pode ser gerado.
 
-        Assim que a aplicação for encerrada, o caso de teste será escrito no sistema de arquivos do dispositivo emulado.
-        Para ter acesso ao arquivo criado pelo framework o usuário deve acessar a aba \textit{Device File Explorer}.
-        No sistema de arquivos, deve-se seguir o seguinte caminho: \textit{/data/user/0/pacote.raiz.da.aplicacao/files}.
-        Nesse diretório é onde são guardados todos os arquivos de teste criado pelo framework. Ao abrir o arquivo de teste,
-        o usuário deve copiar o conteúdo para um arquivo equivalente no pacote de testes da aplicação.
+        Assim que a aplicação for encerrada, o caso de teste será escrito no sistema de arquivos do dispositivo
+        emulado. Para ter acesso ao arquivo criado pelo framework o usuário deve acessar a aba
+        \textit{Device File Explorer}. No sistema de arquivos, deve-se seguir o seguinte caminho:
+        \textit{/data/user/0/pacote.raiz.da.aplicacao/files}. Nesse diretório é onde são guardados todos os
+        arquivos de teste criado pelo framework. Ao abrir o arquivo de teste, o usuário deve copiar o conteúdo
+        para um arquivo equivalente no pacote de testes da aplicação.
 
-        Ao final desse processo, o usuário terá então disponível em seu pacote de testes, um arquivo com caso de teste
-        descrito e automatizado, em nível de usuário, responsável por testar o caso de uso que ele acabou de executar.
-        Para criar mais casos de teste, basta que o usuário continue seguindo esse processo até estar satisfeito com a
-        quantidade de casos de teste criados. Quando quiser executar os casos de teste, basta executar o pacote que
-        contém os testes da aplicação.
+        Ao final desse processo, o usuário terá então disponível em seu pacote de testes, um arquivo com caso
+        de teste descrito e automatizado, em nível de usuário, responsável por testar o caso de uso que ele
+        acabou de executar. Para criar mais casos de teste, basta que o usuário continue seguindo esse
+        processo até estar satisfeito com a quantidade de casos de teste criados. Quando quiser executar
+        os casos de teste, basta executar o pacote que contém os testes da aplicação.
 
-        Ao executar o pacote com os testes da aplicação, o Android Studio executará todos os testes e sempre indicando
-        o sucesso ou falha de cada asserção definida pelo usuário. Caso uma asserção obtenha sucesso, o relatório no
-        final da execução irá mostrar apenas mensagens êxito. Do contrário, caso ocorra algum erro, ele indicará
-        qual e onde ocorreu o erro.
+        Ao executar o pacote com os testes da aplicação, o Android Studio executará todos os testes e sempre
+        indicando o sucesso ou falha de cada asserção definida pelo usuário. Caso uma asserção obtenha sucesso,
+        o relatório no final da execução irá mostrar apenas mensagens êxito. Do contrário, caso ocorra algum
+        erro, ele indicará qual e onde ocorreu o erro.
 
       \section{Limitações da ferramenta}
         Apesar de a ferramenta ser projetada para detectar as ações do usuário, durante a implementação
@@ -1850,14 +1858,15 @@
 
   \part{Resultados obtidos}
     \chapter{Avaliação do framework}
-      Para avaliar a capacidade do framework em gerar os testes, desenvolveu-se uma aplicação simples que simula a
-      compra e venda de produtos. Nessa aplicação, é possível cadastrar usuários, produtos e fazer operações envolvendo
-      autenticação. O código desta aplicação está disponível junto com o framework desenvolvido em um repositório do
-      GitHub do autor. A tela de autenticação dessa aplicação pode ser visualizado na Figura 20.
+      Para avaliar a capacidade do framework em gerar os testes, desenvolveu-se uma aplicação simples que
+      simula a compra e venda de produtos. Nessa aplicação, é possível cadastrar usuários, produtos e fazer
+      operações envolvendo autenticação. O código desta aplicação está disponível junto com o framework
+      desenvolvido em um repositório do GitHub do autor. A tela de autenticação dessa aplicação pode ser
+      visualizado na Figura 20.
 
       \begin{figure}[htbp]
         \begin{center}
-          \includegraphics[width=0.7\textwidth]{img/escamboLogin.png}
+          \includegraphics[width=0.5\textwidth]{img/escamboLogin.png}
             \end{center}
           \caption{\label{fig:passaro} Tela de autenticação da aplicação de teste}
         \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
@@ -1870,11 +1879,20 @@
       dispositivo hospedeiro. Os testes criados pelo framework sempre ficam disponíveis no diretório
       \textit{/data/user/0/pacote.raiz.da.aplicacao/files}.
 
-      O teste em questão, é uma tentativa de autenticação em que o usuário não digita a senha. Nesse sentido a asserção
-      definida previamente pelo usuário, verifica se uma mensagem de erro relacionada a senha é exibida. Ao executar o
-      mesmo teste, um log acusando sucesso é exibida, como pode ser visto na Figura 22. Como explicado anteriormente,
-      a asserção executada deve seguir a sintaxe do framework \textit{espresso}. Além disso, essa mesma asserção
-      foi previamente definida pelo usuário ao implementar a classe que herda \textit{LauncherAppActivity}.
+      \begin{figure}[htbp]
+        \begin{center}
+          \includegraphics[width=1.0\textwidth]{img/capuccinoAutomatedTest.png}
+            \end{center}
+          \caption{\label{fig:passaro} Log indicando sucesso na execução do teste gerado pelo capuccino.}
+        \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+      \end{figure}
+
+      O teste em questão, é uma tentativa de autenticação em que o usuário não digita a senha. Nesse sentido
+      a asserção definida previamente pelo usuário, verifica se uma mensagem de erro relacionada a senha é
+      exibida. Ao executar o mesmo teste, um log acusando sucesso é exibida, como pode ser visto na Figura 22.
+      Como explicado anteriormente, a asserção executada deve seguir a sintaxe do framework \textit{espresso}.
+      Além disso, essa mesma asserção foi previamente definida pelo usuário ao implementar a classe que herda
+      \textit{LauncherAppActivity}, como visto na Figura 18.
 
       \begin{figure}[htbp]
         \begin{center}
@@ -1885,75 +1903,101 @@
       \end{figure}
 
 
-      A execução de testes, dentro do Android Studio, mostra um \textit{log} detalhado, no caso de alguma asserção estar
-      incorreta, indicando o valor que estava esperando e qual foi o valor obtido. No caso do \textit{log} exibido
-      na Figura 22, a asserção executada pelo teste gerado obteve sucesso.
+      A execução de testes, dentro do Android Studio, mostra um \textit{log} detalhado, no caso de alguma
+      asserção estar incorreta, indicando o valor que estava esperando e qual foi o valor obtido. No caso do
+      \textit{log} exibido na Figura 22, a asserção executada pelo teste gerado obteve sucesso.
 
-      Somando todas as linhas de código geradas pelo framework para esses casos de teste foram 150 linhas de código
-      geradas em menos de uma hora. Infelizmente, não existe nenhuma métrica que seja capaz de correlacionar número de
-      linhas produzidas por unidade de tempo. Entretanto, é nítido que o framework traz produtividade para um projeto
-      por diversos fatores. O primeiro é que a pessoa que está testando a aplicação não precisa ser um programador ou
-      ser um testador com longos anos de carreira. Um usuário comum utilizando a aplicação em um ambiente previamente
-      configurado, seria perfeitamente possível de gerar os testes, o que acaba barateando os custos de um projeto.
+      Ainda nessa mesma tela de autenticação apresentada, executou-se o fluxo de se autenticar com
+      um usuário inválido, ou seja um usuário que não está cadastrado no banco de dados. Nesse sentido,
+      a asserção definida previamente foi uma asserção que procura por uma mensagem que informe ao
+      usuário que as credenciais informadas são inválidas. O código desse caso de teste pode ser visualizado
+      na Figura 23.
 
-      A produtividade também cresce dentro do projeto, visto que os programadores, ou o time de QA, não necessitam mais
-      aprender a como implementar um teste de interface de usuário nesse tipo de projeto. Basta utilizar usar a
-      ferramenta e conhecer como o capuccino faz as asserções que o teste será criado. Isso poupa o tempo dos
-      desenvolvedores que seria gasto para aprender a como implementar testes de interface de usuário em dispositivos
-      Android.
+      \begin{figure}[htbp]
+        \begin{center}
+          \includegraphics[width=0.7\textwidth]{img/signInError.png}
+            \end{center}
+          \caption{\label{fig:passaro} Teste produzido pelo framwork para autenticar um usuário inexistente.}
+        \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+      \end{figure}
 
-      Outro ganho considerável na produtividade é quando o código, da aplicação, passa por algum tipo de refatoração e
-      os testes de interface de usuário passam a não funcionar mais. Em vez do time de QA despender tempo revisando o
-      código de teste e tentando encontrar o erro, basta utilizar a aplicação normalmente, que um novo teste, adaptado
-      as novas refatorações será gerado por completo.
+      Apesar de ambos os casos de teste serem muito similares eles testam comportamentos bem distintos da
+      aplicação. No primeiro caso o usuário tenta se autenticar sem fornecer todas as informações. Nesse
+      sentido, é esperado que o sistema mostre um erro informando que todos os campos devem ser preenchidos
+      para que o usuário possa proseguir. Já no segundo caso, o usuário tenta se autenticar com um usuário
+      inválido (i.e. tanto campo de email e senha foram preenchidos, mas esse par não se encontra na base
+      de dados da aplicação). Da mesma forma, a aplicação retorna uma mensagem de erro dizendo que usuário
+      ou senha estão incorreto.s
+
+      Somando todas as linhas de código geradas pelo framework para esses casos de teste foram 150 linhas
+      de código geradas em menos de uma hora. Infelizmente, não existe nenhuma métrica que seja capaz de
+      correlacionar número de linhas produzidas por unidade de tempo. Entretanto, é nítido que o framework
+      traz produtividade para um projeto por diversos fatores. O primeiro é que a pessoa que está testando
+      a aplicação não precisa ser um programador ou ser um testador com longos anos de carreira. Um usuário
+      comum utilizando a aplicação em um ambiente previamente configurado, seria perfeitamente possível
+      de gerar os testes, o que acaba barateando os custos de um projeto.
+
+      A produtividade também cresce dentro do projeto, visto que os programadores, ou o time de QA, não
+      necessitam mais aprender a como implementar um teste de interface de usuário nesse tipo de projeto.
+      Basta utilizar usar a ferramenta e conhecer como o capuccino faz as asserções que o teste será criado.
+      Isso poupa o tempo dos desenvolvedores que seria gasto para aprender a como implementar testes de
+      interface de usuário em dispositivos Android.
+
+      Outro ganho considerável na produtividade é quando o código, da aplicação, passa por algum tipo de
+      refatoração e os testes de interface de usuário passam a não funcionar mais. Em vez do time de QA
+      despender tempo revisando o código de teste e tentando encontrar o erro, basta utilizar a aplicação
+      normalmente, que um novo teste, adaptado as novas refatorações será gerado por completo.
 
     \chapter{Conclusão}
-      Revendo os objetivos apresentados no início do trabalho, tanto geral quanto específico, fica claro que o framework
-      implementado cumpre com o que foi proposto. Analisando, inicialmente, o objetivo geral do trabalho, o framework
-      cumpre o que havia sido ambicionado. Implementou-se um framework orientado objetos para a plataforma Android,
-      capaz de gerar testes automaticamente através da captura de ações do usuário. O teste é gerado automaticamente
-      de tal forma que as ações do usuário, capturadas da execução da aplicação, são descritas, programaticamente, em
-      um caso de teste.
+      Revendo os objetivos apresentados no início do trabalho, tanto geral quanto específicos, fica claro
+      que o framework implementado cumpre com o que foi proposto. Analisando, inicialmente, o objetivo
+      geral do trabalho, o framework cumpre o que havia sido ambicionado: implementou-se um framework
+      orientado objetos para a plataforma Android, capaz de gerar testes automaticamente através da captura
+      de ações do usuário. O teste é gerado automaticamente de tal forma que as ações do usuário, capturadas
+      da execução da aplicação, são descritas, programaticamente, em um caso de teste.
 
-      Quanto ao primeiro objetivo específico, que se refere a diminuição de esforço e tempo durante a fase de testes,
-      também foi alcançado, visto que não é necessário mais implementar testes a nível de código. Basta que o testador,
-      ou um usuário real, utilizem a aplicação alvo usando como guia algum caso de uso que ao final da execução terão
-      disponível um teste em nível de usuário. Consequentemente, acaba não sendo mais necessário que os membros da
-      equipe de teste de um projeto aprendam a usar uma biblioteca de teste.
+      Quanto ao primeiro objetivo específico, que se refere à diminuição de esforço e tempo durante a fase de
+      testes, também foi alcançado, visto que não é necessário mais implementar testes no nível do código.
+      Basta que o testador, ou um usuário real, utilizem a aplicação alvo usando como guia algum caso de uso,
+      que ao final da execução terão disponível um teste em nível de usuário. Consequentemente, acaba não sendo
+      mais necessário que os membros da equipe de teste de um projeto aprendam a usar uma biblioteca de teste,
+      basta apenas entenderem como definir uma asserção para o teste.
 
-      Já quanto ao segundo objetivo específico, que fala sobre uma ferramenta gratuita capaz de diminuir o esforço dos
-      desenvolvedores na implementação de testes também foi completado, visto que a ferramenta é de código aberta,
-      disponível em um repositório do Github sem licença comercial. Além disso, a ferramenta automatiza toda a parte
-      de simulação de interação de um usuário com a aplicação e permite que desenvolvedores concentrem seus esforços
-      em outras tarefas que demandem mais inteligência.
+      Já quanto ao segundo objetivo específico, que fala sobre uma ferramenta gratuita capaz de diminuir
+      o esforço dos desenvolvedores na implementação de testes também foi completado, visto que a ferramenta
+      é de código aberta, disponível em um repositório do Github, sem licença comercial. Além disso, a
+      ferramenta automatiza toda a parte de simulação de interação de um usuário com a aplicação e permite
+      que desenvolvedores concentrem seus esforços em outras tarefas que demandem mais criatividade.
 
-      Isso significa dizer que para o projeto não é mais necessário que haja alguém que domine uma biblioteca específica
-      de testes em nível de usuário ou que o time necessite precise aprender uma nova tecnologia. Basta que os testadores
-      utilizem o software como um usário comum, o que implica dizer que o projeto tem redução de tempo e custos.
+      Isso significa dizer que para o projeto não é mais necessário que haja alguém que domine uma biblioteca
+      específica de testes em nível de usuário ou que o time necessite aprender uma nova tecnologia. Basta
+      que os testadores utilizem o software como um usário comum, o que implica dizer que o projeto tem
+      redução de tempo e custos.
 
-      Como sugestão de trabalhos futuros, indica-se o estudo, análise e correção de alguma das limitações que o
-      capuccino apresenta. Para resolver o problema de gerar um arquivo para cada caso de teste, uma possível solução
-      seria o framework analisar se já existe um arquivo gerado com o mesmo nome. Em caso positivo, em vez de ele
-      sobrescrever o arquivo com os dados atuais, ele pode gerenciar o código internamente para adicionar um novo caso
-      de teste.
+      Como sugestão de trabalhos futuros, indica-se o estudo, análise e correção de alguma das limitações
+      que o capuccino apresenta. Para resolver o problema de gerar um arquivo para cada caso de teste,
+      uma possível solução seria o framework analisar se já existe um arquivo gerado com o mesmo nome. Em
+      caso positivo, em vez de ele sobrescrever o arquivo com os dados atuais, ele pode gerenciar o código
+      internamente para adicionar um novo caso de teste.
 
-      Uma possível outra sugestão de trabalho seria verificar como o framework se comporta com aplicações como jogos
-      eletrônicos. Esse é um caso interessante de ser testado, visto que a interface desse tipo de aplicação costuma
-      ser muito dinâmica. Nesse sentido, seria possível ver um estudo de como capuccino reage com programas desse tipo
-      e refatorar o que fosse necessário para que ele se adaptasse e pudesse gerar os testes corretamente. Outra
-      possibilidade seria estudar alguma maneira de fazer com que o framework aguarde corretamente o retorno das
-      requisições feitas na rede. Sendo assim, seria possível desenvolver um módulo que monitorasse o consumo de rede
-      da aplicação e que indicasse para o framework quais ações envolvem operação com a rede ou não.
+      Uma outra possível sugestão de trabalho seria verificar como o framework se comporta com aplicações
+      como jogos eletrônicos. Esse é um caso interessante de ser testado, visto que a interface desse
+      tipo de aplicação costuma ser muito dinâmica. Nesse sentido, seria possível avaliar como capuccino
+      reage com programas desse tipo e refatorar o que fosse necessário para que ele se adaptasse e pudesse
+      gerar os testes corretamente. Outra possibilidade seria estudar alguma maneira de fazer com que o
+      framework aguarde corretamente o retorno das requisições feitas na rede. Sendo assim, seria possível
+      desenvolver um módulo que monitorasse o consumo de rede da aplicação e que indicasse para o framework
+      quais ações envolvem operação com a rede ou não.
 
-      Outra possibilidade de sugestão de trabalho futuro seria implementar um método que disponibilizasse o arquivo de
-      teste direto no sistema de arquivos do computador hospedeiro, dentro do pacote de teste da aplicação. Como explicado
-      anteriormente, os arquivos gerados pelo framework são escritos no sistema de arquivos do dispositivo emulado. Isso
-      requer que toda vez que um teste é gerado, o usuário exporte manualmente o arquivo para o diretório de teste
-      do aplicativo. Seria muito mais eficiente quando o framework fosse escrever o teste, ele escrevesse diretamente
-      no diretório de testes real da aplicação.
+      Outra possibilidade de sugestão de trabalho futuro seria implementar um método que disponibilizasse o
+      arquivo de teste direto no sistema de arquivos do computador hospedeiro, dentro do pacote de teste
+      da aplicação. Como explicado anteriormente, os arquivos gerados pelo framework são escritos no sistema
+      de arquivos do dispositivo emulado. Isso requer que toda vez que um teste é gerado, o usuário exporte
+      manualmente o arquivo para o diretório de teste do aplicativo. Seria muito mais eficiente quando o
+      framework fosse escrever o teste, ele escrevesse diretamente no diretório de testes real da aplicação.
 
-      No geral, o framework cumpre perfeitamente com aquilo que se propos a fazer e automatiza a produção de testes
-      mediante a utilização de uma apilcação Android por parte de um usuário. Nesse sentido, há uma diminuição considerável
+      No geral, o framework cumpre aquilo que se propôs a fazer e automatiza a produção de testes
+      mediante a utilização de uma aplicação Android por parte de um usuário. Nesse sentido, há uma diminuição
       de esforço no que se refere à implementação de testes, visto que o framework é capaz de gerar casos de teste
       automaticamente.
 
