@@ -1862,7 +1862,7 @@
       simula a compra e venda de produtos. Nessa aplicação, é possível cadastrar usuários, produtos e fazer
       operações envolvendo autenticação. O código desta aplicação está disponível junto com o framework
       desenvolvido em um repositório do GitHub do autor. A tela de autenticação dessa aplicação pode ser
-      visualizado na Figura 20.
+      visualizada na Figura 20.
 
       \begin{figure}[htbp]
         \begin{center}
@@ -1927,7 +1927,49 @@
       para que o usuário possa proseguir. Já no segundo caso, o usuário tenta se autenticar com um usuário
       inválido (i.e. tanto campo de email e senha foram preenchidos, mas esse par não se encontra na base
       de dados da aplicação). Da mesma forma, a aplicação retorna uma mensagem de erro dizendo que usuário
-      ou senha estão incorreto.s
+      ou senha estão incorreto.
+
+      Ainda no que se refere aos testes gerados pela ferramenta, destaca-se as duas asserções criadas
+      pelo usuário. Ambas podem ser visualizadas na Figura 24. Ambas foram escritas utilizando a sintaxe
+      da biblioteca \textit{espresso}. Na primeira asserção o framework avalia se o campo de senha está
+      exibindo a mensagem "E-mail invalido". Já na segunda asserção, está sendo consultado se o decorador
+      foi exibido (i.e. o \textit{toast} foi mostrado). Nesse segundo caso, o conteúdo da mensagem não foi
+      verificado.
+
+      \begin{figure}[htpb]
+          \begin{lstlisting}
+              Espresso.onView(
+                  ViewMatchers.withId(
+                      R.id.passwordLoginEditText
+                  )
+              ).check(
+                  ViewAssertions.matches(
+                      ViewMatchers.hasErrorText(
+                        "E-mail invalido"
+                      )
+                  )
+              );
+
+              Espresso.onView(
+                  ViewMatchers.withText(
+                      R.string.signInError
+                  )
+              ).inRoot(
+                  RootMatchers.withDecorView(
+                      Matchers.not(
+                          mActivityRule.getActivity().getWindow().getDecorView()
+                      )
+                  )
+              ).check(
+                  ViewAssertions.matches(
+                      ViewMatchers.isDisplayed()
+                  )
+              );
+          \end{lstlisting}
+          \caption{\label{fig:passaro}Asserções escritas para cada um dos testes}\vspace{-1.2\baselineskip}
+          \centering
+          \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
+      \end{figure}
 
       Somando todas as linhas de código geradas pelo framework para esses casos de teste foram 150 linhas
       de código geradas em menos de uma hora. Infelizmente, não existe nenhuma métrica que seja capaz de
