@@ -1,0 +1,45 @@
+\documentclass[glossy]{beamer}
+\useoutertheme{wuerzburg}
+\useinnertheme[realshadow,corners=2pt,padding=2pt]{chamfered}
+\usecolortheme{shark}
+
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\newcommand<>{\hover}[1]{\uncover#2{%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \draw[fill,opacity=0.4] (current page.south west)
+        rectangle (current page.north east);
+        \node at (current page.center) {#1};
+    \end{tikzpicture}}
+}
+
+\title{Um framework para geração de testes automatizados para aplicações mobile}
+\author{Gustavo Figueira Olegário}
+\institute{UFSC}
+
+\begin{document}
+    \begin{frame}
+        \maketitle
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Sumário}
+        \begin{itemize}
+            \item Frameworks
+            \item Teste em nível de usuário
+            \item Capuccino
+            \item Análise e implementação
+            \item Resultados obtidos
+        \end{itemize}
+    \end{frame}
+    \begin{frame}
+    \frametitle{Frameworks}
+        \begin{itemize}
+            \item Nos primeiros projetos de software, o reuso era praticamente nulo
+            \item Usuário deve redefinir algumas classes
+            \item Permite reuso de componentes de problemas que compartilham mesmo domínio do problema
+            \item Desvantagem: equipe deve saber como usar o framework e fica presa à arquitetura definida
+                    pela ferramenta.
+        \end{itemize}
+    \end{frame}
+\end{document}
