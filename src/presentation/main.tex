@@ -5,6 +5,7 @@
 
 \usepackage{tikz}
 \usepackage{graphics}
+\usepackage{listings}
 \usepackage[utf8]{inputenc}
 \newcommand<>{\hover}[1]{\uncover#2{%
     \begin{tikzpicture}[remember picture,overlay]%
@@ -23,11 +24,11 @@
     \begin{frame}
         \maketitle
     \end{frame}
-
     \begin{frame}
         \frametitle{Sumário}
         \begin{itemize}
-            \item Contextualização e objetivos
+            \item Contextualização
+            \item Objetivos
             \item Fundamentação teórica
             \item Análise e implementação do framework
             \item Limitações da ferramenta
@@ -36,51 +37,54 @@
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Contextualização e objetivos}
+    \frametitle{Contextualização}
         \begin{itemize}
-            \item Desenvolvimento de software é caro e demanda tempo de muitas pessoas.
-            \item Fases que mais demandam tempo são: desenvolvimento e teste.
+            \item Desenvolvimento de software é caro e demanda tempo de muitas pessoas
+            \item Fases que mais demandam tempo são: desenvolvimento e teste
             \item Alguns testes produzidos para uma aplicação são triviais de serem
             implementados
-            \item Esses testes específicos poderiam ser produzidos de forma automatizada para, então, acelerar o processo.
+            \item Esses testes específicos poderiam ser produzidos de forma automatizada para, então, acelerar o processo
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Contextualização e objetivos}
+    \frametitle{Objetivos}
         \begin{itemize}
-            \item Desenvolver uma ferramenta que permita diminuir o tempo investido durante a implementação de testes
-            \item Implementar um framework de código aberto que seja capaz de gerar testes automatizados
-            \item O framework fica restrito a à aplicações mobile que utilizam  o sistema operacional Android
+            \item Desenvolver uma ferramenta que permita diminuir o tempo investido para a implementação de testes
+            \item Implementar um framework de código aberto que seja capaz de gerar casos de teste automaticamente
+            \item O framework tem como escopo aplicações mobile que utilizem o sistema operacional Android
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Fundamentação teórica}
+    \frametitle{Fundamentação teórica - Framework Orientado a Objetos}
         \begin{itemize}
-            \item Frameworks são conjunto de classes que podem ser reutilizados
-            em projetos que compartilham o mesmo domínio do problema.
-            \item Time de desenvolvimento consegue tirar vantagem do reuso e tem o esforço de implementação reduzido.
-            \item Arquitetura já é definida pela ferramenta.
-            \item Requer que a equipe saiba utilizar o framework e quais classes
-            deve sobrescrever.
+            \item Frameworks são conjuntos de classes inter-relacionados que podem ser reutilizados
+            em projetos que compartilham o mesmo domínio do problema
+            \item Time de desenvolvimento consegue tirar vantagem do reuso e tem o esforço de implementação reduzido
+            \item Arquitetura já é definida pela ferramenta
+            \item Requer que a equipe saiba utilizar o framework
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Fundamentação teórica}
+    \frametitle{Fundamentação teórica - Teste de software}
         \begin{itemize}
             \item Teste de software pode ser definido em diferentes níveis e técnicas.
             \item O mais relevante para esse trabalho: técnica da caixa preta em nível de usuário
-            \item Geralmente é o tipo de teste mais difícil de ser escrito e que testa o maior número de funcionalidades do software.
+            \item Testes funcionais são complexos de escrever
         \end{itemize}
-        \begin{figure}
-            \centering
-            \includegraphics[scale=0.2]{img/pyramid.jpg}
-             \caption{\label{fig:passaro}Pirâmide de testes}
-        \end{figure}
     \end{frame}
     \begin{frame}
-    \frametitle{Análise e desenvolvimento}
+    \frametitle{Fundamentação teórica - Teste de software}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.3]{img/pyramid.jpg}
+        \end{figure}
+        \centering
+        \label{fig:passaro}Pirâmide de testes
+    \end{frame}
+    \begin{frame}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
         \begin{itemize}
-            \item Testes em nível de usuário nada mais são do que ações automatizadas que simulam comportamento de um usuário real.
+            \item Testes em nível de usuário nada mais são do que ações automatizadas que simulam comportamento de um usuário real
             \item Teste pode ser escrito automaticamente a partir da captura de ações de um usuário real executando casos de uso de um programa
             \item Framework se responsabiliza em capturar as ações do usuário
             e transformá-las em casos de teste
@@ -88,33 +92,42 @@
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Análise e desenvolvimento}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
         \begin{itemize}
-            \item Capuccino: framework desenvolvido com o inuito de capturar as interações do usuário com o intuito de produzir os testes em nível de usuário.
-            \item Utiliza a API do Android para implementar os métodos que capturam cliques e preenchimento de formulário.
-            \item Como complemento utiliza a biblioteca \textit{espresso} para produzir testes em nível de usuário
-            \item Mantém as ações do usuário em uma lista ordernada por horário
+            \item Capuccino: framework desenvolvido com o intuito de capturar as interações do usuário para produzir os testes em nível de usuário.
+            \item Utiliza a API do Android para implementar os métodos que capturam cliques e preenchimento de formulários.
+            \item Como complemento, utiliza a biblioteca \textit{espresso} para produzir testes em nível de usuário
+            \item Mantém as ações do usuário ordernadas por horário
             em que o evento ocorreu.
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Análise e desenvolvimento}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
         \begin{itemize}
-            \item Usuário deve fazer com que as classes controladoras de GUI herdem de classes específicas do Capuccino.
-            \item Usuário deve também herdar uma classe do Capuccino que será responsável por inicilizar a aplicação como um todo.
-            \item A asserção para o teste que será produzida fica a cargo do usuário definir.
+            \item Desenvolvedor deve fazer com que as classes controladoras de GUI herdem de classes específicas do Capuccino
+            \item Aplicação deve também herdar uma classe do Capuccino que será responsável por inicilizar a aplicação como um todo.
+            \item A asserção para o teste que será produzida fica a cargo do programador definir
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Análise e desenvolvimento}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=1.5]{img/capuccinoDiagram.png}
+        \end{figure}
+        \centering
+        \label{fig:passaro}Classes a serem herdadas pela aplicação
+    \end{frame}
+    \begin{frame}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
         \begin{itemize}
-            \item Após configurar o framework usuário deve inicializar a aplicação executando algum caso de uso.
+            \item Após configurar o framework, usuário deve inicializar a aplicação executando algum caso de uso.
             \item Ao terminar o caso de uso, o usuário deve encerrar a aplicação para indicar ao framework que nenhuma ação será mais executada.
-            \item O framework será notificado do término do caso de uso e começará a escrever traduzindo suas estururas de dados internas para a sintaxe do \textit{espresso}.
+            \item O framework será notificado do término do caso de uso e começará a escrever traduzindo suas estruturas de dados internas para a sintaxe do \textit{espresso}.
         \end{itemize}
     \end{frame}
     \begin{frame}
-    \frametitle{Análise e desenvolvimento}
+    \frametitle{Framework Capuccino - Análise e desenvolvimento}
         \begin{itemize}
             \item O arquivo produzido pela ferramenta terá um único caso de teste
             \item O teste conterá a asserção definida previamente pelo usuário. Essa asserção deverá também seguir a sintaxe do \textit{espresso}
@@ -126,7 +139,7 @@
         \begin{itemize}
             \item Ações que envolvam operações com rede não são aguardadas até o final quando o teste é produzido.
             \item Eventos de rolagem na tela, apesar de serem suportados pelo framework, não são estáveis devido a inércia do movimento.
-            \item A ferramenta só consegue um caso de teste por arquivo. A longo prazo, a base de testes fica grande e ruim de ser gerenciada.
+            \item A ferramenta só consegue gerar um caso de teste por arquivo. A longo prazo, a base de testes fica grande e ruim de ser gerenciada.
         \end{itemize}
     \end{frame}
     \begin{frame}
@@ -138,6 +151,24 @@
         \end{itemize}
     \end{frame}
     \begin{frame}
+    \frametitle{Resultados obtidos - Asserções definidas}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=1.5]{img/assertion.png}
+        \end{figure}
+        \centering
+        \label{fig:passaro}Asserção definida para os testes
+    \end{frame}
+    \begin{frame}
+    \frametitle{Resultados obtidos - Testes produzidos}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=1.0]{img/capuccinoAutomatedTest.png}
+        \end{figure}
+        \centering
+        \label{fig:passaro}Caso de teste produzido pelo Capuccino
+    \end{frame}
+    \begin{frame}
     \frametitle{Trabalhos futuros}
         \begin{itemize}
             \item Implementação de um módulo de rede que permita o framework aguardar operações que envolvam interação com o backend.
@@ -146,5 +177,8 @@
             \item Implementar um módulo que disponibilize o arquivo de teste direto
             no diretório de testes do projeto.
         \end{itemize}
+    \end{frame}
+    \begin{frame}
+        \maketitle
     \end{frame}
 \end{document}
