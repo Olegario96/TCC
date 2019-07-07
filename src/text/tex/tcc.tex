@@ -624,16 +624,16 @@
           reimplementando o mesmo módulo ou um muito similar. Dessa forma, ficou
           claro que não havia necessidade de sempre estar se desenvolvendo um mesmo
           componente para diferentes projetos, bastava que se tirasse proveito do reuso
-          que o problema estaria resolvido.
+          que o problema estaria resolvido (LEACH, 2011).
 
           É claro que esse processo de reuso de diferentes partes de um software,
-          em termos de granularidade, foi crescendo aos poucos através dos tempos.
+          em termos de granularidade, foi crescendo aos poucos através dos tempos (JALENDER, 2014).
           Inicialmente, começou-se com funções básicas como na linguagem C, por exemplo,
           foi avançando para estruturas mais complexas como classes até que chegou
           no que conhecemos por frameworks nos dias de hoje.
 
           Um framework é, então, nada mais que um conjunto bem estruturado de classes
-          relaciodas através de associações e heranças. Porém esse conjunto não
+          relaciodas através de associações e heranças (JOHNSON, 1988). Porém esse conjunto não
           é totalmente implementado, algumas partes ficam não terminadas, propositalmente,
           para poder dar uma certa flexibilidade de domínio de problema. Ou seja, nada
           andiantaria o framework ser totalmente implementado, pois
@@ -668,7 +668,7 @@
           framework voltado a desenvolvimento de jogos de tabuleiro. O processo
           de modelagem para um framework requer que o desenvolvedor identifique
           as classes mais comuns de um domínio problema, também conhecidos como
-          "hot spots". Esse processo não costuma ser trivial, pois o responsável
+          "hot spots" (SILVA, 1998). Esse processo não costuma ser trivial, pois o responsável
           pela modelagem do framework deve estudar ao menos 3 aplicações que compartilham o
           mesmo domínio (JOHNSON, 1993), porém sem se prender muito aos detalhes
           do problema específico.
@@ -738,13 +738,13 @@
           ao fonte o desenvolvedor teria.
 
       \section{Princípios de frameworks}
-          Nessa secção são apresentados alguns conceitos implementados pela maioria
-          dos frameworks, mas isso não siginifica que caso algum framework não implemente
+          Nesta secção são apresentados alguns conceitos implementados pela maioria
+          dos frameworks, mas isso não significa que caso algum framework não implemente
           alguma dessas ideias ele não possa ser classificado como tal. Voltando mais uma
-          vez ao exemplo do framework do FraG, fica evidente que os frameworks se baseiam
+          vez ao exemplo do framework do FraG, percebe-se os frameworks se baseiam
           fortemente nas caracrísticas de associações e heranças.
 
-          É fácil de compreender o motivo pelo qual a herança é tão usada no universo de
+          Pode-se compreender o motivo pelo qual a herança é tão usada no universo de
           frameworks. Quando utilizada em classes abstratas, por definição, é exigido que
           o programador implemente os métodos abstratos definidos pela superclasse. Isso
           garante que sempre que qualquer objeto que herde a classe abstrata, no momento
@@ -752,7 +752,7 @@
           implementados, o que possibilita uma certa customização dentro do framework e
           é aí que vem a flexibilidade dos frameworks dentro de um domínio de problema.
 
-          Tal fato fica evidente quando observa-se a modelagem do par \textit{Template} e
+          Tal fato pode ser observado na modelagem do par \textit{Template} e
           \textit{Hook}. Nesse modelo, o método \textit{Template} é um algoritmo sempre
           estável que inicializa objetos que sempre serão necessários para o framework.
           Entretanto, como existem objetos que podem variar de aplicação para aplicação
@@ -815,14 +815,11 @@
       porque certamente houve algum equívoco por parte de quem alterou o código.
 
       Nessa parte do trabalho é de suma importância deixar esclarecido
-      que um projeto que foi conduzido sem testes, pode atigingir um patamar
-      satifatório de qualidade ao longo do processo, mas isso provavelmente terá um
+      que um projeto que foi conduzido sem testes, pode atingir um patamar
+      satisfatório de qualidade ao longo do processo, mas isso provavelmente terá um
       custo alto, em que o programador segue a filosofia do \textit{code and fix},
       em que a medida que ele vai codificando, vai arrumando os erros que encontra.
-      Sendo assim, o time de desenvolvimento terá que gastar mais tempo arrumando
-      falhas que poderiam ter sido percebidas mais cedo. Isso faz com que o tempo
-      de projeto aumente bem como os custos. Dessa forma, é sempre importante que
-      a parte de testes esteja prevista no planejamento inicial de um projeto de software.
+      Isso faz com que o tempo de projeto aumente, bem como os custos.
 
       É importante deixar claro, desde já, que o teste de software em momento
       algum supõe que o módulo implementado esteja livre de defeitos. A única coisa que o
@@ -929,7 +926,7 @@
       \section{Modelagem e implementação de testes}
           A modelagem de testes é uma fase importante, visto que é responsável
           por garantir o mínimo de qualidade no módulo que está sendo implementado.
-          O desenvolvimento de uma aplicação pode seguir a filosofia TDD em que o
+          O desenvolvimento de uma aplicação pode seguir o processo de TDD em que o
           programador primeiro implementa o teste e depois desenvolva o módulo que
           lhe foi designado (BECK, 2002). Porém, nada impede que o desenvolvedor implemente
           inicialmente o módulo e depois avançe para a parte de teste.
@@ -1000,8 +997,8 @@
           que o programador tenha em mente essas possibilidades também.
 
           Já no que se refere à parte de implementação, a implementação do padrão de projeto
-          \textit{factory} (FOWLER, 2003) costuma ser muito comum, visto que é uma solução elegante
-          para os testes. Esse padrão se faz essencial para manter um código mais limpo,
+          \textit{factory} costuma ser muito comum, visto que é uma solução elegante
+          para os testes (FOWLER, 2003). Esse padrão se faz essencial para manter um código mais limpo,
           visto que em cada cenário de teste o desenvolvedor precisará de objetos com valores de
           atributos diferentes. Dessa forma, ele pode usar uma biblioteca que implemente
           o padrão para os objetos necessários para o teste e para cada cenário ele solicita
@@ -1014,16 +1011,16 @@
           Dentro do universo de teste de software, pode-se classificar os testes pelos seus
           níveis ou fases. A classificação decorre do fato de que a medida que a aplicação
           vai crescendo os testes também precisam ter uma complexidade maior, pois o número
-          de combinações de entradas possíveis do usuário vai aumentando. Classicamente,
-          (WAZLAWICK, 2012), os testes, quando divididos dessa forma, podem pertencer alguma
+          de combinações de entradas possíveis do usuário vai aumentando. Segundo Wazlawick (2012),
+          os testes, quando divididos dessa forma, podem pertencer alguma
           dessas classes: unidade, integração, sistema, aceitação e o de regressão. O
           conceito de níveis deriva daquilo que é conhecido por \textit{Pirâmide de testes},
           ilustrada na Figura 7. A pirâmide de testes correlaciona a quantidade de cada nível
           de teste junto com seus custos e tempo de execução. Na base da pirâmide, portanto,
           identificam-se os testes com maior expressividade, em número, e que exigem pouco
           esforço para serem programados e que executam mais rapidamente, enquanto que no topo
-          é justamente o inverso. Nas próximas seções serão apresentadas brevemente os testes de:
-          unidade, integração, funcionalidade, aceitação e regressão.
+          é justamente o inverso. Nas próximas seções serão apresentadas brevemente os níveis de:
+          unidade, integração, funcionalidade, aceitação e regressão, de acordo com Myers (2004).
 
           \begin{figure}[!htb]
               \begin{center}
@@ -1078,7 +1075,7 @@
               nos testes e passou a ter erros, é dito, então, que o sistema regrediu (WAZLAWICK, 2012).
 
       \section{Técnicas de teste}
-          As técnicas de teste indicam a forma como os casos de teste serão implementados.
+          As técnicas de teste(MYERS, 2004) indicam a forma como os casos de teste serão implementados.
           Todas elas possuem em comum o objetivo de  encontrar falhas no artefato desenvolvido.
           As principais técnicas que podem ser aplicadas são: caixa-branca, caixa-preta e caixa-cinza.
           Os próximos tópicos detalharão cada uma dessas técnicas.
@@ -1191,7 +1188,7 @@
               \begin{center}(FONTE: Imagem feita pelo autor)\end{center}
               \end{figure}
 
-              Fica evidente pela figura que quanto mais arestas o autômato possui (i.e. estruturas
+              Percebe-se pela figura que quanto mais arestas o autômato possui (i.e. estruturas
               condicionais), fica mais complexo de se testar o módulo. Isso mostra a importância clara de
               que todo método deve ter no máximo 20 linhas, pois além de ser mais trivial de ser testado,
               mantém uma maior legibilidade.
@@ -1217,13 +1214,14 @@
   \chapter{Desenvolvimento Mobile}
   % ---
 
-      O desenvolvimento de aplicações móveis, foi uma área que existiu desde o início dos
+      O desenvolvimento de aplicações móveis, é uma área que existe desde o início dos
       primeiros dispositivos móveis, mas que ganhou mais destaque nos últimos anos, como visto na
       Figura 11. Nas primeiras gerações de celulares com interface gráficas e com capacidade
       de processamento mais robusta, uma séries de aplicativos era disponibilizada ao usuário como:
       agenda, calendário, email, jogos e até mesmo acesso à internet. Porém, não era possível que
       um usuário leigo pudesse instalar aplicações de terceiros de maneira trivial. Geralmente, o
-      processo envolvia baixar conteúdo de desenvolvedores no computador e fazer o deploy manualmente.
+      processo envolvia baixar a aplicação desejada no computador e fazer instalação manualmente
+      no dispositivo.
 
       \begin{figure}[htbp]
             \begin{center}
@@ -1437,10 +1435,10 @@
         e está preenchendo um formulário. Se o usuário trocar de aplicação enquanto o formulário é
         preenchido, os dados, se não forem salvos pelo usuário, serão perdidos na troca de contexto
         entre as aplicações. Nesse sentido, caso o desenvolvedor queira garantir que o usuário não
-        irá perder seus dados, basta que ele sobrescrever o método \textit{onPause()} e persistir
+        perca seus dados, basta que sobrescreva o método \textit{onPause()} e persistir
         os dados em algum local, seja no aparelho ou em um servidor web.
 
-        Sendo assim, quando o usuário retornar a aplicação, o método \textit{onResume()} será invocado
+        Sendo assim, quando o usuário retornar a aplicação, o método \textit{onResume()} será evocado
         pelo Android, e o desenvolvedor pode então preencher os campos com os dados que o usuário
         já havia informado previamente. Esse tipo de implementação garante uma melhor experiência para
         o usuário e permite ao desenvolvedor entender qual estado que sua aplicação se encontra em cada
@@ -1452,10 +1450,10 @@
         estado \textit{onStop()} e a memória comece a ficar escassa, o Android irá então finalizar
         a aplicação para liberar recursos para outros processos que estão necessitando. Por
         isso, qualquer dado que o desenvolvedor julgue como importante, deve ser salvo, na pior das
-        hipóteses, quando este método for invocado.
+        hipóteses, quando este método for evocado.
 
       \section{Espresso}
-        O \textit{espresso} é uma biblioteca oficial da API do Android que permite fazer testes em nível
+        O \textit{espresso} é um framework oficial da API do Android que permite fazer testes em nível
         de usuário, ou seja executar cliques na tela, preencher formulários, encerrar aplicação. Além
         disso, o \textit{espresso} fornece funções de asserção e uma sintaxe específica para verificar
         estados de objetos na tela baseado em seus identificadores globais.
@@ -1469,7 +1467,7 @@
         são automatizadas e quando o teste é executado, a aplicação vai sendo controlada por essas ações
         previamente programadas.
 
-        Essa biblioteca foi utilizada internamente, como uma dependência, para implementar o framework desse
+        Essa ferramenta foi utilizada internamente, como uma dependência, para implementar o framework desse
         trabalho.
 
       \section{Conclusão}
@@ -1490,7 +1488,7 @@
     que, além de consolidar os conceitos já apresentados, permitam reaproveitar ideais passadas em um projeto atual.
 
     \section{A busca de generalidade, flexibilidade e extensibilidade no processo de desenvolvimento de frameworks orientados a objetos}
-      Nesse artigo (SILVA, Ricardo P. e, PRICE, R. T., 1998) é feita uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
+      Nesse artigo de Ricardo Pereira e Silva e Roberto Tom Price (1998) é feita uma abordagem, resumida, dos principais conceitos envolvendo frameworks, a
       maioria deles já explicados no capítulo de Frameworks desse trabalho. Porém, um ponto importante
       discutido dentro desse artigo são os tópicos de padrões de projeto e metapadrões relacionados
       ao desenvolvimento de frameworks. Os padrões de projetos e metapadrões são contribuições
@@ -1502,7 +1500,7 @@
       completamente descartados, podendo ser utilizados quando for necessário dar alguma flexibilidade no
       algoritmo.
 
-      O estudo comenta, de maneira superficial, o caminho que o desenvolvedor deve seguir para desenvolver um
+      O estudo comenta o caminho que o desenvolvedor deve seguir para desenvolver um
       framework, o qual seria: generalização, flexibilização, aplicação de metapadrões, aplicações de padrões
       de projeto e aplicações de boas práticas dentro da orientação a objetos.
       Na etapa de generalização, busca-se estudar as aplicações implementadas do domínio que será abordado
@@ -1525,8 +1523,8 @@
       No framework desenvolvido, ainda era necessário que o programador implementasse manualmente os testes.
       Porém, a grande vantagem do uso desse framework era que ele possuia grandes abstrações de hardware
       e se comunicava com o baixo nível através da API disponibilizada pela empresa que fabricava o
-      telefone, no caso a Motorola, uma espécie de\textit{syscall}. A grande vantagem, era que o porte
-      (i.e. executar os testes de um dispositivo em outro) podia ser feito sem necessidade de alterar o teste.
+      telefone, no caso a Motorola, uma espécie de\textit{syscall}. A grande vantagem, era que a portabilidade
+      entre dispositivos físicos podia ser feito sem necessidade de alterar o teste.
 
       Dos resultados obtidos do artigo, pode-se verificar que 10 modelos de celulares foram utilizados no
       estudo. À medida que os testes foram sendo portados para cada plataforma, o reuso aumentava
@@ -1606,14 +1604,11 @@
         dependente do domínio do problema, ou seja, a aplicação que está sendo testada.
 
         Outro ponto a ser ressaltado é que para definir a asserção que será executada ao final do teste,
-        a pessoa que está a gerar o caso de teste deverá seguir uma sintaxe específica de uma biblioteca
-        do Android: o \textit{espresso}. Dessa forma, antes de iniciar a produção do teste, o usuário
+        a pessoa que está a gerar o caso de teste deverá seguir uma sintaxe específica do framework
+        \textit{espresso}. Dessa forma, antes de iniciar a produção do teste, o usuário
         deverá definir através de uma classe fornecida pelo próprio framework, qual a asserção será
-        executada ao final do teste, usando a sintaxe da biblioteca indicada. Caso a asserção não seja
+        executada ao final do teste, usando a sintaxe do framework indicada. Caso a asserção não seja
         definida, o caso de teste criado pela ferramenta ficará incompleto.
-
-        Por último, é interessante reforçar a ideia de que o que o framework se propõe a automatizar
-        é a geração de caso de testes e não a aplicação dos mesmos, ou seja execução.
 
       \section{Concepção}
         Considerando os trabalhos apresentados no capítulo anterior, fica evidente que uma implementação
@@ -1640,7 +1635,7 @@
         \end{description}
 
         Como os nomes já sugerem, eles permitem detectar ações de clique do usuário
-        e texto digitado, respectivamente. Esses métodos são invocados pelo Android toda
+        e texto digitado, respectivamente. Esses métodos são evocados pelo Android toda
         vez que um evento de clique ou de digitação ocorre. Para o caso em que um clique
         é detectado, o objeto passado como parâmetro, \textit{MotionEvent}, permite coletar
         informações como posição em que o clique ocorreu (i.e. X e Y). Infelizmente essa classe
@@ -1763,9 +1758,10 @@
         Para melhor entendimento, do ponto de vista de um usuário, o intuito dessa seção é apresentar como um
         desenvolvedor pode integrar sua aplicação ao \textit{capuccino}. Inicialmente, o projeto com código
         do framework deve ser copiado para o diretório raiz da aplicação que está sendo desenvolvida. Isso pode
-        ser feito através de uma clonagem do repositório do projeto que está disponível no \textit{Github}.
-        Feito esse processo, o usuário deve então instalar as dependências do \textit{capuccino} através do
-        \textit{gradle}, gerenciador de pacotes oficial do Android Studio.
+        ser feito através de uma clonagem do repositório do projeto que está disponível no
+        \href{https://github.com/olegario96/capuccino}{\textit{Github}}. Feito esse processo, o
+        usuário deve então instalar as dependências do \textit{capuccino} através do \textit{gradle}, gerenciador
+        de pacotes oficial do Android Studio.
 
         Depois de instalar os pacotes necessários para o correto funcionamento do framework, o desenvolvedor
         deve indicar no arquivo \textit{settings.gradle} que o diretório do \textit{capuccino} deve ser
@@ -1965,7 +1961,7 @@
 
       Ainda no que se refere aos testes gerados pela ferramenta, destaca-se as duas asserções criadas
       pelo usuário. Ambas podem ser visualizadas na Figura 25. Ambas foram escritas utilizando a sintaxe
-      da biblioteca \textit{espresso}. Na primeira asserção o framework avalia se o campo de senha está
+      do \textit{espresso}. Na primeira asserção o framework avalia se o campo de senha está
       exibindo a mensagem "E-mail invalido". Já na segunda asserção, está sendo consultado se o decorador
       foi exibido (i.e. o \textit{toast} foi mostrado). Nesse segundo caso, o conteúdo da mensagem não foi
       verificado.
@@ -2055,7 +2051,9 @@
       que o capuccino apresenta. Para resolver o problema de gerar um arquivo para cada caso de teste,
       uma possível solução seria o framework analisar se já existe um arquivo gerado com o mesmo nome. Em
       caso positivo, em vez de ele sobrescrever o arquivo com os dados atuais, ele pode gerenciar o código
-      internamente para adicionar um novo caso de teste.
+      internamente para adicionar um novo caso de teste. Para resolver a limitação de rede, pode-se
+      implementar uma emulação, via \textit{proxy}, para responder as requisições localmente sem ter
+      a necessidade de se comunicar com o \textit{backend}.
 
       Uma outra possível sugestão de trabalho seria verificar como o framework se comporta com aplicações
       como jogos eletrônicos. Esse é um caso interessante de ser testado, visto que a interface desse
@@ -2072,6 +2070,11 @@
       de arquivos do dispositivo emulado. Isso requer que toda vez que um teste é gerado, o usuário exporte
       manualmente o arquivo para o diretório de teste do aplicativo. Seria muito mais eficiente quando o
       framework fosse escrever o teste, ele escrevesse diretamente no diretório de testes real da aplicação.
+
+      Uma adição interessante a esse trabalho seria, também, reimplementar o módulo que detecta cliques na tela
+      para fazer a detecção através dos identificadores globais do componente e não de posições X e Y. Dessa forma
+      quando uma tela da aplicação fosse restruturada, o teste continuaria funcionando perfeitamente, desde que
+      os identifica dos componentes da tela fosse mantido.
 
       No geral, o framework cumpre aquilo que se propôs a fazer e automatiza a produção de testes
       mediante a utilização de uma aplicação Android por parte de um usuário. Nesse sentido, há uma diminuição
@@ -2208,88 +2211,31 @@
 
   \noindent
   MESZAROS, G. \textit{XUnit Test Patterns: Refactoring Test Code}. [S.I.:s.n.], 2011 Disponível em:
-  \url{https://github.com/oolee/software-development-ebooks/blob/master/%5BxUnit%20Test%20Patterns%20Refactoring%20Test%20Code%20(Addison-Wesley%20Signature%20Series%20(Fowler))%20Kindle%20Edition%20by%20Gerard%20Meszaros%20-%202007%5D.pdf}
+  \url{https://github.com/oolee/software-development-ebooks/blob/master/\%5BxUnit\%20Test\%20Patterns\%20Refactoring\%20Test\%20Code\%20(Addison-Wesley\%20Signature\%20Series\%20(Fowler))\%20Kindle\%20Edition\%20by\%20Gerard\%20Meszaros\%20-\%202007\%5D.pdf}
 
   \noindent
   BECK, K. \textit{Test-Driven Development By Example}. [S.I.:s.n.], 2002. Disponível em:
-  \url{http://docs.ludost.net/Programming%20and%20Software%20Development/Test-Driven%20Development/Test-Driven%20Development%20By%20Example%20-%20Kent%20Beck%20(2002).pdf}
+  \url{http://docs.ludost.net/Programming\%20and\%20Software\%20Development/Test-Driven\%20Development/Test-Driven\%20Development\%20By\%20Example\%20-\%20Kent\%20Beck\%20(2002).pdf}
 
   \noindent
-  Petrenko, Alexandre & Simão, Adenilso & Maldonado, José. \textit{Model-based testing of software and systems: Recent advances and challenges.} [S.I.:s.n.], 2012. Disponível em:
+  MYERS, G. J. \textit{The Art of Software Testing}. [S.I.:s.n.], 2004. Disponível em:
+  \url{http://barbie.uta.edu/~mehra/Book1_The\%20Art\%20of\%20Software\%20Testing.pdf}
+
+  \noindent
+  Petrenko, Alexandre \& Simão, Adenilso \& Maldonado, José. \textit{Model-based testing of software and systems: Recent advances and challenges.} [S.I.:s.n.], 2012. Disponível em:
   \url{https://www.researchgate.net/publication/257468201_Model-based_testing_of_software_and_systems_Recent_advances_and_challenges}
+  \noindent
+  LEACH, R. J. \textit{SOFTWARE REUSE: METHODS, MODELS, AND COSTS}. [S.I.:s.n.], 2011 Disponível em:
+  \url{https://pdfs.semanticscholar.org/700b/83bc8d4a2e4c1d1f4395a4c8fb78462c9f5a.pdf}
 
+  \noindent
+  JALENDER, B. Et al. \textit{A PRAGMATIC APPROACH TO SOFTWARE REUSE} Journal of Theoretical and Applied Information Technology, 2014
+  Disponível em:
+  \url{https://www.researchgate.net/publication/266287893_A_pragmatic_approach_to_software_reuse/download}
 
-  % ----------------------------------------------------------
-  % Glossário
-  % ----------------------------------------------------------
-  %
-  % Consulte o manual da classe abntex2 para orientações sobre o glossário.
-  %
-  %\glossary
-
-  % ----------------------------------------------------------
-  % Apêndices
-  % ----------------------------------------------------------
-
-  % ---
-  % Inicia os apêndices
-  % ---
-  % \begin{apendicesenv}
-
-  % Imprime uma página indicando o início dos apêndices
-  % \partapendices
-
-  % ----------------------------------------------------------
-  % \chapter{Quisque libero justo}
-  % ----------------------------------------------------------
-
-  % \lipsum[50]
-
-  % ----------------------------------------------------------
-  % \chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
-  % ac pretium ante justo a nulla curabitur tristique arcu eu metus}
-  % ----------------------------------------------------------
-  % \lipsum[55-57]
-
-  % \end{apendicesenv}
-  % ---
-
-
-  % ----------------------------------------------------------
-  % Anexos
-  % ----------------------------------------------------------
-
-  % ---
-  % Inicia os anexos
-  % ---
-  % \begin{anexosenv}
-
-  % Imprime uma página indicando o início dos anexos
-  % \partanexos
-
-  % ---
-  % \chapter{Morbi ultrices rutrum lorem.}
-  % ---
-  % \lipsum[30]
-
-  % ---
-  % \chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
-  % parturient montes nascetur ridiculus mus}
-  % ---
-
-  % \lipsum[31]
-
-  % ---
-  % \chapter{Fusce facilisis lacinia dui}
-  % ---
-
-  % \lipsum[32]
-
-  % \end{anexosenv}
-
-  %---------------------------------------------------------------------
-  % INDICE REMISSIVO
-  %---------------------------------------------------------------------
+  \noindent
+  JOHNSON, R. E. Et al. \textit{Designing Reusable Classes} Journal of Object-Oriented Programming, Junho/Julho 1988, Volume 1. Disponível em:
+  \url{http://www.laputan.org/drc.html}
 
   \printindex
 
