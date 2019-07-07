@@ -757,7 +757,7 @@
           estável que inicializa objetos que sempre serão necessários para o framework.
           Entretanto, como existem objetos que podem variar de aplicação para aplicação
           ao final da execução do método \textit{Template} o método \textit{Hook} é
-          executado. Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
+          executado (GAMMA, 1994). Esse, por sua vez, é um método que deve ser sobrescrito pelo usuário
           para que ele possa inicialzar demais objetos que necessite para sua aplicação.
           Na Figura 3, é possível observar alguns métodos, dentro do framework FraG, que
           são classificados como template ou hook.
@@ -771,9 +771,9 @@
           \end{figure}
 
           Outro fato que leva a relação de herança ser tão explorada no mundo de frameworks,
-          é o que se chama de princípio de Hollywood (\textit{"Don't call us, we'll call you"}).
-          Esse princípio decorre do fato de que quando o desenvolvedor estiver usando a
-          ferramenta ele não deve instanciar objetos do framework e chamar métodos. Pelo
+          é o que se chama de princípio de Hollywood (\textit{"Don't call us, we'll call you"})
+          (FOWLER, 2005). Esse princípio decorre do fato de que quando o desenvolvedor estiver
+          usando a ferramenta ele não deve instanciar objetos do framework e chamar métodos. Pelo
           contrário, ele deve criar novas classes que herdem de outras já definidas pelo
           framework. Usualmente, são classes abstratas. Dessa forma, quando a aplicação
           estiver sendo executada, o framework saberá quais classes foram herdadas e
@@ -783,7 +783,7 @@
 
           Já o fato de existir tantas relações de associações no framework, vem
           do fato de que os \textit{Design Patterns} são amplamente explorados neste universo de
-          soluções. \textit{Design Patterns} são modelagens
+          soluções. \textit{Design Patterns} (GAMMA, 1994) são modelagens
           elegantes e que solucionam problemas que já estão muito bem conhecidos na
           modelagem de software. Na modelagem do FraG, podemos perceber em que há
           casos em que está sendo usado simultaneamente 3 \textit{Design Patterns}, para tratar um único problema no projeto.
@@ -2236,6 +2236,14 @@
   \noindent
   JOHNSON, R. E. Et al. \textit{Designing Reusable Classes} Journal of Object-Oriented Programming, Junho/Julho 1988, Volume 1. Disponível em:
   \url{http://www.laputan.org/drc.html}
+
+  \noindent
+  GAMMA, E., HELM, R., JOHNSON, R., VISSIDES, J. \textit{Design Patterns Elements of Reusable Object-Oriented Software} [S.I.:S.N.], 1994. Disponível em:
+  \url{http://www.uml.org.cn/c++/pdf/DesignPatterns.pdf}
+
+  \noindent
+  FOWLER, M. \textit{UML Distilled Second Edition A Brief Guide to the Standard Object Modeling Language} [S.I.:S.N.], 1999. Disponível em:
+  \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.183.2984&rep=rep1&type=pdf}
 
   \printindex
 
